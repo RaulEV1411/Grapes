@@ -48,4 +48,3 @@ end
 
 gem 'devise'
 gem 'rolify'
-gem "aws-sdk-s3"
