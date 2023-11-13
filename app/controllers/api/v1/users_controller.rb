@@ -1,6 +1,5 @@
-class UsersController < ApplicationController
+class Api::V1::UsersController < ApplicationController
 
-        before_action :authenticate_user!
         before_action :set_user, only: %i[ show edit update destroy ]
 
 
@@ -66,6 +65,6 @@ class UsersController < ApplicationController
 
         # Only allow a list of trusted parameters through.
             def user_params
-                params.require(:user).permit(:first_name, :last_name, :birth_date, :email, :photo)
+                params.require(:user).permit(:first_name, :last_name, :birth_date, :email, :encrypted_password, :password_confirmation, :photo)
             end
 end
