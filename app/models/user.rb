@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   has_many_attached :photo
-  rolify
+  
 
   include Devise::JWT::RevocationStrategies::JTIMatcher
 
