@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_14_162831) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_15_172709) do
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -74,6 +74,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_14_162831) do
     t.bigint "user_id"
     t.index ["course_id"], name: "index_feed_backs_on_course_id"
     t.index ["user_id"], name: "index_feed_backs_on_user_id"
+  end
+
+  create_table "jwt_denylist", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "jti", null: false
+    t.datetime "exp", null: false
+    t.index ["jti"], name: "index_jwt_denylist_on_jti"
   end
 
   create_table "pay_methods", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|

@@ -2,7 +2,7 @@
 
 class Users::SessionsController < Devise::SessionsController
 
-  # before_action :configure_sign_in_params, only: [:create]
+  before_action :configure_sign_in_params, only: [:create]
 
   respond_to :json
 
@@ -22,34 +22,15 @@ class Users::SessionsController < Devise::SessionsController
   end
 
   private
-  def respond_with(current_user, _opts = {})
-    render json: {
-      status: { 
-        code: 200, message: 'Logged in successfully.',
-        data: { user: UserSerializer.new(current_user).serializable_hash[:data][:attributes] }
-      }
-    }, status: :ok
-  end
-  def respond_to_on_destroy
-    if request.headers['Authorization'].present?
-      jwt_payload = JWT.decode(request.headers['Authorization'].split(' ').last, Rails.application.credentials.devise_jwt_secret_key!).first
-      current_user = User.find(jwt_payload['sub'])
-    end
-    
-    if current_user
-      render json: {
-        status: 200,
-        message: 'Logged out successfully.'
-      }, status: :ok
-    else
-      render json: {
-        status: 401,
-        message: "Chuty."
-      }, status: :unauthorized
-    end
+  def respond_with(resource, _opts = {})
+    render json: resource
   end
 
-  # protected
+  def respond_to_on_destroy
+    render json: { message: "Logged out." }
+  end
+
+  protected
 
   # # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_in_params
