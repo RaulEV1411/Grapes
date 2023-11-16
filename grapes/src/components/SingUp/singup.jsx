@@ -1,5 +1,6 @@
 import React, { useState, useRef } from "react";
-
+import { useNavigate, Link, useParams } from 'react-router-dom'
+import "./singup.css"
     const Signup = ({ setCurrUser, setShow }) => {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
@@ -7,8 +8,9 @@ import React, { useState, useRef } from "react";
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
-
     const formRef = useRef();
+    const navigate = useNavigate()
+    // const navigate = useNavigate()
 
     const signup = async (userInfo) => {
         const url = "http://localhost:3001/signup";
@@ -22,16 +24,19 @@ import React, { useState, useRef } from "react";
             body: JSON.stringify(userInfo),
         });
 
-        const data = await response.json();
-        if (!response.ok) throw data.error;
+    
 
+        const data = await response.json();
+        if (!response.ok) {throw data.error};
         localStorage.setItem('token', response.headers.get("Authorization"));
         setCurrUser(data);
-        } catch (error) {
+        navigate("/")
+        console.log(data, "si llega")
+    } catch (error) {
         console.error("Error:", error);
         // Manejar el error y proporcionar retroalimentación al usuario
-        }
-    };
+    }
+}; 
 
     const handleFormSubmit = (e) => {
         e.preventDefault();
@@ -54,6 +59,7 @@ import React, { useState, useRef } from "react";
 
     return (
         <div>
+
         <div className="form">
             <div className="flex">
             <label>
@@ -135,7 +141,7 @@ import React, { useState, useRef } from "react";
             <br />
 
             <form ref={formRef} onSubmit={handleFormSubmit}>
-            <button type="submit" className="fancy">
+            <button type="submit" className="submit">
                 <span className="top-key"></span>
                 <span className="text">submit</span>
                 <span className="bottom-key-1"></span>

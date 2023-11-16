@@ -1,11 +1,13 @@
     import { useRef } from "react"
+    import { useNavigate, Link, useParams } from 'react-router-dom'
     const Login = ({setCurrUser, setShow}) =>{
     const formRef=useRef()
-    const login=async (userInfo, setCurrUser)=>{
-        const url="http://localhost:3000/login"
+    const navigate = useNavigate()
+    const login= async (userInfo, setCurrUser)=>{
+        const url="http://localhost:3001/login"
         try{
             const response=await fetch(url, {
-                method: "post",
+                method: "POST",
                 headers: {
                     'content-type': 'application/json',
                     'accept': 'application/json'
@@ -14,9 +16,10 @@
             })
             const data=await response.json()
             if(!response.ok) 
-            throw data.error
+            {throw data.error}
             localStorage.setItem("token", response.headers.get("Authorization"))
-            setCurrUser(data)        
+            setCurrUser(data) 
+            navigate("/")
         }catch(error){
         console.log("error", error)
         }
@@ -45,7 +48,7 @@
             <input type='submit' value="Login" />
         </form>
         <br />
-        <div>Not registered yet, <a href="#signup" onClick={handleClick} >Signup</a> </div>
+        <div>Not registered yet, <a href="#signu" onClick={handleClick} >Signup</a> </div>
         </div>
     )
     }
