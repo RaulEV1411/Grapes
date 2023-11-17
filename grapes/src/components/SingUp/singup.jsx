@@ -30,7 +30,7 @@ import "./singup.css"
         if (!response.ok) {throw data.error};
         localStorage.setItem('token', response.headers.get("Authorization"));
         setCurrUser(data);
-        navigate("/")
+        navigate("/login")
         console.log(data, "si llega")
     } catch (error) {
         console.error("Error:", error);
@@ -57,107 +57,86 @@ import "./singup.css"
         setShow(true);
     };
 
-    return (
-        <div>
+    
+        return (
+            <div className="form">
+              <label className="contenedorLogo">
+              <img className="logoApp" src="/Logo_Grapes-removebg-preview.png" alt="Logo de la App" />
+              </label>
 
-        <div className="form">
-            <div className="flex">
-            <label>
+                <div className="namespace">
+              
                 <input
-                className="input"
-                type="text"
-                placeholder=""
-                required=""
-                value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
+                  className="input"
+                  type="text"
+                  placeholder="First Name"
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
                 />
-                <span>first name</span>
-            </label>
-
-            <label>
+              
+        
+              
                 <input
-                className="input"
-                type="text"
-                placeholder=""
-                required=""
-                value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
+                  className="input"
+                  type="text"
+                  placeholder="Last Name"
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
                 />
-                <span>last name</span>
-            </label>
+              </div>
+        
+              <label>
+                <input
+                  className="input"
+                  type="date"
+                  placeholder="Birth Day"
+                  value={birthDate}
+                  onChange={(e) => setBirthDate(e.target.value)}
+                />
+              </label>
+              <br />
+        
+              <label>
+                <input
+                  className="input"
+                  type="email"
+                  placeholder="Email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </label>
+              <br />
+        
+              <label>
+                <input
+                  className="input"
+                  type="password"
+                  placeholder="Password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </label>
+              <br />
+        
+              <label>
+                <input
+                  className="input"
+                  type="password"
+                  placeholder="Confirm Password"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                />
+              </label>
+              <br />
+        
+              <form ref={formRef} onSubmit={handleFormSubmit}>
+                <button type="submit" className="submit">
+                  <span className="text">submit</span>
+                </button>
+              </form>
             </div>
-            <br />
-
-            <label>
-            <input
-                className="input"
-                type="date"
-                placeholder=""
-                required=""
-                value={birthDate}
-                onChange={(e) => setBirthDate(e.target.value)}
-            />
-            <span>Birth Date</span>
-            </label>
-            <br />
-
-            <label>
-            <input
-                className="input"
-                type="email"
-                placeholder=""
-                required=""
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-            />
-            <span>email</span>
-            </label>
-            <br />
-
-            <label>
-            <input
-                className="input"
-                type="password"
-                placeholder=""
-                required=""
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-            />
-            <span>password</span>
-            </label>
-            <br />
-
-            <label>
-            <input
-                className="input"
-                type="password"
-                placeholder=""
-                required=""
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-            />
-            <span>confirm password</span>
-            </label>
-            <br />
-
-            <form ref={formRef} onSubmit={handleFormSubmit}>
-            <button type="submit" className="submit">
-                <span className="top-key"></span>
-                <span className="text">submit</span>
-                <span className="bottom-key-1"></span>
-                <span className="bottom-key-2"></span>
-            </button>
-            </form>
-
-            <button type="button" className="fancy" onClick={handleClick}>
-            <span className="top-key"></span>
-            <span className="text">Show</span>
-            <span className="bottom-key-1"></span>
-            <span className="bottom-key-2"></span>
-            </button>
-        </div>
-        </div>
-    );
-    };
+          );
+        };
+        
 
     export default Signup;
