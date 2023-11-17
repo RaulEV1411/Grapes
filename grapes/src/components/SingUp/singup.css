@@ -1,5 +1,16 @@
 /* Añade estos estilos en tu hoja de estilos CSS */
 
+.signBody{
+  display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Esto asegura que el contenedor esté centrado verticalmente en la ventana. */
+    margin: 0;
+    background-color: #4f4f4f;
+    
+}
+
+
 .form {
   max-width: 400px;
   margin: 0 auto;
@@ -72,11 +83,15 @@
 .logoApp{
   max-width: 15%;
   width: 20%;
-
 }
 
-.contenedorLogo{
-  display: flex;
-  justify-content: center;
-  max-width: 95%;
+.signup-link a {
+  color: rgb(201, 39, 39); /* Color inspirado en el de las uvas */
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
 }
+
+.signup-link a:hover {
+  color: #542b5e; /* Cambio de color en hover */
+}
+

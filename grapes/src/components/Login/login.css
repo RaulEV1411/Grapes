@@ -1,11 +1,13 @@
 /* Login.FormLogin.css */
 
-body {
+.LoginBody{
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100vh; /* Esto asegura que el contenedor esté centrado verticalmente en la ventana. */
     margin: 0;
+    background-color: #4f4f4f;
+    
 }
 
 .login-container {
@@ -13,7 +15,7 @@ body {
     max-width: 300px;
     margin: 0 auto;
     padding: 20px;
-    background-color: #a9c4a9; /* Color inspirado en el de las uvas */
+    background-color: #8f509d;/* Color inspirado en el de las uvas */
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease-in-out;
@@ -48,7 +50,7 @@ label {
 
 .inputLogin[type='submit'] {
     cursor: pointer;
-    background-color: #693c72; /* Color inspirado en el de las uvas */
+    background-color: #56b656; /* Color inspirado en el de las uvas */
     color: #fff;
     border: none;
     transition: background-color 0.3s ease-in-out;
@@ -61,16 +63,20 @@ label {
 .signup-link {
     margin-top: 15px;
     font-size: 14px;
-    color: #4f4f4f;
+    color: #ffffff;
     transition: color 0.3s ease-in-out;
 }
 
-.signup-link a {
-    color: #693c72; /* Color inspirado en el de las uvas */
-    text-decoration: none;
-    transition: color 0.3s ease-in-out;
-}
 
-.signup-link a:hover {
+
+
+.login-link{
+    color: rgb(201, 39, 39); /* Color inspirado en el de las uvas */
+      text-decoration: none;
+      transition: color 0.3s ease-in-out;
+  }
+  
+  .login-link a:hover {
     color: #542b5e; /* Cambio de color en hover */
-}
+  }
+

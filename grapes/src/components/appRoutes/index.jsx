@@ -6,7 +6,7 @@ import Signup from "../SingUp/singup.jsx";
 import Home from "../Home/home.jsx";
 
 const AppRoutes = () => {
-    const [currUser, setCurrUser]= useState({email:"barry1234@gmail.com"});
+    const [currUser, setCurrUser]= useState(null);
     return (
         <div>
             <Routes>

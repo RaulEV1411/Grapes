@@ -59,13 +59,12 @@ import "./singup.css"
 
     
         return (
+          <div className="signBody">
             <div className="form">
               <label className="contenedorLogo">
               <img className="logoApp" src="/Logo_Grapes-removebg-preview.png" alt="Logo de la App" />
               </label>
-
-                <div className="namespace">
-              
+                <div className="namespace">             
                 <input
                   className="input"
                   type="text"
@@ -73,9 +72,6 @@ import "./singup.css"
                   value={firstName}
                   onChange={(e) => setFirstName(e.target.value)}
                 />
-              
-        
-              
                 <input
                   className="input"
                   type="text"
@@ -134,6 +130,11 @@ import "./singup.css"
                   <span className="text">submit</span>
                 </button>
               </form>
+
+              <div className="signup-link">
+              Are you already registered?, <Link to="/login">Tap!</Link>
+              </div>
+            </div>
             </div>
           );
         };

@@ -1,4 +1,7 @@
+import { Navigate, useNavigate,Link } from "react-router-dom"
+
     const Logout =({setCurrUser})=>{
+        const navigate = useNavigate()
         const logout=async (setCurrUser)=>{
             try {
                 const response=await fetch("http://localhost:3001/logout",{
@@ -9,9 +12,11 @@
                     },
                 })
                 const data=await response.json()
-                if(!response.ok) throw data.error
+                if(!response.ok) {throw data.error}
+                
                 localStorage.removeItem("token")
                 setCurrUser(null)
+                navigate("/login")
             } catch (error) {
                 console.log("error", error)
             }
@@ -21,9 +26,9 @@
             logout(setCurrUser)
         }
         return (
-            <div>
-                <input type="button" value='Logout' onClick={handleClick}/>
-            </div>
+            <div className="login-link">
+              Are you already registered?, <Link to="/login">Tap!</Link>
+                </div>
         )
     }
     export default Logout

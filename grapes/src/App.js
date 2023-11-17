@@ -3,8 +3,10 @@ import AppRoutes from './components/appRoutes';
 
 function App() {
   
+
   return (
       <>
+      
       <AppRoutes/>     
       </>
   )

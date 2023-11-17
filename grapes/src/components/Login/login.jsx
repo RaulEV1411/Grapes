@@ -36,7 +36,11 @@
         e.target.reset()
     }
         return(
+            <div className="LoginBody">
             <div className="login-container">
+                <label className="contenedorLogo">
+                    <img className="logoApp" src="/Logo_Grapes-removebg-preview.png" alt="Logo de la App" />
+                </label>
                 <form className="formLogin" ref={formRef} onSubmit={handleSubmit}>
                     <label>Email:</label>
                     <input className="inputLogin" type="email" name="email" placeholder="email" />
@@ -50,6 +54,7 @@
                 <div className="signup-link">
                     Not registered yet, <Link to="/signup">Signup</Link>
                 </div>
+            </div>
             </div>
     )
     }
