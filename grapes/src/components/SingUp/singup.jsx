@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { useNavigate, Link, useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import "./singup.css"
     const Signup = ({ setCurrUser, setShow }) => {
     const [firstName, setFirstName] = useState('');
@@ -23,9 +23,6 @@ import "./singup.css"
             },
             body: JSON.stringify(userInfo),
         });
-
-    
-
         const data = await response.json();
         if (!response.ok) {throw data.error};
         localStorage.setItem('token', response.headers.get("Authorization"));
@@ -132,7 +129,7 @@ import "./singup.css"
               </form>
 
               <div className="signup-link">
-              Are you already registered?, <Link to="/login">Tap!</Link>
+              Are you already registered?,<a href="#signup" onClick={handleClick}>login</a>
               </div>
             </div>
             </div>

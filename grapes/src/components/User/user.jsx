@@ -1,8 +1,9 @@
-import Signup from '../SingUp/singup'
-import Login from '../Login/login'
-import Logout from '../Logout/logout'
-import PrivateText from '../PrivateText/PrivateText'
-import { useState } from "react";
+import PrivateText from "../PrivateText/PrivateText.jsx";
+import Signup from "../SingUp/singup.jsx";
+import Login from "../Login/login.jsx";
+import Logout from "../Logout/logout.jsx";
+import { useEffect, useState } from "react";
+import { jwtDecode } from "jwt-decode";
 const User = ({currUser, setCurrUser}) => {
     const [show, setShow]=useState(true)
     if(currUser) 
@@ -23,4 +24,4 @@ const User = ({currUser, setCurrUser}) => {
         </div>
     )
 }
-export default User;
+export default User

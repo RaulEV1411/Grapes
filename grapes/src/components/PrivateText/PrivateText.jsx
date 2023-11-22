@@ -10,7 +10,8 @@ const PrivateText=({currUser})=>{
                     "authorization": localStorage.getItem("token")
                 }
             })
-            if(!response.ok) throw Error
+            console.log(response)
+            if(!response.ok) {throw Error}
             const data=await response.json()
             setMessage(data.message)
         }

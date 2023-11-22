@@ -46,8 +46,13 @@ group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
 end
-
+gem 'pry-byebug', '~> 3.10', '>= 3.10.1'
 gem 'devise'
 gem 'devise-jwt'
 gem 'jsonapi-serializer'
 gem 'pundit'
+
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'factory_bot_rails', '~> 6.4'
+end 
