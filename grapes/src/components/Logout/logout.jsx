@@ -1,7 +1,10 @@
+import { useNavigate } from "react-router-dom"
+
 const Logout =({setCurrUser})=>{
+    const navigate = useNavigate()
     const logout=async (setCurrUser)=>{
         try {
-            const response=await fetch("http://localhost:3001/logout",{
+            const response=await fetch("http://localhost:3002/logout",{
                 method: "delete",
                 headers: {
                     "content-type": "application/json",
@@ -9,10 +12,10 @@ const Logout =({setCurrUser})=>{
                 },
             })
             const data=await response.json()
-            debugger;
             if(!response.ok) {throw data.error}
             localStorage.removeItem("token")
             setCurrUser(null)
+            navigate("/login")
         } catch (error) {
             console.log("error", error)
         }

@@ -1,17 +1,18 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import "./login.css";
 import { useNavigate } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
 const Login = ({ setCurrUser, setShow }) => {
     const navigate = useNavigate()
     const formRef = useRef();
         const login = async (userInfo, setCurrUser) => {
-            const url = "http://localhost:3001/login";
+            const url = "http://localhost:3002/login";
             try {
             const response = await fetch(url, {
                 method: "POST",
                 headers: {
                 "content-type": "application/json",
-                accept: "application/json",
+                "accept": "application/json",
                 },
                 body: JSON.stringify(userInfo),
             });
@@ -42,6 +43,24 @@ const Login = ({ setCurrUser, setShow }) => {
         e.preventDefault();
         setShow(false);
     };
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        if (token) {
+            const decoded = jwtDecode(token);
+            // Assuming the decoded token contains the user's ID in a 'sub' property
+            const userId = decoded.sub;
+            // Fetch the user data from your API
+            fetch(`http://localhost:3002/api/v1/users/${userId}`)
+                .then(response => response.json())
+                .then(data => {
+                // Set the current user in your application's state
+                setCurrUser(data);
+                })
+                .catch(error => {
+                console.error('Error:', error);
+                });
+            }
+    }, [setCurrUser]);
     return (
         <div className="LoginBody">
             <div className="login-container">
