@@ -1,21 +1,17 @@
 import { jwtDecode } from "jwt-decode";
 import Login from "../Login/login";
 import { useEffect } from "react";
+import { Navbar } from "flowbite-react";
 
 const ProtectedComponent = ({
     setCurrUser,
-    children,
+    children
     }) => {
-    useEffect(() => {
         const token = localStorage.getItem('token');
+    useEffect(() => {
         if (token) {
-            console.log(token,"ayudaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
             const decoded = jwtDecode(token);
-            console.log("PersistenciaAAAAAAAAAAAAAAAAAAAAAAAAAA")
-            console.log(decoded)
             const userId = decoded.sub;
-            console.log(userId)
-            console.log(decoded)
             fetch(`http://localhost:3002/api/v1/users/${userId}`, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
@@ -30,12 +26,13 @@ const ProtectedComponent = ({
                     console.error('Error:', error);
                 });
         }
-    }, [])
-        if(!setCurrUser){
+    }, []);
+        if(!token){
         return <Login  setCurrUser={setCurrUser}/>;
-    }
-    
-    return children;
+        }
+        else{
+        return children;
+        }
 };
 
 export default ProtectedComponent;

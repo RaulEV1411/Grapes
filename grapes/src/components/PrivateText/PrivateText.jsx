@@ -1,4 +1,6 @@
 import { useState,useEffect } from "react"
+
+
 const PrivateText=({currUser})=>{
     const [message, setMessage]=useState(null)
     const getText=async ()=>{
@@ -9,8 +11,7 @@ const PrivateText=({currUser})=>{
                     "content-type": "application/json",
                     "authorization": localStorage.getItem("token")
                 }
-            })
-            console.log(response)
+            });
             if(!response.ok) {throw Error}
             const data=await response.json()
             setMessage(data.message)

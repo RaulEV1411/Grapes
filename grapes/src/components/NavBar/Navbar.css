@@ -39,13 +39,15 @@
 }
 html, body {
     margin: 0;
-    width: 100%;
+    justify-content: flex-start;
+    width: 97%;
     color: hsl(var(--text-primary));
     font-family: var(--font-main);
     background-color: hsl(var(--background));
     -webkit-font-smoothing: antialiased;
     scroll-behavior: smooth;
     box-sizing: border-box;
+    background-color: #4f4f4f;
 }
 
 /* ============
@@ -349,6 +351,10 @@ select {
     max-width: 80%;
 }
 
+#body {
+    margin: 0 0 0 5em;
+    min-height: 40vh;
+}
 /* =============
     ::Selectors
    ============= */
@@ -434,3 +440,5 @@ select {
 @media only screen and (max-width: 496px) {
 
 }
+
+
