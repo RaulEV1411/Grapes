@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import "./singup.css"
-    const Signup = ({ setCurrUser, setShow }) => {
+    const Signup = ({ setCurrUser}) => {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [birthDate, setBirthDate] = useState('');
@@ -47,11 +47,6 @@ import "./singup.css"
         }};
         signup(userInfo);
         e.target.reset();
-    };
-
-    const handleClick = (e) => {
-        e.preventDefault();
-        setShow(true);
     };
 
     
@@ -129,7 +124,7 @@ import "./singup.css"
               </form>
 
               <div className="signup-link">
-              Are you already registered?,<a href="#signup" onClick={handleClick}>login</a>
+              Are you already registered?,<Link to = "/login" >Login</Link>
               </div>
             </div>
             </div>

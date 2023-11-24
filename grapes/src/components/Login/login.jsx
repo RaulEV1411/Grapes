@@ -1,8 +1,8 @@
 import { useEffect, useRef } from "react";
 import "./login.css";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
-const Login = ({ setCurrUser, setShow }) => {
+const Login = ({ setCurrUser }) => {
     const navigate = useNavigate()
     const formRef = useRef();
         const login = async (userInfo, setCurrUser) => {
@@ -38,10 +38,6 @@ const Login = ({ setCurrUser, setShow }) => {
         };
         login(userInfo, setCurrUser);
         e.target.reset();
-    };
-    const handleClick = (e) => {
-        e.preventDefault();
-        setShow(false);
     };
     useEffect(() => {
         const token = localStorage.getItem('token');
@@ -92,10 +88,7 @@ const Login = ({ setCurrUser, setShow }) => {
                 </form>
                 <br />
                 <div className="signup-link">
-                    Not registered yet,{" "}
-                    <a href="#signup" onClick={handleClick}>
-                        Signup
-                    </a>
+                    Not registered yet,<Link to = "/signup">Signup</Link>
                 </div>
             </div>
         </div>

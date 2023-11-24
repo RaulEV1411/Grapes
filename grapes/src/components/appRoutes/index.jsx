@@ -6,7 +6,8 @@ import Home from "../Home/home.jsx";
 import PrivateText from "../PrivateText/PrivateText.jsx";
 import ProtectedComponent from "../ProctectedComponent/ProctectedComponent.jsx";
 import Subjects from '../Subujects/subjects.jsx'
-
+import Courses from "../Courses/Courses.jsx";
+import CardSubject from "../cardSubject/cardSubject.jsx";
 
 const AppRoutes = () => {
     const [currUser, setCurrUser]= useState(null);
@@ -23,6 +24,14 @@ const AppRoutes = () => {
                         <Subjects currUser={currUser} setCurrUser={setCurrUser}/>
                     </ProtectedComponent>
                 } />
+
+                <Route path="/course" element={
+                    <ProtectedComponent currUser={currUser} setCurrUser={setCurrUser}>
+                        <Courses currUser={currUser} setCurrUser={setCurrUser}/>
+                    </ProtectedComponent>
+                } />
+
+                <Route path='/card' element={<CardSubject currUser={currUser} setCurrUser={setCurrUser}/>} />
                 <Route path='/login' element={<Login currUser={currUser} setCurrUser={setCurrUser}/>} />
                 <Route path='/private' element={<PrivateText currUser={currUser} setCurrUser={setCurrUser}/>} /> 
                 <Route path='/signup' element={<Signup currUser={currUser} setCurrUser={setCurrUser}/>} />

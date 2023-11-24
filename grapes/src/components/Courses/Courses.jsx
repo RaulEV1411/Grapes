@@ -1,9 +1,10 @@
 import {React, useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
 import Navbar from '../NavBar/Navbar';
-
+import CardSubject from '../cardSubject/cardSubject';
+// import './Courses.css'
 const Courses = ({ setCurrUser }) => {
-    const [Courses, setCourses] = useState([]);
+    const [courses, setCourses] = useState([]);
 
     useEffect(() => {
         getCourses();
@@ -36,12 +37,10 @@ const Courses = ({ setCurrUser }) => {
             </main>
         <div id="body" className='flexbox-col'>
             <ul>
-            {Courses.map((course) => (
-                <li className='link' key={course.id} >
-                    < Link to ="/subject/course" className='link'>
-                    {course.name},
-                    {course.description},
-                    {course.publication_date}
+                {courses.map((course) => (
+                <li className='link' key={course.id}>
+                    < Link to = "/" className='link'>
+                    <CardSubject title={course.name}></CardSubject>
                     </Link>
                 </li>
             ))}

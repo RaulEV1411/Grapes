@@ -2,6 +2,7 @@
     import { Link } from 'react-router-dom';
     import Navbar from '../NavBar/Navbar';
     import "./subject.css";
+import CardSubject from '../cardSubject/cardSubject';
     const Subjects = ({ setCurrUser }) => {
     const [subjects, setSubjects] = useState([]);
 
@@ -35,12 +36,13 @@
                 <div id="main" className="flexbox-col">
                 <h2>Subjects</h2>
             </div>
-        <div id="body" className='flexbox-col'>
-            <ul>
+        <div id="body1" className='flexbox-col'>
+            <ul className='link'>
+                
             {subjects.map((subject) => (
-                <li className='link' key={subject.id}>
+                <li  key={subject.id}>
                     < Link to = "/subject/course" className='link'>
-                    {subject.name}
+                    <CardSubject title={subject.name}></CardSubject>
                     </Link>
                 </li>
             ))}
