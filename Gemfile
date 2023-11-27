@@ -50,8 +50,9 @@ gem 'pry-byebug', '~> 3.10', '>= 3.10.1'
 gem 'devise'
 gem 'devise-jwt'
 gem 'jsonapi-serializer'
+gem 'fast_jsonapi'
 gem 'pundit'
-
+gem 'dotenv-rails', groups: [:development, :test]
 group :development, :test do
   gem 'rspec-rails'
   gem 'factory_bot_rails', '~> 6.4'

@@ -3,5 +3,14 @@
 #
 # Examples:
 #
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
+# Subject.create!([
+#     {name:"Civica"}, {name: "Frances"}, {name: "Ingles"}])
+
 #   Character.create(name: "Luke", movie: movies.first)
+
+# Course.create!([
+#     name:"plus for 5°", description: "its a Course about how make a plus", publication_date: Date.today
+# ])
+    
+
+    

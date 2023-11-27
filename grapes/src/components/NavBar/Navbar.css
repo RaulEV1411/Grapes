@@ -40,7 +40,6 @@
 html, body {
     margin: 0;
     justify-content: flex-start;
-    width: 97%;
     color: hsl(var(--text-primary));
     font-family: var(--font-main);
     background-color: hsl(var(--background));
@@ -340,7 +339,7 @@ select {
 
 #main {
     margin: 0 0 0 5em;
-    min-height: 40vh;
+    min-height: 20vh;
 }
 #main > h2 {
     width: 80%;

@@ -1,12 +1,12 @@
 import {React,useState} from "react";
 import { Routes, Route } from "react-router-dom";
-import Login from '../Login/login.jsx';
+import Login from "../Login/login.jsx";
 import Signup from "../SingUp/singup.jsx";
-import Home from "../Home/home.jsx";
+import HomePage from "../../Pages/Home/index.jsx";
 import PrivateText from "../PrivateText/PrivateText.jsx";
 import ProtectedComponent from "../ProctectedComponent/ProctectedComponent.jsx";
-import Subjects from '../Subujects/subjects.jsx'
-import Courses from "../Courses/Courses.jsx";
+import SubjectsPage from "../../Pages/Subjects/index.jsx";
+import CoursesPage from "../../Pages/Courses/index.jsx";
 import CardSubject from "../cardSubject/cardSubject.jsx";
 
 const AppRoutes = () => {
@@ -16,18 +16,18 @@ const AppRoutes = () => {
             <Routes>
                 <Route path="/home" element={
                     <ProtectedComponent currUser={currUser} setCurrUser={setCurrUser}>
-                        <Home currUser={currUser} setCurrUser={setCurrUser}/>
+                        <HomePage currUser={currUser}/>
                     </ProtectedComponent>
                 } />
                 <Route path="/subject" element={
                     <ProtectedComponent currUser={currUser} setCurrUser={setCurrUser}>
-                        <Subjects currUser={currUser} setCurrUser={setCurrUser}/>
+                        <SubjectsPage currUser={currUser} setCurrUser={setCurrUser}/>
                     </ProtectedComponent>
                 } />
 
                 <Route path="/course" element={
                     <ProtectedComponent currUser={currUser} setCurrUser={setCurrUser}>
-                        <Courses currUser={currUser} setCurrUser={setCurrUser}/>
+                        <CoursesPage currUser={currUser} setCurrUser={setCurrUser}/>
                     </ProtectedComponent>
                 } />
 

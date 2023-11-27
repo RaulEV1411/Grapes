@@ -2,7 +2,7 @@
 
 class Users::SessionsController < Devise::SessionsController
 
-  before_action :configure_sign_in_params, only: [:create]
+  # before_action :configure_sign_in_params, only: [:create]
   respond_to :json
 
   # GET /resource/sign_in
@@ -22,17 +22,32 @@ class Users::SessionsController < Devise::SessionsController
 
   private
   def respond_with(resource, _opts = {})
-    render json: resource
+    render json: {
+      status: { code: 200, message: 'Logged in successfully.' },
+      data: UserSerializer.new(resource).serializable_hash[:data][:attributes]
+    }, status: :ok
   end
-
   def respond_to_on_destroy
-    render json: { message: "Logged out." }
+    if current_user
+      render json: {
+        status: 200,
+        message: "#{current_user.email} has logged out successfully."
+      }, status: :ok
+    else
+      render json: {
+        status: 401,
+        message: "Couldn't find an active session."
+      }, status: :unauthorized
+    end
   end
 
-  protected
+
+
+
+  # protected
 
   # # If you have extra params to permit, append them to the sanitizer.
-  def configure_sign_in_params
-    devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
-  end
+  # def configure_sign_in_params
+  #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
+  # end
 end

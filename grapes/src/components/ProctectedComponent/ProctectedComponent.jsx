@@ -1,7 +1,6 @@
 import { jwtDecode } from "jwt-decode";
 import Login from "../Login/login";
 import { useEffect } from "react";
-import { Navbar } from "flowbite-react";
 
 const ProtectedComponent = ({
     setCurrUser,

@@ -9,7 +9,9 @@
     "@headlessui/vue": "^1.7.16",
     "@heroicons/react": "^2.0.18",
     "@heroicons/vue": "^2.0.18",
+    "axios": "^1.6.2",
     "flowbite": "^2.1.1",
-    "flowbite-react": "^0.6.4"
+    "flowbite-react": "^0.6.4",
+    "jwt-decode": "^4.0.0"
   }
 }

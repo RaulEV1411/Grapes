@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { Link } from "react-router-dom";
 function Navbar({setCurrUser}) {
   const navigate = useNavigate()
-  const logout=async (setCurrUser)=>{
+  const logout=async ()=>{
       try {
           const response=await fetch("http://localhost:3002/logout",{
               method: "delete",
@@ -16,7 +16,6 @@ function Navbar({setCurrUser}) {
           const data=await response.json()
           if(!response.ok) {throw data.error}
           localStorage.removeItem("token")
-          setCurrUser(null)
           navigate("/login")
       } catch (error) {
           console.log("error", error)

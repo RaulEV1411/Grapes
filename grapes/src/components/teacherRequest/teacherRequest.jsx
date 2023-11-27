@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import { Link, useNavigate } from 'react-router-dom'
 import "./singup.css"
-    const Signup = ({ setCurrUser}) => {
+    const teacherRequest = ({ setCurrUser}) => {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [birthDate, setBirthDate] = useState('');
@@ -131,4 +131,4 @@ import "./singup.css"
         };
         
 
-    export default Signup;
+    export default teacherRequest;
