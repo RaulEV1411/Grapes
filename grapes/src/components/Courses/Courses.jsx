@@ -12,7 +12,7 @@ const Courses = ({ setCurrUser }) => {
 
     const getCourses = async () => {
         try {
-        const response = await fetch("http://localhost:3002/api/v1/courses", {
+        const response = await fetch("http://localhost:3001/api/v1/courses", {
             method: "get",
             headers: {
             "content-type": "application/json",

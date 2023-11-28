@@ -11,7 +11,7 @@ const ProtectedComponent = ({
         if (token) {
             const decoded = jwtDecode(token);
             const userId = decoded.sub;
-            fetch(`http://localhost:3002/api/v1/users/${userId}`, {
+            fetch(`http://localhost:3001/api/v1/users/${userId}`, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                     "content-type": 'application/json'

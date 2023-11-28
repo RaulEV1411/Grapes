@@ -1,2 +1,0 @@
-class Resquest < ApplicationRecord
-end

@@ -1,134 +1,51 @@
-import React, { useState, useRef } from "react";
-import { Link, useNavigate } from 'react-router-dom'
-import "./singup.css"
-    const teacherRequest = ({ setCurrUser}) => {
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [birthDate, setBirthDate] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
-    const formRef = useRef();
-    const navigate = useNavigate()
+import React, { useRef } from 'react';
 
-    const signup = async (userInfo) => {
-        const url = "http://localhost:3002/signup";
-        try {
-        const response = await fetch(url, {
-            method: 'post',
-            headers: {
-            "Content-Type": 'application/json',
-            "Accept": "application/json"
-            },
-            body: JSON.stringify(userInfo),
-        });
-        const data = await response.json();
-        if (!response.ok) {throw data.error};
-        localStorage.setItem('token', response.headers.get("Authorization"));
-        setCurrUser(data);
-        navigate("/login")
-        console.log(data, "si llega")
+const RequestForm = ({ setSuccessMessage, setErrorMessage }) => {
+  const formRef = useRef();
+
+  const submitRequest = async (event) => {
+    event.preventDefault();
+  
+    const formData = new FormData();
+    formData.append('request[identification_number]', formRef.current['identification_number'].value);
+    formData.append('request[subject_id]', formRef.current['subject_id'].value);
+    formData.append('request[id_person]', formRef.current['id_person'].files[0]);
+    formData.append('request[person_photo]', formRef.current['person_photo'].files[0]);
+    formData.append('request[title_photo]', formRef.current['title_photo'].files[0]);
+    formData.append('request[cv]', formRef.current['cv'].files[0]);
+
+    try {
+      const response = await fetch('http://localhost:3001/api/v1/requests', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+        },
+        body: formData,
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Error submitting request');
+      }
+
+      setSuccessMessage('Request submitted successfully');
     } catch (error) {
-        console.error("Error:", error);
-        // Manejar el error y proporcionar retroalimentación al usuario
+      console.log("error")
     }
-}; 
+  };
 
-    const handleFormSubmit = (e) => {
-        e.preventDefault();
-        const userInfo = {user:{
-        first_name: firstName,
-        last_name: lastName,
-        birth_date: birthDate,
-        email,
-        password,
-        confirm_password: confirmPassword,
-        }};
-        signup(userInfo);
-        e.target.reset();
-    };
+  return (
+    <form ref={formRef} onSubmit={submitRequest}>
+      <input name="identification_number" type="text" placeholder="Identification Number" required />
+      <input name="subject_id" type="text" placeholder="Subject ID" required />
+      <input name="id_person" type="file" required />
+      <input name="person_photo" type="file" required />
+      <input name="title_photo" type="file" required />
+      <input name="cv" type="file" required />
+      <button type="submit">Submit</button>
+    </form>
+  );
+};
 
-    
-        return (
-          <div className="signBody">
-            <div className="form">
-              <label className="contenedorLogo">
-              <img className="logoApp" src="/Logo_Grapes-removebg-preview.png" alt="Logo de la App" />
-              </label>
-                <div className="namespace">             
-                <input
-                  className="input"
-                  type="text"
-                  placeholder="First Name"
-                  value={firstName}
-                  onChange={(e) => setFirstName(e.target.value)}
-                />
-                <input
-                  className="input"
-                  type="text"
-                  placeholder="Last Name"
-                  value={lastName}
-                  onChange={(e) => setLastName(e.target.value)}
-                />
-              </div>
-        
-              <label>
-                <input
-                  className="input"
-                  type="date"
-                  placeholder="Birth Day"
-                  value={birthDate}
-                  onChange={(e) => setBirthDate(e.target.value)}
-                />
-              </label>
-              <br />
-        
-              <label>
-                <input
-                  className="input"
-                  type="email"
-                  placeholder="Email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-              </label>
-              <br />
-        
-              <label>
-                <input
-                  className="input"
-                  type="password"
-                  placeholder="Password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-              </label>
-              <br />
-        
-              <label>
-                <input
-                  className="input"
-                  type="password"
-                  placeholder="Confirm Password"
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                />
-              </label>
-              <br />
-        
-              <form ref={formRef} onSubmit={handleFormSubmit}>
-                <button type="submit" className="submit">
-                  <span className="text">submit</span>
-                </button>
-              </form>
-
-              <div className="signup-link">
-              Are you already registered?,<Link to = "/login" >Login</Link>
-              </div>
-            </div>
-            </div>
-          );
-        };
-        
-
-    export default teacherRequest;
+export default RequestForm;

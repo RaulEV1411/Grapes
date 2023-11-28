@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  rolify
   has_many_attached :photo
   include Devise::JWT::RevocationStrategies::JTIMatcher
   devise :database_authenticatable, :registerable,:recoverable,:rememberable,:validatable,

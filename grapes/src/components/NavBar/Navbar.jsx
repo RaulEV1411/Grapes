@@ -6,7 +6,7 @@ function Navbar({setCurrUser}) {
   const navigate = useNavigate()
   const logout=async ()=>{
       try {
-          const response=await fetch("http://localhost:3002/logout",{
+          const response=await fetch("http://localhost:3001/logout",{
               method: "delete",
               headers: {
                   "content-type": "application/json",

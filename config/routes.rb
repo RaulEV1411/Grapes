@@ -20,6 +20,7 @@ Rails.application.routes.draw do
       resources :users
       resources :subjects 
       resources :courses
+      resources :requests, only: [:index, :show, :new, :create]
     end
   end
 

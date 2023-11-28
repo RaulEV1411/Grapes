@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :request do
+  factory :role do
     
   end
 end

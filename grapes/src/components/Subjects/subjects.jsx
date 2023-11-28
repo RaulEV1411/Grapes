@@ -12,7 +12,7 @@ import CardSubject from '../cardSubject/cardSubject';
 
     const getSubjects = async () => {
         try {
-        const response = await fetch("http://localhost:3002/api/v1/subjects", {
+        const response = await fetch("http://localhost:3001/api/v1/subjects", {
             method: "get",
             headers: {
             "content-type": "application/json",

@@ -12,7 +12,7 @@ import "./singup.css"
     const navigate = useNavigate()
 
     const signup = async (userInfo) => {
-        const url = "http://localhost:3002/signup";
+        const url = "http://localhost:3001/signup";
         try {
         const response = await fetch(url, {
             method: 'post',

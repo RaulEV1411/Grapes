@@ -8,7 +8,7 @@ import ProtectedComponent from "../ProctectedComponent/ProctectedComponent.jsx";
 import SubjectsPage from "../../Pages/Subjects/index.jsx";
 import CoursesPage from "../../Pages/Courses/index.jsx";
 import CardSubject from "../cardSubject/cardSubject.jsx";
-
+import TeacherRequest from "../TeacherRequest/teacherRequest.jsx";
 const AppRoutes = () => {
     const [currUser, setCurrUser]= useState(null);
     return (
@@ -28,6 +28,12 @@ const AppRoutes = () => {
                 <Route path="/course" element={
                     <ProtectedComponent currUser={currUser} setCurrUser={setCurrUser}>
                         <CoursesPage currUser={currUser} setCurrUser={setCurrUser}/>
+                    </ProtectedComponent>
+                } />
+
+                <Route path="/new_request" element={
+                    <ProtectedComponent currUser={currUser} setCurrUser={setCurrUser}>
+                        <TeacherRequest currUser={currUser} setCurrUser={setCurrUser}/>
                     </ProtectedComponent>
                 } />
 

@@ -1,6 +1,6 @@
 class Api::V1::SubjectsController < ApplicationController
 
-    before_action :authenticate_user!, except: [:index, :show]
+    skip_before_action :authenticate_user!, except: [:index, :show]
     before_action :set_subject, only: %i[ show edit update destroy create new]
 
 
@@ -26,6 +26,8 @@ class Api::V1::SubjectsController < ApplicationController
 
         # POST /users or /users.json
         def create
+                token = request.headers['Authorization']
+                puts "Received Token: #{token}"
             @subject = Subject.new(subject_params)
             respond_to do |format|
                 if @subject.save

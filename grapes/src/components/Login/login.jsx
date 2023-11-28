@@ -6,7 +6,7 @@ const Login = ({ setCurrUser }) => {
     const navigate = useNavigate()
     const formRef = useRef();
         const login = async (userInfo, setCurrUser) => {
-            const url = "http://localhost:3002/login";
+            const url = "http://localhost:3001/login";
             try {
             const response = await fetch(url, {
                 method: "POST",
