@@ -1,0 +1,31 @@
+
+/* En tu archivo de estilos (por ejemplo, styles.css) */
+
+/* Estilos generales para el footer */
+footer {
+    background-color: #0e0d10; /* Color inspirado en el de las uvas */
+    padding: 20px;
+    text-align: center;
+    margin-top: 30%;
+    bottom: 0;
+    width: 100%;
+  }
+  
+  /* Estilo para el texto del pie de página */
+  .footer-text {
+    color: #ffffff;
+    font-size: 14px;
+    margin: 0;
+  }
+  
+  /* Estilo para el enlace del pie de página */
+  .footer-link {
+    color: #007bff;
+    text-decoration: none;
+    margin-left: 5px;
+  }
+  
+  /* Estilo para cambiar el color del enlace al pasar el mouse sobre él */
+  .footer-link:hover {
+    color: #0056b3;}
+  

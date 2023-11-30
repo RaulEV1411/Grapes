@@ -1,0 +1,11 @@
+.link1{
+    display: flex;
+    gap: 5%;
+    justify-content: center;
+    list-style: none;
+    flex-wrap: wrap;
+}
+
+.link_request{
+    text-decoration: none;
+}

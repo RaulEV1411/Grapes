@@ -89,11 +89,11 @@ p {
     font-size: var(--paragraph);
 }
 /* Links */
-a {
+/* a {
     color: hsla(var(--primary), 1);
     font-size: var(--paragraph);
     text-decoration: underline;
-}
+} */
 a:visited {
     color: hsla(var(--primary), .5);
 }

@@ -17,7 +17,11 @@ Rails.application.routes.draw do
   # root "articles#index"
   namespace :api do
     namespace :v1 do
-      resources :users
+      resources :users do
+        member do
+          post 'approve_admin'
+        end
+      end
       resources :subjects 
       resources :courses
       resources :requests, only: [:index, :show, :new, :create]

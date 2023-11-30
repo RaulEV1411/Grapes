@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::API
-    rescue_from ActionController::InvalidAuthenticityToken, with: :render_unauthorized
-    include ActionController::HttpAuthentication::Token::ControllerMethods
+    # include ActionController::HttpAuthentication::Token::ControllerMethods
+    include ActionController::MimeResponds
+
     respond_to :json
     before_action :authenticate_user!
     before_action :configure_permitted_parameters, if: :devise_controller?
@@ -13,5 +14,10 @@ protected
         devise_parameter_sanitizer.permit(:sign_up) do |user|
             user.permit(:email, :password,)
         end
+    end
+
+    def authenticate_request
+        @current_user = AuthorizeApiRequest.call(request.headers).result
+        render json: { error: 'Not Authorized' }, status: 401 unless @current_user
     end
 end

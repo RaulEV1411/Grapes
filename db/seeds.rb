@@ -3,8 +3,8 @@
 #
 # Examples:
 #
-# Subject.create!([
-#     {name:"Civica"}, {name: "Frances"}, {name: "Ingles"}])
+Role.create!([
+    {name:"Admin"}, {name: "user"}])
 
 #   Character.create(name: "Luke", movie: movies.first)
 

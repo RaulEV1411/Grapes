@@ -1,8 +1,33 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import "./Navbar.css"
 import { useNavigate } from 'react-router-dom'
 import { Link } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
 function Navbar({setCurrUser}) {
+    const [isAdmin, setIsAdmin] = useState(false);
+    const [isModerator, setIsModerator] = useState(false);
+    const token = localStorage.getItem('token');
+    const decoded = jwtDecode(token);
+    const userId = decoded.sub;
+
+    useEffect(() => {
+        const getUserDetails = async () => {
+            const response = await fetch(`http://localhost:3001/api/v1/users/${userId}`, {
+                headers: {
+            "content-type": "application/json",
+            "authorization": localStorage.getItem("token"),
+                },
+            });
+
+            const data = await response.json();
+            setIsAdmin(data.roles.some(role => role.name === 'admin'));
+            setIsModerator(data.roles.some(role => role.name === 'moderator'));
+            console.log(data.role)
+        };
+
+        getUserDetails();
+    }, [userId, token]);
+  
   const navigate = useNavigate()
   const logout=async ()=>{
       try {
@@ -77,20 +102,45 @@ function Navbar({setCurrUser}) {
         <span className="link-text">Subjects</span>
       </Link>
     </li>
+    {isAdmin ? (
     <li className="navbar-item flexbox-left">
-      <a className="navbar-item-inner flexbox-left">
-        <div className="navbar-item-inner-icon-wrapper flexbox">
-          <ion-icon name="people-outline"></ion-icon>
-        </div>
-        <span className="link-text">Team</span>
-      </a>
+        <a className="navbar-item-inner flexbox-left">
+            <div className="navbar-item-inner-icon-wrapper flexbox">
+                <ion-icon name="add-circle-outline"></ion-icon>
+            </div>
+            <span className="link-text">Add Content</span>
+        </a>
     </li>
+) : isModerator ? (
+    <li className="navbar-item flexbox-left">
+        <Link to="/request_teacher" className="navbar-item-inner flexbox-left">
+            <div className="navbar-item-inner-icon-wrapper flexbox">
+                <svg name="checkmark-circle-outline" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-archive" viewBox="0 0 16 16">
+                  <path d="M0 2a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1v7.5a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 1 12.5V5a1 1 0 0 1-1-1zm2 3v7.5A1.5 1.5 0 0 0 3.5 14h9a1.5 1.5 0 0 0 1.5-1.5V5zm13-3H1v2h14zM5 7.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5"/>
+                </svg>
+            </div>
+            <span className="link-text">Review Request</span>
+        </Link>
+    </li>
+) : (
+    <li className="navbar-item flexbox-left">
+        <Link to="/new_request" className="navbar-item-inner flexbox-left">
+            <div className="navbar-item-inner-icon-wrapper flexbox">
+                <svg name="person-add-outline" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-person-plus" viewBox="0 0 16 16">
+                  <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664z"/>
+                  <path fillRule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5"/>
+                </svg>
+            </div>
+            <span className="link-text">Become Admin</span>
+        </Link>
+    </li>
+)}
     <li className="navbar-item flexbox-left">
       <a className="navbar-item-inner flexbox-left">
         <div className="navbar-item-inner-icon-wrapper flexbox">
           <ion-icon name="chatbubbles-outline"></ion-icon>
         </div>
-        <span className="link-text">Support</span>
+        <span className="link-text"></span>
       </a>
     </li>
     <li className="navbar-item flexbox-left">

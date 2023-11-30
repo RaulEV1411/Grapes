@@ -1,0 +1,55 @@
+/* Estilos para el contenedor principal */
+.requestContainer {
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease-in-out;
+    
+}
+
+/* Efecto de sombra al pasar el mouse */
+.requestContainer:hover {
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilos para el título de información */
+.infoTitle {
+    color: #333;
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    transition: color 0.3s ease-in-out;
+}
+
+/* Cambio de color al pasar el mouse sobre el título */
+.requestContainer:hover .infoTitle {
+    color: #007bff;
+}
+
+/* Estilos para la información de la solicitud */
+.requestInfo p {
+    margin: 10px 0;
+    transition: transform 0.3s ease-in-out;
+}
+
+
+/* Animación para fadeIn */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Aplicar animación a la clase deseada */
+.requestContainer {
+    animation: fadeIn 1s ease-in-out;
+}

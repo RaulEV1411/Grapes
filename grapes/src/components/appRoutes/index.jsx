@@ -8,12 +8,19 @@ import ProtectedComponent from "../ProctectedComponent/ProctectedComponent.jsx";
 import SubjectsPage from "../../Pages/Subjects/index.jsx";
 import CoursesPage from "../../Pages/Courses/index.jsx";
 import CardSubject from "../cardSubject/cardSubject.jsx";
-import TeacherRequest from "../TeacherRequest/teacherRequest.jsx";
+import RequestForm from "../RequestForm/RequestForm.jsx";
+import Requesindex from "../../Pages/Request/requesindex.jsx";
 const AppRoutes = () => {
     const [currUser, setCurrUser]= useState(null);
     return (
         <div>
             <Routes>
+            
+                <Route path="/" element={
+                    <ProtectedComponent currUser={currUser} setCurrUser={setCurrUser}>
+                        <HomePage currUser={currUser}/>
+                    </ProtectedComponent>
+                } />
                 <Route path="/home" element={
                     <ProtectedComponent currUser={currUser} setCurrUser={setCurrUser}>
                         <HomePage currUser={currUser}/>
@@ -33,7 +40,13 @@ const AppRoutes = () => {
 
                 <Route path="/new_request" element={
                     <ProtectedComponent currUser={currUser} setCurrUser={setCurrUser}>
-                        <TeacherRequest currUser={currUser} setCurrUser={setCurrUser}/>
+                        <RequestForm currUser={currUser} setCurrUser={setCurrUser}/>
+                    </ProtectedComponent>
+                } />
+
+                <Route path="/request_teacher" element={
+                    <ProtectedComponent currUser={currUser} setCurrUser={setCurrUser}>
+                        <Requesindex currUser={currUser} setCurrUser={setCurrUser}/>
                     </ProtectedComponent>
                 } />
 

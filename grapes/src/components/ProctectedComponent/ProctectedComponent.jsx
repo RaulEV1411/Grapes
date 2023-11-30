@@ -13,8 +13,8 @@ const ProtectedComponent = ({
             const userId = decoded.sub;
             fetch(`http://localhost:3001/api/v1/users/${userId}`, {
                 headers: {
-                    'Authorization': `Bearer ${token}`,
-                    "content-type": 'application/json'
+                    "content-type": "application/json",
+                    "authorization": localStorage.getItem("token"),
                 }
                 })
                 .then(response => response.json())

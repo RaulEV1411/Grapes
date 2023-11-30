@@ -1,9 +1,19 @@
 class Api::V1::UsersController < ApplicationController
-
-    before_action :authenticate_user!, except: [:index, :show]
+    
     before_action :set_user, only: %i[ show edit update destroy create new]
 
+        def request_admin
+            @user = User.find(params[:id])
+            @user.add_role :admin_request
+            redirect_to @user, notice: 'Your request has been sent.'
+        end
 
+        def approve_admin
+            @user = User.find(params[:id])
+            @user.remove_role :admin_request
+            @user.add_role :admin
+            redirect_to users_path, notice: 'The user has been approved as an admin.'
+        end
         # GET /users or /users.json
         def index
             @users = User.all
@@ -12,7 +22,7 @@ class Api::V1::UsersController < ApplicationController
 
         # GET /users/1 or /users/1.json
         def show
-            render json: @user
+            render json: { user: @user, roles: @user.roles }
         end
 
         # GET /users/new

@@ -1,7 +1,6 @@
 import { useEffect, useRef } from "react";
 import "./login.css";
 import { Link, useNavigate } from "react-router-dom";
-import { jwtDecode } from "jwt-decode";
 const Login = ({ setCurrUser }) => {
     const navigate = useNavigate()
     const formRef = useRef();
@@ -39,24 +38,6 @@ const Login = ({ setCurrUser }) => {
         login(userInfo, setCurrUser);
         e.target.reset();
     };
-    useEffect(() => {
-        const token = localStorage.getItem('token');
-        if (token) {
-            const decoded = jwtDecode(token);
-            // Assuming the decoded token contains the user's ID in a 'sub' property
-            const userId = decoded.sub;
-            // Fetch the user data from your API
-            fetch(`http://localhost:3002/api/v1/users/${userId}`)
-                .then(response => response.json())
-                .then(data => {
-                // Set the current user in your application's state
-                setCurrUser(data);
-                })
-                .catch(error => {
-                console.error('Error:', error);
-                });
-            }
-    }, [setCurrUser]);
     return (
         <div className="LoginBody">
             <div className="login-container">

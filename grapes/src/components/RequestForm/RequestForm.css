@@ -1,0 +1,51 @@
+.formularioUvas {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 2px solid #613659;
+    border-radius: 10px;
+    background-color: #8f509d; /* Color inspirado en el de las uvas */
+    transition: border-color 0.3s ease-in-out;
+  }
+  
+  .formularioUvas:hover {
+    border-color: #4d2e61;
+  }
+  
+  /* Estilos para el título del formulario */
+  .tituloFormulario {
+    text-align: center;
+    color: #613659;
+  }
+  
+  /* Estilos para los campos de entrada y etiquetas */
+  .campo {
+    margin-bottom: 15px;
+  }
+  
+  .campoTexto, .campoArchivo {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    margin-top: 5px;
+    transition: border-color 0.3s ease-in-out;
+  }
+  
+  .campoTexto:hover, .campoArchivo:hover {
+    border-color: #4d2e61;
+  }
+  
+  /* Estilos para el botón de enviar */
+  .botonSubmit {
+    background-color: #693e8f;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .botonSubmit:hover {
+    background-color: #4d2e61;
+  }

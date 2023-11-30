@@ -1,8 +1,6 @@
 class Api::V1::SubjectsController < ApplicationController
 
-    skip_before_action :authenticate_user!, except: [:index, :show]
     before_action :set_subject, only: %i[ show edit update destroy create new]
-
 
         # GET /users or /users.json
         def index
