@@ -1,3 +1,4 @@
+
 class Api::V1::RequestsController < ApplicationController
     skip_before_action :authenticate_user!
     before_action :set_request, only: [:show, :update, :destroy]
@@ -12,15 +13,18 @@ class Api::V1::RequestsController < ApplicationController
         end
     
         def create
-        @request = Request.new(request_params)
-    
-        attach_files_to_request if @request.valid?
-    
-        if @request.save
-            render json: @request, status: :created
-        else
-            render json: @request.errors, status: :unprocessable_entity
-        end
+        pry.byebug
+            
+
+            @request = Request.new(request_params.merge(user_id: current_user.id))
+        
+            attach_files_to_request if @request.valid?
+        
+            if @request.save
+                render json: @request, status: :created
+            else
+                render json: @request.errors, status: :unprocessable_entity
+            end
         end
     
         def update

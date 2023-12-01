@@ -31,8 +31,6 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem "bootsnap", require: false
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
-gem "image_processing", "~> 1.2"
-gem "aws-sdk-s3"
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem "rack-cors"
@@ -58,4 +56,6 @@ gem 'dotenv-rails', groups: [:development, :test]
 group :development, :test do
   gem 'rspec-rails'
   gem 'factory_bot_rails', '~> 6.4'
+gem "image_processing", "~> 1.2"
+gem "aws-sdk-s3", require: false
 end 

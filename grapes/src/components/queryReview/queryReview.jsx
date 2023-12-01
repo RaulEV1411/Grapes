@@ -100,6 +100,7 @@ useEffect(() => {
         <div id="body2" className="flexbox-col">
         <ul className="link1">
         {requests.map((request) => {
+          console.log(requests, "requests");
   const subject = subjects.find(subject => subject.id === request.subject_id);
   const user = users.find(user => user.id === request.user_id);
     return (
@@ -108,7 +109,8 @@ useEffect(() => {
         <RequestInfo
           subject_name={subject ? subject.name : 'Unknown'}
           identification_number={request.identification_number}
-          user_name={user ? user.name : 'Unknown'}
+          user_name={user ? user.birth_date : 'Unknown'}
+          
         />
       </Link>
     </li>

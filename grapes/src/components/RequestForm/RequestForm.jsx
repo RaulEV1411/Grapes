@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import './RequestForm.css';
 import { useNavigate } from 'react-router-dom';
 
-const RequestForm = ({ setSuccessMessage, setErrorMessage }) => {
+const RequestForm = ({ setSuccessMessage }) => {
   const formRef = useRef();
   const [subjects, setSubjects] = useState([]);
   const navigate = useNavigate();
@@ -40,7 +40,6 @@ const submitRequest = async (event) => {
       throw new Error(data.error || 'Error submitting request');
     }
     navigate("/")
-    setSuccessMessage('Request submitted successfully');
 
   } catch (error) {
     console.error(error);

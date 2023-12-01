@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_28_194935) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_01_023509) do
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -60,7 +60,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_28_194935) do
   create_table "courses", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.string "description"
-    t.datetime "publication_date", default: "2023-11-22 00:00:00", null: false
+    t.datetime "publication_date", default: "2023-11-14 00:00:00", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -95,7 +95,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_28_194935) do
     t.bigint "subject_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
     t.index ["subject_id"], name: "index_requests_on_subject_id"
+    t.index ["user_id"], name: "index_requests_on_user_id"
   end
 
   create_table "roles", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -127,7 +129,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_28_194935) do
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "first_name", default: "", null: false
     t.string "last_name", default: "", null: false
-    t.datetime "birth_date", default: "2023-11-22 00:00:00", null: false
+    t.datetime "birth_date", default: "2023-11-14 00:00:00", null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -162,4 +164,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_28_194935) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "pay_methods", "users", column: "users_id"
   add_foreign_key "requests", "subjects"
+  add_foreign_key "requests", "users", on_delete: :cascade
 end
