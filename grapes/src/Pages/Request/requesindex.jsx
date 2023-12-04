@@ -1,4 +1,4 @@
-import QueryReview from '../../components/queryReview/queryReview'
+import QueryReview from '../../components/RequestIndexInfo/requestIndexInfo'
 import {React} from 'react'
 
 const Requesindex = (setCurrUser) => {

@@ -1,9 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './RequestForm.css';
 import { useNavigate } from 'react-router-dom';
 
 const RequestForm = ({ setSuccessMessage }) => {
-  const formRef = useRef();
+  const [formularioEnviado, setFormularioEnviado] = useState(false);
   const [subjects, setSubjects] = useState([]);
   const navigate = useNavigate();
 
@@ -25,7 +25,7 @@ const submitRequest = async (event) => {
   event.preventDefault();
 
   const formData = new FormData(event.target);
-
+  setFormularioEnviado(true);
   try {
     const response = await fetch('http://localhost:3001/api/v1/requests', {
       method: 'POST',
@@ -79,7 +79,7 @@ return (
       <label htmlFor="request[cv]">CV:</label>
       <input className="campoTexto" type="file" id="request[cv]" name="request[cv]" required />
     </div>
-    <button className="botonSubmit" type="submit">Enviar</button>
+    <button className="botonSubmit" type="submit" disabled={formularioEnviado}>Enviar</button>
   </form>
 );
 };

@@ -20,9 +20,9 @@ function Navbar({setCurrUser}) {
             });
 
             const data = await response.json();
+            console.log(data);
             setIsAdmin(data.roles.some(role => role.name === 'admin'));
             setIsModerator(data.roles.some(role => role.name === 'moderator'));
-            console.log(data.role)
         };
 
         getUserDetails();

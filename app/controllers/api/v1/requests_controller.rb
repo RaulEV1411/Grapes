@@ -1,6 +1,4 @@
-
 class Api::V1::RequestsController < ApplicationController
-    skip_before_action :authenticate_user!
     before_action :set_request, only: [:show, :update, :destroy]
     
         def index
@@ -9,12 +7,15 @@ class Api::V1::RequestsController < ApplicationController
         end
     
         def show
-        render json: @request
+            render json: @request.as_json.merge({
+                person_photo: rails_blob_url(@request.person_photo),
+                title_photo: rails_blob_url(@request.title_photo),
+                id_person: rails_blob_url(@request.id_person),
+                cv: rails_blob_url(@request.cv)
+            }).tap { |json| puts json }
         end
     
         def create
-        pry.byebug
-            
 
             @request = Request.new(request_params.merge(user_id: current_user.id))
         
@@ -47,7 +48,7 @@ class Api::V1::RequestsController < ApplicationController
         end
     
         def request_params
-        params.require(:request).permit(:identification_number, :subject_id)
+        params.require(:request).permit(:identification_number, :subject_id, :person_photo, :title_photo, :id_person, :cv)
         end
     
         def attach_files_to_request

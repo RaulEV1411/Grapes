@@ -1,8 +1,8 @@
 import Navbar from '../NavBar/Navbar';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import './queryReview.css';
-import RequestInfo from '../RequestInfo/RequestInfo';
+import './requestIndexInfo.css';
+import RequestCardIndex from '../RequestCardIndex/RequestInfo';
 const QueryReview = ({setCurrUser}) => {
     const [requests, setRequests] = useState([]);
     const [subjects, setSubjects] = useState([]);
@@ -24,7 +24,6 @@ const QueryReview = ({setCurrUser}) => {
 
             const data = await response.json();
 
-            console.log(data, "hola");
             setRequests(data);
         } catch (error) {
             console.error(error);
@@ -90,8 +89,14 @@ useEffect(() => {
   fetchUsers();
 }, []);
 
-
+if (!requests.length || !users || !subjects.length) {
+    return <div>
+            <Navbar setCurrUser={setCurrUser} />
+            <div id="bodyCarga"> <div className='divCarga'></div> </div>
+        </div>;
+}
     return (
+    
     <div>
         <Navbar setCurrUser={setCurrUser} />
         <div id="main" className="flexbox-col">
@@ -100,17 +105,15 @@ useEffect(() => {
         <div id="body2" className="flexbox-col">
         <ul className="link1">
         {requests.map((request) => {
-          console.log(requests, "requests");
   const subject = subjects.find(subject => subject.id === request.subject_id);
   const user = users.find(user => user.id === request.user_id);
     return (
     <li className="link_request" key={request.id}>
         <Link to={`/request_teacher/${user ? user.id : 'Unknown'}`}>
-        <RequestInfo
+        <RequestCardIndex
           subject_name={subject ? subject.name : 'Unknown'}
           identification_number={request.identification_number}
-          user_name={user ? user.birth_date : 'Unknown'}
-          
+          user_name={user ? user.email : 'Unknown'}
         />
       </Link>
     </li>
