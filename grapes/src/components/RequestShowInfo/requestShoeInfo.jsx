@@ -11,10 +11,6 @@ const [subjects, setSubjects] = useState([]);
 const [user, setUser] = useState({});
 const { id } = useParams();
 
-
-
-console.log("HOLAAAAAAAAAAAAAAAA",requests)
-
 const fetchRequests = async () => {
     try {
     const response = await fetch(`http://localhost:3001/api/v1/requests`, {
@@ -32,7 +28,6 @@ const fetchRequests = async () => {
     const data = await response.json();
 
     setRequests(data);
-    console.log(data);
     } catch (error) {
     console.error(error);
     }
@@ -41,9 +36,7 @@ const fetchRequests = async () => {
 const fetchRequestsShow = async () => {
     try {
 
-        const requestid = localStorage.getItem("requestid");
-
-        console.log("SOY EL LLMADO DEL LOCAL",requestid)
+    const requestid = localStorage.getItem("requestid");
     const response = await fetch(`http://localhost:3001/api/v1/requests/${requestid}`, {
         method: 'GET',
         headers: {
@@ -59,7 +52,6 @@ const fetchRequestsShow = async () => {
     const data = await response.json();
 
     setShowRequests(data);
-    console.log(data);
     } catch (error) {
     console.error(error);
     }
@@ -114,7 +106,7 @@ useEffect(() => {
     fetchRequestsShow();
 }, [id]);
 
-if (!requests || !user.user || !subjects.length || !showRequests.id_person) {
+if (!requests.length || !user.user || !subjects.length || !showRequests.id_person) {
     return <div>
             <Navbar setCurrUser={setCurrUser} />
             <div id="bodyCarga"> <div className='divCarga'></div> </div>
@@ -126,7 +118,6 @@ if (!requests || !user.user || !subjects.length || !showRequests.id_person) {
     localStorage.setItem("requestid", requestid);
 return (
     <div>
-    <Navbar setCurrUser={setCurrUser} />
     <div id="body3">
         <RequestCardShow
         email={user.user.email}
@@ -140,7 +131,9 @@ return (
         person_photo={showRequests && showRequests.person_photo}
         title_photo={showRequests && showRequests.title_photo}
         cv={showRequests && showRequests.cv}
+        idUser={id}
         />
+    
     </div>
     </div>
 );

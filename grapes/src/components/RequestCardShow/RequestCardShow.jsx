@@ -2,16 +2,19 @@
 
 import React from 'react';
 import './requestCardShow.css';
+import ApproveButton from '../Approve Admin/ApproveButton';
+import BackButton from '../Back Button/BackButton';
 
-const RequestCardShow = ({ first_name,last_name, email, birth_date, dia_de_creacion, subject_name, identification_number, user_name, id_person, person_photo, title_photo, cv }) => {
+const RequestCardShow = ({ first_name,last_name, email, birth_date, dia_de_creacion, subject_name, identification_number, user_name, id_person, person_photo, title_photo, cv, idUser }) => {
   return (
     <div className="showContainer">
+          <BackButton/>
       <h2 className="showTitle">Detalles del Show</h2>
       <div className="showInfo">
         <div className="personalInfo">
           <p><strong>Nombre Completo:</strong> {[first_name," ",last_name]}</p>
           <p><strong>Email:</strong> {email}</p>
-          <p><strong>Fecha de Nacimiento:</strong> {birth_date}</p>
+          <p><strong>Fecha de Nacimiento:</strong> {new Date(birth_date).toLocaleDateString()}</p>
           <p><strong>Día de Creación:</strong> {dia_de_creacion}</p>
         </div>
         <div className="cvSection">
@@ -41,6 +44,7 @@ const RequestCardShow = ({ first_name,last_name, email, birth_date, dia_de_creac
           </div>
         </div>
       </div>
+      <ApproveButton idUser={idUser} />
     </div>
   );
 };

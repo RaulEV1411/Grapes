@@ -6,10 +6,10 @@ import HomePage from "../../Pages/Home/index.jsx";
 import ProtectedComponent from "../ProctectedComponent/ProctectedComponent.jsx";
 import SubjectsPage from "../../Pages/Subjects/index.jsx";
 import CoursesPage from "../../Pages/Courses/index.jsx";
-import CardSubject from "../cardSubject/cardSubject.jsx";
 import RequestForm from "../RequestForm/RequestForm.jsx";
 import Requesindex from "../../Pages/Request/requesindex.jsx";
 import RequestShow from "../../Pages/Request/requestShow.jsx";
+import ProfileInfo from "../ProfileInfo/profileInfo.jsx";
 const AppRoutes = () => {
     const [currUser, setCurrUser]= useState(null);
     return (
@@ -56,7 +56,12 @@ const AppRoutes = () => {
                     </ProtectedComponent>
                 } />
 
-                <Route path='/card' element={<CardSubject currUser={currUser} setCurrUser={setCurrUser}/>} />
+                <Route path="/profile/:id" element={
+                    <ProtectedComponent currUser={currUser} setCurrUser={setCurrUser}>
+                        <ProfileInfo currUser={currUser} setCurrUser={setCurrUser}/>
+                    </ProtectedComponent>
+                } />
+
                 <Route path='/login' element={<Login currUser={currUser} setCurrUser={setCurrUser}/>} />
                 <Route path='/signup' element={<Signup currUser={currUser} setCurrUser={setCurrUser}/>} />
             </Routes>

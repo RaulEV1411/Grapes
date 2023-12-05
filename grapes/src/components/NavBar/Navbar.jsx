@@ -60,7 +60,7 @@ function Navbar({setCurrUser}) {
       </a>
     </li>
     <li className="navbar-item flexbox-left">
-      <a className="navbar-item-inner flexbox-left">
+      <Link to={`/profile/${userId}`}  className="navbar-item-inner flexbox-left">
         <div className="navbar-item-inner-icon-wrapper flexbox">
           <svg  xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-person-vcard" viewBox="0 0 16 16">
             <path d="M5 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4m4-2.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5M9 8a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4A.5.5 0 0 1 9 8m1 2.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5"/>
@@ -68,7 +68,7 @@ function Navbar({setCurrUser}) {
           </svg>
         </div>
         <span className="link-text">Profile</span>
-      </a>
+      </Link>
     </li>
     <li className="navbar-item flexbox-left">
       <a className="navbar-item-inner flexbox-left">

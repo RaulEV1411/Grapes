@@ -1,0 +1,165 @@
+.profileContainer {
+  background-color: #1c1c1c; /* Fondo oscuro */
+  color: #fff; /* Texto claro */
+  border: 1px solid #353535; /* Borde oscuro */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 32px;
+  margin: 16px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.profileTitle {
+  color: #8a4baf; /* Morado oscuro */
+  font-size: 2em;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.profileInfo {
+  background-color: #2b2b2b; /* Fondo oscuro para secciones */
+  padding: 16px;
+  border: 1px solid #353535; /* Borde oscuro */
+  border-radius: 8px;
+}
+
+.profileInfo p {
+  margin: 12px 0;
+  font-size: 1.1em;
+}
+
+.profileInfo img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+}
+
+.profilePersonalInfo {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.profilePersonalInfo p {
+  margin: 8px 0;
+}
+
+.profileCvSection {
+  margin-top: 24px;
+}
+
+.profileCvSection h3 {
+  color: #8a4baf; /* Morado oscuro */
+  font-size: 1.8em;
+  margin-bottom: 16px;
+}
+
+.profileCvSection ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.profileCvSection li {
+  margin-bottom: 8px;
+  font-size: 1.1em;
+}
+
+.profilePhotos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 24px;
+  margin-top: 24px;
+}
+
+.profilePhotoTitle {
+  bottom: 8px;
+  left: 8px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  padding: 4px;
+  border-radius: 4px;
+  font-size: 0.8em;
+  margin: 0;
+}
+
+.profileContainer {
+    background-color: #1c1c1c;
+    color: #fff;
+    border: 1px solid #353535;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 32px;
+    margin: 16px;
+    max-width: 800px;
+    margin: 0 auto;
+    /* Agrega una transición para suavizar los cambios de estilo */
+    transition: all 0.3s ease;
+  }
+  
+  /* Agrega un efecto hover al contenedor del perfil para resaltarlo cuando el usuario pase el cursor sobre él */
+  .profileContainer:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  .profileTitle {
+    color: #8a4baf;
+    font-size: 2em;
+    margin-bottom: 24px;
+    text-align: center;
+    /* Agrega una animación para resaltar el título */
+    animation: fadeIn 2s;
+  }
+  
+  /* Agrega keyframes para la animación fadeIn */
+  @keyframes fadeIn {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+  }
+  
+  /* Resto del código... */
+.profileContainer {
+  /* Agrega una animación para resaltar el contenedor del perfil cuando se carga la página */
+  animation: popIn 0.6s ease;
+}
+
+.profileHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.profilePicture {
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  margin-right: 20px;
+}
+
+.profileName {
+  flex-grow: 1;
+}
+
+.profileInfo {
+  /* Agrega un margen superior para separar las secciones de información */
+  margin-top: 20px;
+}
+
+.profileInfo h3 {
+  /* Agrega un borde inferior a los títulos para resaltarlos */
+  border-bottom: 1px solid #353535;
+  padding-bottom: 10px;
+}
+
+/* Agrega keyframes para la animación popIn */
+@keyframes popIn {
+  0% {transform: scale(0.5); opacity: 0;}
+  100% {transform: scale(1); opacity: 1;}
+}
+
+/* Resto del código... */
+  

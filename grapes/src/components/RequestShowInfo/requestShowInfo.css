@@ -1,14 +1,14 @@
 @keyframes loading {
     0% {
-      transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+      transform: rotateY(180deg);
     }
   
     50% {
-      transform: perspective(120px) rotateX(180deg) rotateY(0deg);
+      transform-style: preserve-3d;;
     }
   
     100% {
-      transform: perspective(120px) rotateX(180deg) rotateY(-180deg);
+      transform-style: preserve-3d;
     }
   }
 
@@ -25,8 +25,9 @@
   }
   
   .divCarga {
-    background-color: #40276C;
-    width: 100px;
-    height: 100px;
-    animation: loading 2s infinite ease-in-out;
+    background : url("../../../public/Logo_Grapes-removebg-preview.png");
+    width: 20%;
+    height: 300px;
+    animation: loading 1s infinite ease-in-out;
+    
   }

@@ -29,7 +29,12 @@ import CardSubject from '../cardSubject/cardSubject';
         setSubjects([]);
         }
     };
-
+    if (!subjects.length) {
+        return <div>
+                <Navbar setCurrUser={setCurrUser} />
+                <div id="bodyCarga"> <div className='divCarga'></div> </div>
+            </div>;
+    }
     return (
             <div>
                 <Navbar setCurrUser={setCurrUser}/>

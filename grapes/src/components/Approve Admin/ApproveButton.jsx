@@ -1,20 +1,17 @@
-import jwtDecode from 'jwt-decode';
 
-const ApproveButton = () => {
+import React from 'react'
+
+const ApproveButton = ({idUser}) => {
     const submitRequest = async (event) => {
         event.preventDefault();
 
-        const token = localStorage.getItem('token');
-        const decoded = jwtDecode(token);
-        const userId = decoded.sub;
-
-        const response = await fetch(`http://localhost:3001/${userId}/approve_admin`, {
+        const response = await fetch(`http://localhost:3001/api/v1/users/${idUser}/approve_admin`, {
             method: 'POST',
             headers: {
-                'Authorization': `Bearer ${token}`,
+                'Authorization': localStorage.getItem('token'),
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ id: userId })
+            body: JSON.stringify({ id: idUser })
         });
 
         const data = await response.json();
