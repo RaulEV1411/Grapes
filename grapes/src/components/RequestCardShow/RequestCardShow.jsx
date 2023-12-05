@@ -5,7 +5,7 @@ import './requestCardShow.css';
 import ApproveButton from '../Approve Admin/ApproveButton';
 import BackButton from '../Back Button/BackButton';
 
-const RequestCardShow = ({ first_name,last_name, email, birth_date, dia_de_creacion, subject_name, identification_number, user_name, id_person, person_photo, title_photo, cv, idUser }) => {
+const RequestCardShow = ({ first_name,last_name, email, birth_date, creation_date, subject_name, identification_number, user_name, id_person, person_photo, title_photo, cv, idUser }) => {
   return (
     <div className="showContainer">
           <BackButton/>
@@ -15,7 +15,7 @@ const RequestCardShow = ({ first_name,last_name, email, birth_date, dia_de_creac
           <p><strong>Nombre Completo:</strong> {[first_name," ",last_name]}</p>
           <p><strong>Email:</strong> {email}</p>
           <p><strong>Fecha de Nacimiento:</strong> {new Date(birth_date).toLocaleDateString()}</p>
-          <p><strong>Día de Creación:</strong> {dia_de_creacion}</p>
+          <p><strong>Día de Creación:</strong> {new Date(creation_date).toLocaleDateString()}</p>
         </div>
         <div className="cvSection">
           <h3>Información del CV</h3>

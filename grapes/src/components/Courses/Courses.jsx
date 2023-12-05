@@ -29,6 +29,8 @@ const Courses = ({ setCurrUser }) => {
         setCourses([]);
         }
     };
+
+    
     return (
         <div>
                 <Navbar setCurrUser={setCurrUser}/>

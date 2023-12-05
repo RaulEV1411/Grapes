@@ -2,7 +2,8 @@
     import { Link } from 'react-router-dom';
     import Navbar from '../NavBar/Navbar';
     import "./subject.css";
-import CardSubject from '../cardSubject/cardSubject';
+    import CardSubject from '../cardSubject/cardSubject';
+    
     const Subjects = ({ setCurrUser }) => {
     const [subjects, setSubjects] = useState([]);
 

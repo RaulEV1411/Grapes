@@ -2,9 +2,11 @@ import { useEffect, useRef } from "react";
 import "./login.css";
 import { Link, useNavigate } from "react-router-dom";
 const Login = ({ setCurrUser }) => {
+    
     const navigate = useNavigate()
     const formRef = useRef();
         const login = async (userInfo, setCurrUser) => {
+
             const url = "http://localhost:3001/login";
             try {
             const response = await fetch(url, {

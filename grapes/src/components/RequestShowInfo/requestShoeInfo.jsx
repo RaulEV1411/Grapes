@@ -124,6 +124,7 @@ return (
         first_name={user.user.first_name}
         last_name={user.user.last_name}
         birth_date={user.user.birth_date}
+        creation_date={request && request.created_at}
         subject_name={subject && subject.name}
         identification_number={showRequests && showRequests.identification_number}
         user_name={user && user.user.email}

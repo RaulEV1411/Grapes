@@ -2,27 +2,24 @@ import {React} from 'react'
 import PrivateText from '../PrivateText/PrivateText'
 import Navbar from '../NavBar/Navbar.jsx';
 import Footer from '../Footer/Footer.jsx';
+import './Home.css';
   const Home = ({ currUser, setCurrUser }) => {
     return (
       <div className="home-container">
         {/* Navbar */}
         <Navbar setCurrUser={setCurrUser} />
-  
-        {/* Contenido principal */}
-        <main id="main" className="flexbox-col">
-          <h2>Lorem ipsum!</h2>
-          {/* Saludo al usuario actual */}
+    <div className="App">
+      <header className="App-header">
+        <h1>Bienvenido a Tu Sitio Web</h1>
+        <p></p>
+      </header>
+      <main className="App-main">
+        <h2>Sobre Nosotros</h2>
+        <p>Aquí puedes escribir más sobre ti y tu sitio web.</p>
           {currUser && <p>Hello {currUser.email}</p>}
-          
-          {/* Componente privado */}
           <PrivateText currUser={currUser}/>
-        </main>
-  
-        {/* Cuerpo adicional */}
-        <div id="body" className='flexbox-col'>
-          <h1>hola amigo soy el cuerpo</h1>
-        </div>
-  
+      </main>
+    </div>
         {/* Footer */}
         <Footer />
       </div>
