@@ -11,21 +11,29 @@ function Navbar({setCurrUser}) {
     const userId = decoded.sub;
 
     useEffect(() => {
-        const getUserDetails = async () => {
+      const getUserDetails = async () => {
+        try {
             const response = await fetch(`http://localhost:3001/api/v1/users/${userId}`, {
                 headers: {
-            "content-type": "application/json",
-            "authorization": localStorage.getItem("token"),
+                    "content-type": "application/json",
+                    "authorization": localStorage.getItem("token"),
                 },
             });
-
+    
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+    
             const data = await response.json();
             console.log(data);
             setIsAdmin(data.roles.some(role => role.name === 'admin'));
             setIsModerator(data.roles.some(role => role.name === 'moderator'));
-        };
-
-        getUserDetails();
+        } catch (error) {
+            console.error('An error occurred while fetching user details:', error);
+        }
+    };
+    
+    getUserDetails();
     }, [userId, token]);
   
   const navigate = useNavigate()

@@ -1,5 +1,3 @@
-// Show.js
-
 import React from 'react';
 import './requestCardShow.css';
 import ApproveButton from '../Approve Admin/ApproveButton';

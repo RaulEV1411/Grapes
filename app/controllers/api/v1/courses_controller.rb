@@ -21,18 +21,23 @@
         # GET /courses/1/edit
         def edit
         end
-    
         # POST /courses or /courses.json
         def create
-        @course = Course.new(course_params)
-        respond_to do |format|
+            pry.byebug
+            @course = Course.new(course_params)
+            respond_to do |format|
             if @course.save
-            format.json { render :show, status: :created }
+                if current_user.has_role? :admin
+                    # Obtén el subject_id del último request del usuario actual
+                    subject_id = Request.where(user_id: current_user.id).last.subject_id
+                    # Crea una nueva entrada en la tabla intermedia con el subject_id y course_id
+                    SubjectCourse.create(subject_id: subject_id, course_id: @course.id)
+                end
+                format.json { render :show, status: :created }
             else
-            format.html { render :new, status: :unprocessable_entity }
-            format.json { render json: @course.errors, status: :unprocessable_entity }
+                format.json { render json: @course.errors, status: :unprocessable_entity }
             end
-        end
+            end
         end
     
         # PATCH/PUT /courses/1 or /courses/1.json

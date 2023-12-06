@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import BackButton from '../Back Button/BackButton';
-// import { useNavigate } from 'react-router-dom';
+import { jwtDecode } from 'jwt-decode';
 
 const NewCourseForm =  ({ setCurrUser }) => {
     // const navigate = useNavigate();
@@ -8,6 +8,10 @@ const NewCourseForm =  ({ setCurrUser }) => {
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [publicationDate, setPublicationDate] = useState('');
+    const token = localStorage.getItem('token');
+    const decoded = jwtDecode(token);
+    const userId = decoded.sub;
+    
 
     const courseFech = async (newCourse) => {
         const url = "http://localhost:3001/api/v1/courses"; // Obtén el token del almacenamiento local
@@ -36,6 +40,7 @@ const NewCourseForm =  ({ setCurrUser }) => {
         name: name,
         description: description,
         publicationDate: publicationDate,
+        user_id: userId
         };
         courseFech(newCourse);
         e.target.reset();
