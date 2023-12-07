@@ -7,6 +7,13 @@
         @courses = Course.all
         render json: @courses
         end
+
+        def courses_by_subject
+            # Obtén los cursos asociados al subject_id
+            @subject = Subject.find(params[:id])
+            @courses = @subject.courses
+            render json: @courses
+        end
     
         # GET /courses/1 or /courses/1.json
         def show
@@ -23,7 +30,6 @@
         end
         # POST /courses or /courses.json
         def create
-            pry.byebug
             @course = Course.new(course_params)
             respond_to do |format|
             if @course.save
@@ -70,7 +76,7 @@
     
         # Only allow a list of trusted parameters through.
         def course_params
-        params.require(:course).permit(:name, :description, :publication_date)
+        params.require(:course).permit(:name, :description, :publication_date, :user_id, :subject_id)
         end
     end
     

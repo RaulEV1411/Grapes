@@ -1,17 +1,13 @@
 import React, { useRef, useState } from 'react';
 import BackButton from '../Back Button/BackButton';
-import { jwtDecode } from 'jwt-decode';
-
+import './styles.css';
+import { useNavigate } from 'react-router-dom';
 const NewCourseForm =  ({ setCurrUser }) => {
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
     const formRef = useRef();
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
-    const [publicationDate, setPublicationDate] = useState('');
-    const token = localStorage.getItem('token');
-    const decoded = jwtDecode(token);
-    const userId = decoded.sub;
-    
+    const [publicationDate, setPublicationDate] = useState(new Date().toISOString().split('T')[0]);    
 
     const courseFech = async (newCourse) => {
         const url = "http://localhost:3001/api/v1/courses"; // Obtén el token del almacenamiento local
@@ -26,6 +22,7 @@ const NewCourseForm =  ({ setCurrUser }) => {
                 body: JSON.stringify(newCourse),
             });
             const data = await response.json();
+            navigate('/subjects');
             if (!response.ok) {throw data.error};
             console.log(data, "si llega")
         } catch (error) {
@@ -40,50 +37,63 @@ const NewCourseForm =  ({ setCurrUser }) => {
         name: name,
         description: description,
         publicationDate: publicationDate,
-        user_id: userId
         };
         courseFech(newCourse);
         e.target.reset();
     };
     
     return(
-        <div>
-    
+
+    <div className="form-container-newC">
         <div>
             <BackButton setCurrUser={setCurrUser} />
         </div>
-        <label>
+    <div>
+        <label className="input-label">
             <input
-                className="input"
+                className="styled-input"
                 type="text"
-                placeholder="Course name"
+                placeholder=" "
                 value={name}
                 onChange={(e) => setName(e.target.value)}
             />
+        <span className='input-title'> Course Name: </span>
         </label>
-        <label>
+    </div>
+
+    <div>
+        <label className="input-label">
             <input
-                className="input"
+                className="styled-input"
                 type="text"
-                placeholder="Description"
+                placeholder=" "
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
             />
+            <span className='input-title'> Course Description: </span>
         </label>
-        <label>
+    </div>
+    <div>
+    <label className="input-label">
             <input
-                className="input"
-                type="date"
-                placeholder="Course name"
+                className="styled-input"
+                type="text"
+                placeholder=" "
                 value={publicationDate}
                 onChange={(e) => setPublicationDate(e.target.value)}
             />
+            <span className='input-title'> Course Date: </span>
         </label>
+
+    </div>
+
+    <div>
         <form ref={formRef} onSubmit={handleFormSubmit}>
             <button type="submit" className="submit">
-                <span className="text">submit</span>
+                <span className="text">Submit</span>
             </button>
         </form>
+    </div>
     </div>
     );
     };

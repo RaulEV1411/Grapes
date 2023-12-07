@@ -11,6 +11,7 @@ import Requesindex from "../../Pages/Request/requesindex.jsx";
 import RequestShow from "../../Pages/Request/requestShow.jsx";
 import ProfileInfo from "../ProfileInfo/profileInfo.jsx";
 import NewCourseForm from "../New Courses/index.jsx";
+import CourseCard from '../Courses Card/CourseCard';
 const AppRoutes = () => {
     const [currUser, setCurrUser]= useState(null);
     return (
@@ -33,12 +34,17 @@ const AppRoutes = () => {
                     </ProtectedComponent>
                 } />
 
-                <Route path="/course" element={
+                <Route path="/course/:id" element={
                     <ProtectedComponent currUser={currUser} setCurrUser={setCurrUser}>
                         <CoursesPage currUser={currUser} setCurrUser={setCurrUser}/>
                     </ProtectedComponent>
                 } />
 
+                <Route path="" element={
+                    <ProtectedComponent currUser={currUser} setCurrUser={setCurrUser}>
+                        <CourseCard currUser={currUser} setCurrUser={setCurrUser}/>
+                    </ProtectedComponent>
+                } />
                 <Route path="/new_request" element={
                     <ProtectedComponent currUser={currUser} setCurrUser={setCurrUser}>
                         <RequestForm currUser={currUser} setCurrUser={setCurrUser}/>
@@ -52,7 +58,7 @@ const AppRoutes = () => {
                 } />
 
                 <Route path="/request_teacher" element={
-                    <ProtectedComponent currUser={currUser} setCurrUser={setCurrUser}>
+                    <ProtectedComponent currUser={currUser} setCurrUser={setCurrUser} allowRoles={["moderator"]} >
                         <Requesindex currUser={currUser} setCurrUser={setCurrUser}/>
                     </ProtectedComponent>
                 } />

@@ -51,20 +51,20 @@ import "./singup.css"
     
         return (
           <div className="signBody">
-            <div className="form">
+            <div className="form-signup">
               <label className="contenedorLogo">
               <img className="logoApp" src="/Logo_Grapes-removebg-preview.png" alt="Logo de la App" />
               </label>
                 <div className="namespace">             
                 <input
-                  className="input"
+                  className="input-signup"
                   type="text"
                   placeholder="First Name"
                   value={firstName}
                   onChange={(e) => setFirstName(e.target.value)}
                 />
                 <input
-                  className="input"
+                  className="input-signup"
                   type="text"
                   placeholder="Last Name"
                   value={lastName}
@@ -74,7 +74,7 @@ import "./singup.css"
         
               <label>
                 <input
-                  className="input"
+                  className="input-signup"
                   type="date"
                   placeholder="Birth Day"
                   value={birthDate}
@@ -85,7 +85,7 @@ import "./singup.css"
         
               <label>
                 <input
-                  className="input"
+                  className="input-signup"
                   type="email"
                   placeholder="Email"
                   value={email}
@@ -96,7 +96,7 @@ import "./singup.css"
         
               <label>
                 <input
-                  className="input"
+                  className="input-signup"
                   type="password"
                   placeholder="Password"
                   value={password}
@@ -107,7 +107,7 @@ import "./singup.css"
         
               <label>
                 <input
-                  className="input"
+                  className="input-signup"
                   type="password"
                   placeholder="Confirm Password"
                   value={confirmPassword}

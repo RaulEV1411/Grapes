@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './RequestForm.css';
 import { useNavigate } from 'react-router-dom';
-
+import BackButton from '../Back Button/BackButton';
 const RequestForm = ({ setSuccessMessage }) => {
   const [formularioEnviado, setFormularioEnviado] = useState(false);
   const [subjects, setSubjects] = useState([]);
@@ -48,6 +48,7 @@ const submitRequest = async (event) => {
 
 return (
   <form className="formularioUvas" onSubmit={submitRequest}>
+    <BackButton/>
     <h2 className="tituloFormulario">Solicitud</h2>
     <div className="campo">
       <label htmlFor="request[identification_number]">Número de Identificación:</label>

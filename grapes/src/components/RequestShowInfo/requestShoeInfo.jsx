@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import RequestCardShow from '../RequestCardShow/RequestCardShow';
 import Navbar from '../NavBar/Navbar';
+import BackButton from '../Back Button/BackButton';
 import './requestShowInfo.css';
 
 function RequestShoeInfo({ setCurrUser }) {
@@ -119,6 +120,7 @@ if (!requests.length || !user.user || !subjects.length || !showRequests.id_perso
 return (
     <div>
     <div id="body3">
+        {/* <BackButton/> */}
         <RequestCardShow
         email={user.user.email}
         first_name={user.user.first_name}

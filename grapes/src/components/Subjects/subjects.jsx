@@ -47,7 +47,7 @@
                 
             {subjects.map((subject) => (
                 <li  key={subject.id}>
-                    < Link to = "/subject/course" className='link'>
+                    <Link to={`/course/${subject.id}`} className='link'>
                     <CardSubject title={subject.name}></CardSubject>
                     </Link>
                 </li>

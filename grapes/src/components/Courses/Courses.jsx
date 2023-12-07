@@ -1,18 +1,29 @@
 import {React, useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
 import Navbar from '../NavBar/Navbar';
-import CardSubject from '../cardSubject/cardSubject';
+import CourseCard from '../Courses Card/CourseCard';
+import { useParams } from 'react-router-dom';
+import './course.css';
 // import './Courses.css'
 const Courses = ({ setCurrUser }) => {
     const [courses, setCourses] = useState([]);
-
+    const { id } = useParams();
     useEffect(() => {
         getCourses();
-    }, []);
+        console.log(id);
+    }, [id]);
+
+
+
+    // useEffect(() => {
+    //     fetch(`http://localhost:3001/api/courses?subject_id=${subjectId}`)
+    //         .then(response => response.json())
+    //         .then(data => setCourses(data));
+    // }, [subjectId]);
 
     const getCourses = async () => {
         try {
-        const response = await fetch("http://localhost:3001/api/v1/courses", {
+        const response = await fetch(`http://localhost:3001//api/v1/courses/${id}/courses_by_subject`, {
             method: "get",
             headers: {
             "content-type": "application/json",
@@ -23,6 +34,7 @@ const Courses = ({ setCurrUser }) => {
             throw Error;
         }
         const data = await response.json();
+        console.log(data);
         setCourses(data);
         } catch (error) {
         console.log("error", error);
@@ -37,12 +49,15 @@ const Courses = ({ setCurrUser }) => {
                 <main id="main" className="flexbox-col">
                 <h2>Courses</h2>
             </main>
-        <div id="body" className='flexbox-col'>
-            <ul>
+        <div id="body" >
+            <ul className='List-Course'>
                 {courses.map((course) => (
                 <li className='link' key={course.id}>
-                    < Link to = "/" className='link'>
-                    <CardSubject title={course.name}></CardSubject>
+                    < Link to = "/Course/info" className='link'>
+                    <CourseCard 
+                    name={course.name} 
+                    description={course.description} 
+                    ></CourseCard>
                     </Link>
                 </li>
             ))}

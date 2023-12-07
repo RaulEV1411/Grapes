@@ -37,57 +37,8 @@
 *, *::before, *::after {
     box-sizing: inherit;
 }
-html, body {
-    margin: 0;
-    justify-content: flex-start;
-    color: hsl(var(--text-primary));
-    font-family: var(--font-main);
-    background-color: hsl(var(--background));
-    -webkit-font-smoothing: antialiased;
-    scroll-behavior: smooth;
-    box-sizing: border-box;
-    background-color: #4f4f4f;
-}
 
-/* ============
-    Typography
-   ============ */
 
-/* Headings */
-h1, h2, h3, h4, h5, h6 {
-    margin: 0;
-}
-/* Font Size */
-h1 {
-    font-size: var(--heading-large);
-}
-h2 {
-    font-size: var(--heading-medium);
-}
-h3 {
-    font-size: var(--heading-small);
-}
-h4 {
-    font-size: calc(var(--heading-small) - .2rem);
-}
-h5 {
-    font-size: calc(var(--heading-small) - .4rem);
-}
-h6 {
-    font-size: calc(var(--heading-small) - .6rem);
-}
-/* Font Weight */
-h1, h2 {
-    font-weight: 900;
-}
-h3, h4, h5, h6 {
-    font-weight: 800;
-}
-/* Paragraphs */
-p {
-    margin: 0;
-    font-size: var(--paragraph);
-}
 /* Links */
 /* a {
     color: hsla(var(--primary), 1);
@@ -140,7 +91,7 @@ fieldset {
 input {
     padding: .8em 1.2em;
     font-size: var(--paragraph);
-    background-color: hsl(var(--grooble));
+    /* background-color: hsl(var(--grooble)); */
     border: 2px solid hsl(var(--grooble));
     outline: none;
 }
@@ -152,7 +103,7 @@ textarea {
     border: 2px solid hsl(var(--grooble));
     outline: none;
 }
-input, textarea {
+textarea {
     transition: all .2s ease-in-out;
 }
 input:hover, input:focus, textarea:hover, textarea:focus {

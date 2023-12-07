@@ -43,7 +43,7 @@ const Login = ({ setCurrUser }) => {
     return (
         <div className="LoginBody">
             <div className="login-container">
-                <label className="contenedorLogo">
+                <label className="label-login ">
                     <img
                         className="logoApp"
                         src="/Logo_Grapes-removebg-preview.png"
@@ -51,7 +51,7 @@ const Login = ({ setCurrUser }) => {
                     />
                 </label>
                 <form className="formLogin" ref={formRef} onSubmit={handleSubmit}>
-                    <label>Email:</label>
+                    <label className="label-login">Email:</label>
                     <input
                         className="inputLogin"
                         type="email"
@@ -59,7 +59,7 @@ const Login = ({ setCurrUser }) => {
                         placeholder="email"
                     />
                     <br />
-                    <label>Password:</label>
+                    <label className="label-login" >Password:</label>
                     <input
                         className="inputLogin"
                         type="password"

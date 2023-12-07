@@ -1,11 +1,14 @@
 import { jwtDecode } from "jwt-decode";
 import Login from "../Login/login";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const ProtectedComponent = ({
     setCurrUser,
+    allowRoles,
     children
     }) => {
+        const navigate = useNavigate();
         const token = localStorage.getItem('token');
     useEffect(() => {
         if (token) {
@@ -20,6 +23,14 @@ const ProtectedComponent = ({
                 .then(response => response.json())
                 .then(data => {
                     setCurrUser(data);
+                    if (allowRoles) {
+                        const userRoles = data.roles.map(role => role.name);
+                        if (!allowRoles.some(role => userRoles.includes(role))) {
+                            navigate(-1);
+                        }
+                    }
+                    // setIsAdmin(data.roles.some(role => role.name === 'admin'));
+                    // setIsModerator(data.roles.some(role => role.name === 'moderator'));
                 })
                 .catch(error => {
                     console.error('Error:', error);

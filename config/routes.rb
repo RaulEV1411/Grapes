@@ -23,7 +23,11 @@ Rails.application.routes.draw do
         end
       end
       resources :subjects 
-      resources :courses
+      resources :courses do 
+        member do 
+          get 'courses_by_subject'
+        end
+      end
       resources :requests, only: [:index, :show, :new, :create]
     end
   end

@@ -1,0 +1,39 @@
+.form-container-newC{
+background-color: rgb(113, 76, 129);
+height: 50%;
+
+}
+.input-label {
+    position: relative;
+    display: block;
+}
+
+.styled-input {
+    width: 50%;
+    border: none;
+    outline: none;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    margin: 15px;
+}
+
+.input-title {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px;
+    transition: all 0.3s ease;
+    pointer-events: none;
+    margin: 15px;
+}
+
+.styled-input:focus + .input-title,
+.styled-input:not(:placeholder-shown) + .input-title {
+    color: #c1b7c4;
+    transform: translateY(-35px);
+    font-size: 14px;
+}
+
+.styled-input:hover + .input-title {
+    border-style: none;
+}

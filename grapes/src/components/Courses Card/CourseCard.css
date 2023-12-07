@@ -1,0 +1,109 @@
+/* .course-container {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    padding: 15px;
+    border: 1px solid #000;
+    border-radius: 8px;
+    padding: 10px;
+    box-sizing: border-box;
+    overflow: hidden;
+    background: linear-gradient(45deg,  #316e2e,  #859c85);
+     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.course-name {
+    position: relative;
+    text-align: center;
+    z-index: 1;
+    transition: opacity 0.3s ease-in-out;
+    color: #000;
+    background-color: #000000;
+}
+
+.course-info {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding-top: 20px;
+    background: #582691;
+    color: #000000;
+    transform: translateY(100%);
+    transition: transform 0.3s ease-in-out;
+}
+
+.course-container:hover .course-info {
+    transform: translateY(0);
+    
+}
+
+.course-container:hover .course-name {
+    opacity: 0;
+}
+
+.course-details {
+    padding: 10px;
+} */
+
+
+.course-card {
+    width: 300px;
+    height: 200px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  
+  .course-card-header {
+    position: relative;
+    height: 40%;
+    background-size: cover;
+  }
+  
+  .course-professor-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 20px;
+    right: 20px; /* Cambiado de left a right */
+    border: 2px solid #fff;
+  }
+  
+  .course-title {
+    margin: 20px;
+    color: #fff;
+    font-size: 1.5rem;
+    z-index: 1;
+  }
+  
+  .course-card-body {
+    flex-grow: 1;
+    padding: 15px 20px;
+    background-color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .course-description {
+    color: #333;
+    font-size: 1rem;
+    line-height: 1.4;
+    max-height: 60px;
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+  
+  .course-description::after {
+    content: '...';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0), #fff 80%);
+    padding: 0 8px;
+  }

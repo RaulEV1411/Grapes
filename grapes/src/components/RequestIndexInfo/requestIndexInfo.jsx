@@ -96,7 +96,6 @@ if (!requests.length || !users || !subjects.length) {
         </div>;
 }
     return (
-    
     <div>
         <Navbar setCurrUser={setCurrUser} />
         <div id="main" className="flexbox-col">
