@@ -12,7 +12,7 @@ protected
             user_params.permit(:email, :password)
         end
         devise_parameter_sanitizer.permit(:sign_up) do |user|
-            user.permit(:email, :password,:first_name, :last_name)
+            user.permit(:email, :password,:first_name, :last_name, :birth_date)
         end
     end
 

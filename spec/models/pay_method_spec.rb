@@ -2,7 +2,7 @@
 
 # RSpec.describe PayMethod, type: :model do
 #   it "is valid with valid attributes" do
-#     pay_method = PayMethod.new(payment_type: "Mastercard")
+#     pay_method = PayMethod.new(payment_type: "Credit Card")
 #     expect(pay_method).to be_valid
 #   end
 
@@ -11,5 +11,4 @@
 #     expect(pay_method).to_not be_valid
 #   end
 # end
-
 

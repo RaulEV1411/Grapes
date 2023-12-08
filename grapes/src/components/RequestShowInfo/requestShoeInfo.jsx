@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import RequestCardShow from '../RequestCardShow/RequestCardShow';
 import Navbar from '../NavBar/Navbar';
-import BackButton from '../Back Button/BackButton';
 import './requestShowInfo.css';
 
 function RequestShoeInfo({ setCurrUser }) {
@@ -36,9 +35,7 @@ const fetchRequests = async () => {
 
 const fetchRequestsShow = async () => {
     try {
-
-    const requestid = localStorage.getItem("requestid");
-    const response = await fetch(`http://localhost:3001/api/v1/requests/${requestid}`, {
+    const response = await fetch(`http://localhost:3001//api/v1/requests/${id}/show_by_user`, {
         method: 'GET',
         headers: {
         "content-type": "application/json",
@@ -46,6 +43,8 @@ const fetchRequestsShow = async () => {
         },
     });
 
+
+    console.log(response)
     if (!response.ok) {
         throw new Error('Error fetching requests');
     }
@@ -109,18 +108,16 @@ useEffect(() => {
 
 if (!requests.length || !user.user || !subjects.length || !showRequests.id_person) {
     return <div>
-            <Navbar setCurrUser={setCurrUser} />
             <div id="bodyCarga"> <div className='divCarga'></div> </div>
         </div>;
 }
     const request = requests.find((request) => request.user_id === (user && user.user.id));
-    const requestid = request.id
     const subject = subjects.find((subject) => subject.id_subject === (requests && requests.id_subject));
-    localStorage.setItem("requestid", requestid);
+
+    
 return (
     <div>
     <div id="body3">
-        {/* <BackButton/> */}
         <RequestCardShow
         email={user.user.email}
         first_name={user.user.first_name}
@@ -135,8 +132,8 @@ return (
         title_photo={showRequests && showRequests.title_photo}
         cv={showRequests && showRequests.cv}
         idUser={id}
+        idUserDelete={id}
         />
-    
     </div>
     </div>
 );

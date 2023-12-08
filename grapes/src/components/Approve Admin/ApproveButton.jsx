@@ -1,6 +1,6 @@
 
 import React from 'react'
-
+import "./styles.css";
 const ApproveButton = ({idUser}) => {
     const submitRequest = async (event) => {
         event.preventDefault();
@@ -15,12 +15,12 @@ const ApproveButton = ({idUser}) => {
         });
 
         const data = await response.json();
-        console.log(data);
+        
     }
 
     return (
         <div>
-            <button onClick={submitRequest}>Approve</button>
+            <button className="button-aceptar" onClick={submitRequest}>Approve</button>
         </div>
     );
 };

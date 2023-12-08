@@ -1,33 +1,26 @@
-@keyframes loading {
-    0% {
-      transform: rotateY(180deg);
-    }
-  
-    50% {
-      transform-style: preserve-3d;;
-    }
-  
-    100% {
-      transform-style: preserve-3d;
-    }
-  }
+#bodyCarga {
+  width: 100vw; /* vw es relativo al ancho de la ventana del navegador */
+  height: 100vh; /* vh es relativo a la altura de la ventana del navegador */
+  position: fixed;
+  z-index: 1000;
+  top: 0%;
+  left: 0%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-  #bodyCarga {
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    z-index: 1000;
-    top: 0%;
-    left: 7%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .divCarga {
-    background : url("../../../public/Logo_Grapes-removebg-preview.png");
-    width: 20%;
-    height: 300px;
-    animation: loading 1s infinite ease-in-out;
-    
-  }
+.divCarga {
+  background : url("../../../public/Logo_Grapes-removebg-preview.png");
+  background-size: contain; /* Cambiado a 'contain' para asegurar que la imagen de fondo se ajuste al div sin cortarse */
+  background-repeat: no-repeat; /* Añadido para evitar que la imagen de fondo se repita */
+  background-position: center; /* Añadido para asegurar que la imagen de fondo siempre esté centrada */
+  width: 20vw; /* vw es relativo al ancho de la ventana del navegador */
+  height: 30vh; /* vh es relativo a la altura de la ventana del navegador */
+  animation: loading 1.5s infinite linear;
+}
+
+@keyframes loading {
+  from { transform: rotateY(0deg); }
+  to { transform: rotateY(1turn); }
+}

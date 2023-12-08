@@ -73,10 +73,10 @@ import "./singup.css"
               </div>
         
               <label>
+                <p>Birthday</p>
                 <input
                   className="input-signup"
                   type="date"
-                  placeholder="Birth Day"
                   value={birthDate}
                   onChange={(e) => setBirthDate(e.target.value)}
                 />

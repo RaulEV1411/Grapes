@@ -1,6 +1,8 @@
 import React from 'react';
 import './CourseCard.css';  // Asegúrate de tener un archivo CSS correspondiente
 
+
+
 function CourseCard({ imagenFondo, imagenProfesor, name, description }) {
   const defaultImage = "/_c303bb14-d24a-4107-8fe4-e1ffffbfd094.jpg"; // URL de la imagen por defecto
   return (

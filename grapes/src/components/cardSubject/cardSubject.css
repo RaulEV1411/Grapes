@@ -35,3 +35,15 @@
     margin: 0;
     font-size: 1.5rem;
   }
+
+    /* Agrega keyframes para la animación fadeIn */
+    @keyframes fadeIn {
+      0% {opacity: 0;}
+      100% {opacity: 1;}
+    }
+    
+    /* Resto del código... */
+  .card {
+    /* Agrega una animación para resaltar el contenedor del perfil cuando se carga la página */
+    animation: popIn 0.6s ease;
+  }

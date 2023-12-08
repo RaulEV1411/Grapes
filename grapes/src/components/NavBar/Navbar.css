@@ -53,7 +53,7 @@ a:visited {
     Buttons
    ========= */
 
-button {
+/* .button {
     padding: .8em 1.2em;
     border: 1px solid hsl(var(--black));
     background-color: hsl(var(--background));
@@ -66,7 +66,7 @@ button:focus {
             0 0 0 2px hsl(var(--black)),
             0 0 0 3px hsl(var(--white));
     border: 1px solid transparent;
-}
+} */
 
 /* =======
     Lists
@@ -206,9 +206,12 @@ select {
     transition: width .35s cubic-bezier(var(--transition-main), 1);
     overflow-y: auto;
     overflow-x: hidden;
+    z-index: 2;
 }
 #navbar:hover {
     width: 16em;
+    position: fixed;
+    z-index: 2;
 }
 #navbar::-webkit-scrollbar-track {
     background-color: hsl(var(--background-secondary));

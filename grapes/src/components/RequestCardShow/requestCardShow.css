@@ -85,3 +85,42 @@
   font-size: 0.8em;
   margin: 0;
 }
+
+.request-button-container{
+  display: flex;
+  justify-content: space-between;
+
+}
+
+.photo-modal {
+  position: fixed; /* Hace que el modal se posicione en relación con la ventana del navegador */
+  top: 50%; /* Centra el modal verticalmente */
+  left: 50%; /* Centra el modal horizontalmente */
+  transform: translate(-50%, -50%); /* Asegura que el centro del modal esté en el centro de la ventana */
+  width: 80%; /* Establece el ancho del modal al 80% del ancho de la ventana */
+  max-width: 600px; /* Establece un ancho máximo para el modal */
+  /* Establece la altura del modal al 80% de la altura de la ventana */
+  max-height: 600px; /* Establece una altura máxima para el modal */
+  overflow: auto; /* Asegura que el contenido del modal se pueda desplazar si es demasiado grande */
+   /* Establece el fondo del modal en blanco */
+  /*  Añade un poco de espacio alrededor del contenido del modal */
+  outline: none; /* Elimina el contorno que algunos navegadores añaden a los elementos enfocados */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
+  
+  /* Añade una sombra suave alrededor del modal */
+}
+
+.modal-image {
+  max-width: 100%; /* Asegura que la imagen no sea más grande que el modal */
+  max-height: 100%; /* Asegura que la imagen no sea más alta que el modal */
+}
+
+
+.overlay {
+  position: fixed; /* Hace que el overlay se posicione en relación con la ventana del navegador */
+  top: 0; /* Asegura que el overlay cubra toda la ventana */
+  left: 0; /* Asegura que el overlay cubra toda la ventana */
+  right: 0; /* Asegura que el overlay cubra toda la ventana */
+  bottom: 0; /* Asegura que el overlay cubra toda la ventana */
+  background-color: rgba(0, 0, 0, 0.648); /* Establece el color del overlay en gris oscuro con una opacidad del 50% */
+}

@@ -20,6 +20,8 @@ Rails.application.routes.draw do
       resources :users do
         member do
           post 'approve_admin'
+          post 'request_admin'
+          delete 'decline_request'
         end
       end
       resources :subjects 
@@ -28,7 +30,12 @@ Rails.application.routes.draw do
           get 'courses_by_subject'
         end
       end
-      resources :requests, only: [:index, :show, :new, :create]
+      resources :requests do
+        get 'index_request_pending', on: :collection
+        member do
+          get 'show_by_user'
+        end
+      end
     end
   end
 

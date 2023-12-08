@@ -9,3 +9,26 @@
 .link_request{
     text-decoration: none;
 }
+
+.horizontal-selector {
+    display: flex;
+    border-bottom: 1px solid #ccc; /* Línea divisoria */
+  }
+  
+  .selector-item {
+    flex: 1;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+    opacity: 0.5; /* Opacidad casi transparente */
+    transition: opacity 0.3s ease;
+  }
+  
+  .selector-item:hover {
+    opacity: 1; /* Aumentar la opacidad al pasar el ratón */
+  }
+  
+  .selector-item.selected {
+    opacity: 1; /* Ajustar opacidad para el elemento seleccionado */
+    font-weight: bold; /* Puedes agregar otros estilos para indicar selección */
+  }

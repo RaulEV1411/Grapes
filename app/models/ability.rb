@@ -13,6 +13,8 @@ class Ability
       can :read, :all
     elsif user.has_role? :user
       can :read, :all
+    elsif user.has_role? :pending_request
+      can :read, :all
     end
   end
 end

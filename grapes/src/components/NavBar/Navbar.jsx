@@ -6,6 +6,8 @@ import { jwtDecode } from "jwt-decode";
 function Navbar({setCurrUser}) {
     const [isAdmin, setIsAdmin] = useState(false);
     const [isModerator, setIsModerator] = useState(false);
+    const [isPendingRequest, setIsPendingRequest] = useState(false);
+    const [isUser, setIsUser] = useState(false);
     const token = localStorage.getItem('token');
     const decoded = jwtDecode(token);
     const userId = decoded.sub;
@@ -25,9 +27,10 @@ function Navbar({setCurrUser}) {
             }
     
             const data = await response.json();
-            console.log(data);
             setIsAdmin(data.roles.some(role => role.name === 'admin'));
             setIsModerator(data.roles.some(role => role.name === 'moderator'));
+            setIsUser(data.roles.some(role => role.name === 'user'));
+            setIsPendingRequest(data.roles.some(role => role.name === 'pending_request'));
         } catch (error) {
             console.error('An error occurred while fetching user details:', error);
         }
@@ -63,21 +66,22 @@ function Navbar({setCurrUser}) {
 <nav id="navbar">
   <ul className="navbar-items flexbox-col">
     <li className="navbar-logo flexbox-left">
-      <a className="navbar-item-inner flexbox">
+      <Link to="/" className="navbar-item-inner flexbox">
             <img className="logoAppNav" src="/Logo_Grapes-removebg-preview.png" alt="Logo de la App" />
-      </a>
-    </li>
-    <li className="navbar-item flexbox-left">
-      <Link to={`/profile/${userId}`}  className="navbar-item-inner flexbox-left">
-        <div className="navbar-item-inner-icon-wrapper flexbox">
-          <svg  xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-person-vcard" viewBox="0 0 16 16">
-            <path d="M5 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4m4-2.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5M9 8a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4A.5.5 0 0 1 9 8m1 2.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5"/>
-            <path d="M2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2zM1 4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H8.96c.026-.163.04-.33.04-.5C9 10.567 7.21 9 5 9c-2.086 0-3.8 1.398-3.984 3.181A1.006 1.006 0 0 1 1 12z"/>
-          </svg>
-        </div>
-        <span className="link-text">Profile</span>
       </Link>
     </li>
+    <li className="navbar-item flexbox-left">
+      <Link to="/home" className="navbar-item-inner flexbox-left">
+        <div className="navbar-item-inner-icon-wrapper flexbox">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-house" viewBox="0 0 16 16">
+            <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z"/>
+          </svg>
+        </div>
+        <span className="link-text">Home</span>
+      </Link>
+    </li>
+
+
     <li className="navbar-item flexbox-left">
       <a className="navbar-item-inner flexbox-left">
         <div className="navbar-item-inner-icon-wrapper flexbox">
@@ -88,14 +92,15 @@ function Navbar({setCurrUser}) {
         <span className="link-text">Search</span>
       </a>
     </li>
-    <li className="navbar-item flexbox-left">
-      <Link to="/home" className="navbar-item-inner flexbox-left">
+          <li className="navbar-item flexbox-left">
+      <Link to={`/profile/${userId}`}  className="navbar-item-inner flexbox-left">
         <div className="navbar-item-inner-icon-wrapper flexbox">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-house" viewBox="0 0 16 16">
-            <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z"/>
+          <svg  xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-person-vcard" viewBox="0 0 16 16">
+            <path d="M5 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4m4-2.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5M9 8a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4A.5.5 0 0 1 9 8m1 2.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5"/>
+            <path d="M2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2zM1 4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H8.96c.026-.163.04-.33.04-.5C9 10.567 7.21 9 5 9c-2.086 0-3.8 1.398-3.984 3.181A1.006 1.006 0 0 1 1 12z"/>
           </svg>
         </div>
-        <span className="link-text">Home</span>
+        <span className="link-text">Profile</span>
       </Link>
     </li>
     <li className="navbar-item flexbox-left">
@@ -135,7 +140,7 @@ function Navbar({setCurrUser}) {
             <span className="link-text">Review Request</span>
         </Link>
     </li>
-) : (
+) : isUser ? (
     <li className="navbar-item flexbox-left">
         <Link to="/new_request" className="navbar-item-inner flexbox-left">
             <div className="navbar-item-inner-icon-wrapper flexbox">
@@ -144,8 +149,21 @@ function Navbar({setCurrUser}) {
                   <path fillRule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5"/>
                 </svg>
             </div>
-            <span className="link-text">Become Admin</span>
+            <span className="link-text">Become Teacher</span>
         </Link>
+    </li>
+):(
+      <li className="navbar-item flexbox-left">
+      <a className="navbar-item-inner flexbox-left">
+        <div className="navbar-item-inner-icon-wrapper flexbox">
+          <svg name="chatbubbles-outline" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-clock-history" viewBox="0 0 16 16">
+            <path d="M8.515 1.019A7 7 0 0 0 8 1V0a8 8 0 0 1 .589.022zm2.004.45a7.003 7.003 0 0 0-.985-.299l.219-.976c.383.086.76.2 1.126.342zm1.37.71a7.01 7.01 0 0 0-.439-.27l.493-.87a8.025 8.025 0 0 1 .979.654l-.615.789a6.996 6.996 0 0 0-.418-.302zm1.834 1.79a6.99 6.99 0 0 0-.653-.796l.724-.69c.27.285.52.59.747.91l-.818.576zm.744 1.352a7.08 7.08 0 0 0-.214-.468l.893-.45a7.976 7.976 0 0 1 .45 1.088l-.95.313a7.023 7.023 0 0 0-.179-.483m.53 2.507a6.991 6.991 0 0 0-.1-1.025l.985-.17c.067.386.106.778.116 1.17l-1 .025zm-.131 1.538c.033-.17.06-.339.081-.51l.993.123a7.957 7.957 0 0 1-.23 1.155l-.964-.267c.046-.165.086-.332.12-.501zm-.952 2.379c.184-.29.346-.594.486-.908l.914.405c-.16.36-.345.706-.555 1.038l-.845-.535m-.964 1.205c.122-.122.239-.248.35-.378l.758.653a8.073 8.073 0 0 1-.401.432l-.707-.707z"/>
+            <path d="M8 1a7 7 0 1 0 4.95 11.95l.707.707A8.001 8.001 0 1 1 8 0z"/>
+            <path d="M7.5 3a.5.5 0 0 1 .5.5v5.21l3.248 1.856a.5.5 0 0 1-.496.868l-3.5-2A.5.5 0 0 1 7 9V3.5a.5.5 0 0 1 .5-.5"/>
+          </svg>
+        </div>
+        <span className="link-text">Solicitud en revision</span>
+      </a>
     </li>
 )}
     <li className="navbar-item flexbox-left">

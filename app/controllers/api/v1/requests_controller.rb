@@ -5,6 +5,28 @@ class Api::V1::RequestsController < ApplicationController
         @requests = Request.all
         render json: @requests
         end
+
+        def index_request_pending
+            user_ids = User.joins(:roles).where(roles: { name: 'pending_request' }).pluck(:id)
+            @requests = Request.where(user_id: user_ids)
+            render json: @requests
+        end
+
+        
+
+        def show_by_user
+            @request = Request.find_by(user_id: params[:id])
+            if @request
+                render json: @request.as_json.merge({
+                person_photo: rails_blob_url(@request.person_photo),
+                title_photo: rails_blob_url(@request.title_photo),
+                id_person: rails_blob_url(@request.id_person),
+                cv: rails_blob_url(@request.cv)
+                }).tap { |json| puts json }
+            else
+                render json: { error: 'No request found for this user' }, status: :not_found
+            end
+        end         
     
         def show
             render json: @request.as_json.merge({
