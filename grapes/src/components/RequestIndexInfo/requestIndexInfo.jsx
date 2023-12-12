@@ -1,14 +1,18 @@
-import Navbar from '../NavBar/Navbar';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './requestIndexInfo.css';
 import BackButton from '../Back Button/BackButton';
 import RequestCardIndex from '../RequestCardIndex/RequestInfo';
-const QueryReview = ({ setCurrUser }) => {
+
+const options = ['Option 1', 'Option 2'];
+
+const QueryReview = () => {
   const [requests, setRequests] = useState([]);
   const [subjects, setSubjects] = useState([]);
   const [users, setUsers] = useState([]);
-  useEffect(() => {
+  const [selectedOption, setSelectedOption] = useState(options[0]);
+
+
     const fetchRequests = async () => {
       try {
         const response = await fetch(`http://localhost:3001/api/v1/requests/index_request_pending`, {
@@ -32,10 +36,28 @@ const QueryReview = ({ setCurrUser }) => {
       }
     };
 
-    fetchRequests();
-  }, []);
+    const fetchApprovedRequests = async () => {
+      try {
+        const response = await fetch(`http://localhost:3001/api/v1/requests/index_request_approved`, {
+          method: 'GET',
+          headers: {
+            "content-type": "application/json",
+            "authorization": localStorage.getItem("token"),
+          },
+        });
 
+        if (!response.ok) {
+          throw new Error('Error fetching requests');
+        }
 
+        const data = await response.json();
+
+        setRequests(data);
+      } catch (error) {
+        console.error(error);
+        // Puedes manejar el error de alguna manera, por ejemplo, mostrando un mensaje al usuario.
+      }
+  };
 
   useEffect(() => {
     const fetchSubjects = async () => {
@@ -90,17 +112,56 @@ const QueryReview = ({ setCurrUser }) => {
     fetchUsers();
   }, []);
 
+  const handleSelect = (option) => {
+  setSelectedOption(option);
+
+  if (option === options[0]) {
+    fetchRequests();
+  } else if (option === options[1]) {
+    fetchApprovedRequests();
+  }
+};
+
+useEffect(() => {
+  fetchRequests();
+}, []);
+
   if (!requests.length || !users || !subjects.length) {
     return <div>
-      
+          <div className='backRequestsIndex'>
+        <BackButton/>
+      </div>
+      <div id="main4" className="flexbox-col">
+        <h2>Request</h2>
+        <div className="headerRequests">
+          <button className={`button_state ${selectedOption === options[0] ? 'active' : ''}`} onClick={() => handleSelect(options[0])}>
+            Pendientes
+          </button>
+          <div className="divider"></div>
+          <button className={`button_state ${selectedOption === options[1] ? 'active' : ''}`} onClick={() => handleSelect(options[1])}>
+            Approve
+          </button>
+        </div>
+      </div>
       <div id="bodyCarga"> <div className='divCarga'></div> </div>
     </div>;
   }
   return (
     <div>
+      <div className='backRequestsIndex'>
         <BackButton/>
-      <div id="main" className="flexbox-col">
+      </div>
+      <div id="main4" className="flexbox-col">
         <h2>Request</h2>
+        <div className="headerRequests">
+          <button className={`button_state ${selectedOption === options[0] ? 'active' : ''}`} onClick={() => handleSelect(options[0])}>
+            Pendientes
+          </button>
+          <div className="divider"></div>
+          <button className={`button_state ${selectedOption === options[1] ? 'active' : ''}`} onClick={() => handleSelect(options[1])}>
+            Approve
+          </button>
+        </div>
       </div>
       <div id="body2" className="flexbox-col">
         <ul className="link1">

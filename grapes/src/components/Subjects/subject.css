@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'MyFuente';
+    src: url("../../../public/Blockhead\ DarkSide\ Regular.otf");
+  }
+
 .link {
     text-decoration: none;
     list-style: none;
@@ -7,4 +12,9 @@
 }
 
 
-
+.subjects_h2{
+    font-family: 'MyFuente', sans-serif;
+    font-size: 6rem;
+    font-weight: lighter;
+    font-style: oblique;
+}

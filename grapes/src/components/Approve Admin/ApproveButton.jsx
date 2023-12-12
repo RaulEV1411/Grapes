@@ -1,6 +1,6 @@
-
 import React from 'react'
 import "./styles.css";
+import { useNavigate } from 'react-router-dom';
 const ApproveButton = ({idUser}) => {
     const submitRequest = async (event) => {
         event.preventDefault();
@@ -15,9 +15,11 @@ const ApproveButton = ({idUser}) => {
         });
 
         const data = await response.json();
+        navigate(-1)
         
     }
-
+    
+    let navigate = useNavigate();
     return (
         <div>
             <button className="button-aceptar" onClick={submitRequest}>Approve</button>

@@ -33,6 +33,10 @@ const NewCourseForm = ({ setCurrUser }) => {
 
     const handleFormSubmit = (e) => {
         e.preventDefault();
+        if (name.trim() === '' || description.trim() === '') {
+            alert('Por favor, completa todos los campos antes de enviar.');
+            return;
+        }
         const newCourse = {
             name: name,
             description: description,
@@ -55,6 +59,7 @@ const NewCourseForm = ({ setCurrUser }) => {
                         type="text"
                         placeholder=" "
                         value={name}
+
                         onChange={(e) => setName(e.target.value)}
                     />
                     <span className='input-title'> Course Name: </span>

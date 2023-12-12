@@ -6,13 +6,17 @@ class Api::V1::RequestsController < ApplicationController
         render json: @requests
         end
 
+        def index_request_approved
+            user_ids = User.joins(:roles).where(roles: { name: 'admin' }).pluck(:id)
+            @requests = Request.where(user_id: user_ids)
+            render json: @requests
+        end
+
         def index_request_pending
             user_ids = User.joins(:roles).where(roles: { name: 'pending_request' }).pluck(:id)
             @requests = Request.where(user_id: user_ids)
             render json: @requests
         end
-
-        
 
         def show_by_user
             @request = Request.find_by(user_id: params[:id])

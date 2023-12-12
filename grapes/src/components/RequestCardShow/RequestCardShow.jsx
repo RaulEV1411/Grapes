@@ -4,7 +4,7 @@ import "./requestCardShow.css";
 import ApproveButton from "../Approve Admin/ApproveButton";
 import BackButton from "../Back Button/BackButton";
 import DeclineButton from "../Decline Admin/DeclineButton";
-
+import { Document, Page } from 'react-pdf';
 const PhotoModal = ({ src, alt }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
@@ -90,7 +90,7 @@ const RequestCardShow = ({
             <p className="photoTitle">Title Photo</p>
           </div>
           <div className="photoContainer">
-            <PhotoModal src={cv} alt="CV" />
+            <Document src={cv} alt="CV" />
             <p className="photoTitle">CV</p>
           </div>
         </div>

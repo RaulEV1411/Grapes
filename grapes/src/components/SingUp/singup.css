@@ -85,3 +85,59 @@
   color: #542b5e; /* Cambio de color en hover */
 }
 
+.flash-success {
+  background-color: #4CAF50; /* Green */
+  color: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 300px;
+  text-align: center;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  font-family: 'Roboto', sans-serif;
+  animation: fadeIn 0.5s ease-out, fadeOut 0.5s 2.5s ease-out;
+  transition: background-color 0.3s ease;
+}
+
+/* Keyframe animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* Hover effect for more interactivity */
+.flash-success:hover {
+  background-color: #45a049; /* Darker green on hover */
+  cursor: pointer;
+}
+
+/* Add a subtle border */
+.flash-success::after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  pointer-events: none;
+}

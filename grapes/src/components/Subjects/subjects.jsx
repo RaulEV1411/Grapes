@@ -40,15 +40,16 @@ const Subjects = ({ setCurrUser }) => {
         <div>
             <Navbar setCurrUser={setCurrUser} />
             <div id="main" className="flexbox-col">
-                <h2>Subjects</h2>
+                <div className='subjects-tittle'>
+                <h2 className='subjects_h2'>Subjects</h2>
+                </div>
             </div>
             <div id="body1" className='flexbox-col'>
                 <ul className='link'>
-
                     {subjects.map((subject) => (
                         <li key={subject.id}>
                             <Link to={`/course/${subject.id}`} className='link'>
-                                <CardSubject title={subject.name}></CardSubject>
+                                <CardSubject id={subject.id}></CardSubject>
                             </Link>
                         </li>
                     ))}

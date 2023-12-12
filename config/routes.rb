@@ -32,6 +32,7 @@ Rails.application.routes.draw do
       end
       resources :requests do
         get 'index_request_pending', on: :collection
+        get 'index_request_approved', on: :collection
         member do
           get 'show_by_user'
         end

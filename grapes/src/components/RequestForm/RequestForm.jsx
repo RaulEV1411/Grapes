@@ -5,6 +5,8 @@ import BackButton from '../Back Button/BackButton';
 import { jwtDecode } from 'jwt-decode';
 const RequestForm = ({ setSuccessMessage }) => {
   const [formularioEnviado, setFormularioEnviado] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [flashMessage, setFlashMessage] = useState(null);
   const [subjects, setSubjects] = useState([]);
   const token = localStorage.getItem('token');
   const navigate = useNavigate();
@@ -27,6 +29,7 @@ const RequestForm = ({ setSuccessMessage }) => {
 
   const submitRequest = async (event) => {
     event.preventDefault();
+    setIsSubmitting(true);
     const formData = new FormData(event.target);
     try {
       const response = await fetch('http://localhost:3001/api/v1/requests', {
@@ -41,11 +44,16 @@ const RequestForm = ({ setSuccessMessage }) => {
         const data = await response.json();
         throw new Error(data.error || 'Error submitting request');
       }
+      setFlashMessage('Solicitud exitosa!');
       setFormularioEnviado(true);
-      navigate(-1)
-
+      setTimeout(() => {
+        navigate(-1);
+      }, 4000);
     } catch (error) {
       console.error(error);
+      setFlashMessage('Error al enviar la solicitud');
+    } finally {
+      setIsSubmitting(false); // Habilita el botón de envío
     }
   };
 
@@ -85,6 +93,8 @@ const RequestForm = ({ setSuccessMessage }) => {
   
   
   return (
+  <div>
+      {flashMessage && <div className="flash-success">{flashMessage}</div>}
     <form className="formularioUvas" onSubmit={submitRequest}>
       <BackButton />
       <h2 className="tituloFormulario">Solicitud</h2>
@@ -118,8 +128,9 @@ const RequestForm = ({ setSuccessMessage }) => {
         <label htmlFor="request[cv]">CV:</label>
         <input className="campoTexto" type="file" id="request[cv]" name="request[cv]" required />
       </div>
-      <button className="botonSubmit" type="submit" disabled={formularioEnviado}>Enviar</button>
+      <button className="botonSubmit" type="submit" disabled={isSubmitting}>Enviar</button>
     </form>
+  </div>
   );
 };
 

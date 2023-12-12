@@ -167,14 +167,6 @@ function Navbar({setCurrUser}) {
     </li>
 )}
     <li className="navbar-item flexbox-left">
-      <a className="navbar-item-inner flexbox-left">
-        <div className="navbar-item-inner-icon-wrapper flexbox">
-          <ion-icon name="chatbubbles-outline"></ion-icon>
-        </div>
-        <span className="link-text"></span>
-      </a>
-    </li>
-    <li className="navbar-item flexbox-left">
       <a onClick={handleClick} className="navbar-item-inner flexbox-left">
         <div className="navbar-item-inner-icon-wrapper flexbox">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-box-arrow-right" viewBox="0 0 16 16">

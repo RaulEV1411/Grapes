@@ -4,7 +4,7 @@
 # Examples:
 #
 Role.create!([
-    {name:"Admin"}, {name: "user"}])
+    {name:"Admin"},{name: "pending_request"}])
 
 #   Character.create(name: "Luke", movie: movies.first)
 

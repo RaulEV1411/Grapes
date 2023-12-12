@@ -2,7 +2,7 @@
   width: 100vw; /* vw es relativo al ancho de la ventana del navegador */
   height: 100vh; /* vh es relativo a la altura de la ventana del navegador */
   position: fixed;
-  z-index: 1000;
+  z-index: 1;
   top: 0%;
   left: 0%;
   display: flex;

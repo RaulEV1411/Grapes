@@ -1,14 +1,14 @@
 
+
 html, body {
   margin: 0;
   justify-content: flex-start;
   color: hsl(var(--text-primary));
   font-family: var(--font-main);
-  background-color: #bf9bde;
+  background-color: #e5d7f2;
   -webkit-font-smoothing: antialiased;
   scroll-behavior: smooth;
-  box-sizing: border-box;
-  
+  box-sizing: border-box;;
 }
 
 /* Headings */

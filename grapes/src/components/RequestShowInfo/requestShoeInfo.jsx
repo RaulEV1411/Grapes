@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import RequestCardShow from '../RequestCardShow/RequestCardShow';
-import Navbar from '../NavBar/Navbar';
 import './requestShowInfo.css';
 
 function RequestShoeInfo({ setCurrUser }) {
@@ -10,6 +9,10 @@ const [showRequests, setShowRequests] = useState({});
 const [subjects, setSubjects] = useState([]);
 const [user, setUser] = useState({});
 const { id } = useParams();
+
+
+
+
 
 const fetchRequests = async () => {
     try {
@@ -112,8 +115,7 @@ if (!requests.length || !user.user || !subjects.length || !showRequests.id_perso
         </div>;
 }
     const request = requests.find((request) => request.user_id === (user && user.user.id));
-    const subject = subjects.find((subject) => subject.id_subject === (requests && requests.id_subject));
-
+    const subject = subjects.find(subject => subject.id === request.subject_id);
     
 return (
     <div>
