@@ -14,12 +14,6 @@ const Courses = ({ setCurrUser }) => {
         console.log(id);
     }, [id]);
 
-    // useEffect(() => {
-    //     fetch(`http://localhost:3001/api/courses?subject_id=${subjectId}`)
-    //         .then(response => response.json())
-    //         .then(data => setCourses(data));
-    // }, [subjectId]);
-
     const getCourses = async () => {
         try {
             const response = await fetch(
@@ -54,7 +48,7 @@ const Courses = ({ setCurrUser }) => {
                 <ul className="List-Course">
                     {courses.map((course) => (
                         <li className="link" key={course.id}>
-                            <Link to="/Course/info" className="link">
+                            <Link to={`/course/info/${course.id}`}className="link">
                                 <CourseCard
                                     name={course.name}
                                     description={course.description}

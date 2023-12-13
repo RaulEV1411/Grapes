@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import ProfileCard from '../ProfileCard/profileCard'
 import { useParams } from 'react-router-dom';
-import Navbar from '../NavBar/Navbar';
 
 function ProfileInfo({ setCurrUser }) {
 
     const [user, setUser] = useState({});
+    const [showRequests, setShowRequests] = useState({});
+    const [subjects, setSubjects] = useState([]);
     const { id } = useParams()
 
     const fetchUser = async () => {
@@ -29,13 +30,61 @@ function ProfileInfo({ setCurrUser }) {
         }
     };
 
+    const fetchSubjects = async () => {
+    try {
+    const response = await fetch('http://localhost:3001/api/v1/subjects', {
+        method: 'GET',
+        headers: {
+        "content-type": "application/json",
+        "authorization": localStorage.getItem("token"),
+        },
+    });
+
+    if (!response.ok) {
+        throw new Error('Error fetching subjects');
+    }
+
+    const data = await response.json();
+    setSubjects(data);
+    } catch (error) {
+    console.error(error);
+    }
+};
+
     useEffect(() => {
+    const fetchRequestsShow = async () => {
+    try {
+        if (user && user.roles && user.roles[0].name === "admin") {
+            const response = await fetch(`http://localhost:3001//api/v1/requests/${id}/show_by_user`, {
+                method: 'GET',
+                headers: {
+                "content-type": "application/json",
+                "authorization": localStorage.getItem("token"),
+                },
+            });
+            console.log(response)
+            if (!response.ok) {
+                throw new Error('Error fetching requests');
+            }
+        
+            const data = await response.json();
+            setShowRequests(data);
+            console.log(data)
+            };
+    } catch (error) {
+    console.error(error);
+    }
+};
+fetchRequestsShow();
+}, [user]);
+
+    useEffect(() => {
+        fetchSubjects();
         fetchUser();
     }, [id]);
 
-    if (!user.user) {
+    if (!user.user ) {
         return <div>
-            
             <div id="bodyCarga"> <div className='divCarga'></div> </div>
         </div>;
     }
@@ -44,11 +93,10 @@ function ProfileInfo({ setCurrUser }) {
 
     let age = today.getFullYear() - birthDate.getFullYear();
     const month = today.getMonth() - birthDate.getMonth();
-
+    const subject = subjects.find(subject => subject.id === showRequests.subject_id);
     if (month < 0 || (month === 0 && today.getDate() < birthDate.getDate())) {
         age--;
     }
-    console.log(user.roles[0].name);
     return (
         <div>
             <ProfileCard
@@ -59,6 +107,9 @@ function ProfileInfo({ setCurrUser }) {
                 age={age}
                 role={user.roles[0].name}
                 roles={user.roles[0].name}
+                subject={subject && subject.name}
+                cv={showRequests.cv}
+                title_photo={showRequests.title_photo}
             />
         </div>
     )

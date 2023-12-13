@@ -9,10 +9,7 @@ const [showRequests, setShowRequests] = useState({});
 const [subjects, setSubjects] = useState([]);
 const [user, setUser] = useState({});
 const { id } = useParams();
-
-
-
-
+const [isAdmin, setIsAdmin] = useState(false);
 
 const fetchRequests = async () => {
     try {
@@ -116,7 +113,7 @@ if (!requests.length || !user.user || !subjects.length || !showRequests.id_perso
 }
     const request = requests.find((request) => request.user_id === (user && user.user.id));
     const subject = subjects.find(subject => subject.id === request.subject_id);
-    
+    console.log(showRequests.cv, "request");
 return (
     <div>
     <div id="body3">
@@ -135,6 +132,7 @@ return (
         cv={showRequests && showRequests.cv}
         idUser={id}
         idUserDelete={id}
+        role={user.roles[0].name}
         />
     </div>
     </div>

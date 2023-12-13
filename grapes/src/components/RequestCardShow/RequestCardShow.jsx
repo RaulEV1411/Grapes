@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useReducer } from "react";
 import Modal from "react-modal";
 import "./requestCardShow.css";
 import ApproveButton from "../Approve Admin/ApproveButton";
 import BackButton from "../Back Button/BackButton";
 import DeclineButton from "../Decline Admin/DeclineButton";
-import { Document, Page } from 'react-pdf';
+
 const PhotoModal = ({ src, alt }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
@@ -25,6 +25,8 @@ const PhotoModal = ({ src, alt }) => {
   );
 };
 
+export { PhotoModal };
+
 const RequestCardShow = ({
   first_name,
   last_name,
@@ -40,6 +42,7 @@ const RequestCardShow = ({
   cv,
   idUser,
   idUserDelete,
+  role
 }) => {
   return (
     <div className="showContainer">
@@ -77,27 +80,33 @@ const RequestCardShow = ({
           </ul>
         </div>
         <div className="photos ">
-          <div className="photoContainer">
+          <div>
             <PhotoModal src={id_person} alt="ID Person" />
             <p className="photoTitle">ID Person</p>
           </div>
-          <div className="photoContainer">
+          <div>
             <PhotoModal src={person_photo} alt="Person" />
             <p className="photoTitle">Person Photo</p>
           </div>
-          <div className="photoContainer">
+          <div>
             <PhotoModal src={title_photo} alt="Title" />
             <p className="photoTitle">Title Photo</p>
           </div>
-          <div className="photoContainer">
-            <Document src={cv} alt="CV" />
+          <div>
+            <a href={cv} target="_blank" rel="noopener noreferrer">
+            <iframe src={cv} width="100%" height="240px">
+              <p>Your browser does not support iframes.</p>
+            </iframe>
             <p className="photoTitle">CV</p>
+          </a>
           </div>
         </div>
       </div>
       <div className="request-button-container">
         <DeclineButton idUserDelete={idUserDelete} />
-        <ApproveButton idUser={idUser} />
+        {role === "pending_request" ? (
+          <ApproveButton idUser={idUser} />
+        ) : ( null )}
       </div>
     </div>
   );

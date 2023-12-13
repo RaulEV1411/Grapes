@@ -1,7 +1,8 @@
 import React from 'react';
 import './profileCard.css';
 import BackButton from '../Back Button/BackButton';
-const ProfileCard = ({ first_name, last_name, email, birth_date, age, role, subject, profile_picture, phone_number, linkedin, residence, title_photo, roles }) => {
+import {PhotoModal} from '../RequestCardShow/RequestCardShow.jsx';
+const ProfileCard = ({ first_name, last_name, email, birth_date, age, role, subject, profile_picture, phone_number, linkedin, residence, title_photo, roles,cv }) => {
   return (
     <div className="profileContainer">
       <BackButton />
@@ -25,8 +26,21 @@ const ProfileCard = ({ first_name, last_name, email, birth_date, age, role, subj
       {role === 'admin' &&
         <div className="profileInfo">
           <h3>Formación Profesional:</h3>
-          <p><strong>Materia:</strong> {subject}</p>
-          {title_photo && <img src={title_photo} alt="Title" className="titlePhoto" />}
+          <p><strong>Materia:</strong> {subject || "desconocido"}</p>
+          <div className='photosP'>
+            <div className="photoContainer">
+              <PhotoModal src={title_photo} alt="Title" />
+              <p className="photoTitle">Title Photo</p>
+            </div>
+            <div className="photoContainer">
+              <a href={cv} target="_blank" rel="noopener noreferrer">
+              <iframe src={cv} width="100%" height="250px">
+                <p>Your browser does not support iframes.</p>
+              </iframe>
+              <p className="photoTitle">CV</p>
+            </a>
+            </div>
+          </div>
         </div>
       }
     </div>

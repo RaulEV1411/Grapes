@@ -11,6 +11,7 @@ import Requesindex from "../../Pages/Request/requesindex.jsx";
 import RequestShow from "../../Pages/Request/requestShow.jsx";
 import ProfileInfo from "../ProfileInfo/profileInfo.jsx";
 import NewCourseForm from "../New Courses/index.jsx";
+import NewContentForm from "../New content/content.jsx"
 import CourseCard from '../Courses Card/CourseCard';
 const AppRoutes = () => {
     const [currUser, setCurrUser]= useState(null);
@@ -54,6 +55,12 @@ const AppRoutes = () => {
                 <Route path="/new_course" element={
                     <ProtectedComponent currUser={currUser} setCurrUser={setCurrUser}>
                         <NewCourseForm currUser={currUser} setCurrUser={setCurrUser}/>
+                    </ProtectedComponent>
+                } />
+
+                <Route path="/new_content" element={
+                    <ProtectedComponent currUser={currUser} setCurrUser={setCurrUser}>
+                        <NewContentForm currUser={currUser} setCurrUser={setCurrUser}/>
                     </ProtectedComponent>
                 } />
 
