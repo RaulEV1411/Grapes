@@ -9,7 +9,6 @@ const [showRequests, setShowRequests] = useState({});
 const [subjects, setSubjects] = useState([]);
 const [user, setUser] = useState({});
 const { id } = useParams();
-const [isAdmin, setIsAdmin] = useState(false);
 
 const fetchRequests = async () => {
     try {

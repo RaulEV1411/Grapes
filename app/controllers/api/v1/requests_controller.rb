@@ -42,11 +42,8 @@ class Api::V1::RequestsController < ApplicationController
         end
     
         def create
-
             @request = Request.new(request_params.merge(user_id: current_user.id))
-        
             attach_files_to_request if @request.valid?
-        
             if @request.save
                 render json: @request, status: :created
             else

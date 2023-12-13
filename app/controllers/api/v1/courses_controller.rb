@@ -8,6 +8,11 @@
         render json: @courses
         end
 
+        def courses_by_teacher
+            @courses = Course.where(user_id: current_user.id)
+            render json: @courses
+        end
+
         def courses_by_subject
             # Obtén los cursos asociados al subject_id
             @subject = Subject.find(params[:id])
@@ -30,7 +35,7 @@
         end
         # POST /courses or /courses.json
         def create
-            @course = Course.new(course_params)
+            @course = Course.new(course_params.merge(user_id: current_user.id))
             respond_to do |format|
             if @course.save
                 if current_user.has_role? :admin
@@ -76,7 +81,7 @@
     
         # Only allow a list of trusted parameters through.
         def course_params
-        params.require(:course).permit(:name, :description, :publication_date, :user_id, :subject_id)
+        params.require(:course).permit(:name, :description, :subject_id)
         end
     end
     

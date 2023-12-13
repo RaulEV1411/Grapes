@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
+  
   namespace :api do
     namespace :v1 do
       resources :users do
@@ -24,9 +25,11 @@ Rails.application.routes.draw do
           delete 'decline_request'
         end
       end
+      resources :contents
       resources :subjects 
       resources :courses do 
         member do 
+          get 'courses_by_teacher'
           get 'courses_by_subject'
         end
       end
@@ -39,5 +42,6 @@ Rails.application.routes.draw do
       end
     end
   end
+
 
 end

@@ -1,6 +1,5 @@
 import { React, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import Navbar from "../NavBar/Navbar";
 import CourseCard from "../Courses Card/CourseCard";
 import { useParams } from "react-router-dom";
 import BackButton from "../Back Button/BackButton";
@@ -13,6 +12,8 @@ const Courses = ({ setCurrUser }) => {
         getCourses();
         console.log(id);
     }, [id]);
+
+    
 
     const getCourses = async () => {
         try {
