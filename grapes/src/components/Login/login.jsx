@@ -1,35 +1,13 @@
-import { useEffect, useRef } from "react";
+import {  useRef } from "react";
 import "./login.css";
 import { Link, useNavigate } from "react-router-dom";
+import { login } from "../../api/api";
 const Login = ({ setCurrUser }) => {
 
     const navigate = useNavigate()
     const formRef = useRef();
-    const login = async (userInfo, setCurrUser) => {
 
-        const url = "http://localhost:3001/login";
-        try {
-            const response = await fetch(url, {
-                method: "POST",
-                headers: {
-                    "content-type": "application/json",
-                    "accept": "application/json",
-                },
-                body: JSON.stringify(userInfo),
-            });
-            const data = await response.json();
 
-            if (!response.ok) {
-                throw new Error(data.error || "Authentication failed");
-            }
-            localStorage.setItem("token", response.headers.get("Authorization"));
-            setCurrUser(data);
-            navigate("/home")
-        } catch (error) {
-            console.error("Error:", error.message);
-            // Puedes manejar el error de otra manera, por ejemplo, mostrando un mensaje al usuario
-        }
-    };
     const handleSubmit = (e) => {
         e.preventDefault();
         const formData = new FormData(formRef.current);
@@ -37,9 +15,20 @@ const Login = ({ setCurrUser }) => {
         const userInfo = {
             user: { email: data.email, password: data.password },
         };
-        login(userInfo, setCurrUser);
+        getSessionUser(userInfo)
         e.target.reset();
+
     };
+    
+        async function getSessionUser (userInfo) {
+        const response = await login(userInfo, setCurrUser)
+        setCurrUser(response);
+        navigate("/home")
+    }
+
+
+
+    
     return (
         <div className="LoginBody">
             <div className="login-container">

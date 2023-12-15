@@ -27,14 +27,14 @@ const Courses = ({ setCurrUser }) => {
         setIsAdmin(obtainData.roles.some(role => role.name === 'admin'));
         setIsModerator(obtainData.roles.some(role => role.name === 'moderator'));
         return obtainData
-    }
+    };
 
 
     async function getCourseBySubject (){
         const obtainCourse = await getCourses(id);
         setCourses(obtainCourse);
         return obtainCourse;
-    }
+    };
 
 
     return (

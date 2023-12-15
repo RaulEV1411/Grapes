@@ -58,26 +58,66 @@ const userInfo = async (userId) => {
 };
 
 const getCourses = async (id) => {
-        const response = await fetch(
-            `http://localhost:3001//api/v1/courses/${id}/courses_by_subject`,
-            {
-                method: "GET",
-                headers: {
-                    "content-type": "application/json",
-                    "authorization": localStorage.getItem("token"),
-                },
-            }
-        );
+    const response = await fetch(
+        `http://localhost:3001//api/v1/courses/${id}/courses_by_subject`,
+        {
+            method: "GET",
+            headers: {
+                "content-type": "application/json",
+                "authorization": localStorage.getItem("token"),
+            },
+        }
+    );
+    if (!response.ok) {
+        throw Error;
+    }
+    const data = await response.json();
+    return data;
+};
+
+const rejectRequest = async (idUserDelete) => {
+    try {
+        const response = await fetch(`http://localhost:3001/api/v1/users/${idUserDelete}/decline_request`, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': localStorage.getItem('token'),
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ id: idUserDelete })
+        });
         if (!response.ok) {
             throw Error;
         }
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+const login = async (userInfo) => {
+    const url = "http://localhost:3001/login";
+    try {
+        const response = await fetch(url, {
+            method: "POST",
+            headers: {
+                "content-type": "application/json",
+                "accept": "application/json",
+            },
+            body: JSON.stringify(userInfo),
+        });
         const data = await response.json();
-        return data;
+        localStorage.setItem("token", response.headers.get("Authorization"));
+        if (!response.ok) {
+            throw new Error(data.error || "Authentication failed");
+        }
+    } catch (error) {
+        console.error("Error:", error.message);
+        // Puedes manejar el error de otra manera, por ejemplo, mostrando un mensaje al usuario
+    }
 };
 
 
 
-export { editCourse, approveAdmin, userInfo, getCourses };
+export { editCourse, approveAdmin, userInfo, getCourses, rejectRequest, login };
 
 
 
