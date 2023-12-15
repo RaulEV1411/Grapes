@@ -53,15 +53,13 @@
     
         # PATCH/PUT /courses/1 or /courses/1.json
         def update
-        respond_to do |format|
-            if @course.update(course_params)
-            # format.html { redirect_to (@course), notice: "Course was successfully updated." }
-            format.json { render :show, status: :ok, location: @course }
-            else
-            format.html { render :edit, status: :unprocessable_entity }
-            format.json { render json: @course.errors, status: :unprocessable_entity }
+            respond_to do |format|
+                if @course.update(course_params)
+                    format.json { render :show, status: :ok }
+                else
+                    format.json { render json: @course.errors, status: :unprocessable_entity }
+                end
             end
-        end
         end
     
         # DELETE /courses/1 or /courses/1.json

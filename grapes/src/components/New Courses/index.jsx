@@ -10,6 +10,7 @@ const NewCourseForm = ({ setCurrUser }) => {
     const [description, setDescription] = useState('');
 
     const courseFech = async (newCourse) => {
+        debugger
         const url = "http://localhost:3001/api/v1/courses"; // Obtén el token del almacenamiento local
         try {
             const response = await fetch(url, {
@@ -21,15 +22,18 @@ const NewCourseForm = ({ setCurrUser }) => {
                 },
                 body: JSON.stringify(newCourse),
             });
+            navigate('/new_content');
             const data = await response.json();
-            navigate('/subjects');
             if (!response.ok) { throw data.error };
-            console.log(data, "si llega")
         } catch (error) {
 
             // Manejar el error y proporcionar retroalimentación al usuario
         };
     }
+
+//     function goToNewContent() {
+// navigate (/new_content)
+// }
 
     const handleFormSubmit = (e) => {
         e.preventDefault();

@@ -13,6 +13,7 @@ import ProfileInfo from "../ProfileInfo/profileInfo.jsx";
 import NewCourseForm from "../New Courses/index.jsx";
 import NewContentForm from "../New content/content.jsx"
 import CourseCard from '../Courses Card/CourseCard';
+import ContentCourse from "../Content Course/contentCourse.jsx";
 const AppRoutes = () => {
     const [currUser, setCurrUser]= useState(null);
     return (
@@ -61,6 +62,13 @@ const AppRoutes = () => {
                 <Route path="/new_content" element={
                     <ProtectedComponent currUser={currUser} setCurrUser={setCurrUser}>
                         <NewContentForm currUser={currUser} setCurrUser={setCurrUser}/>
+                    </ProtectedComponent>
+                } />
+
+
+                <Route path="/course/info/:id" element={
+                    <ProtectedComponent currUser={currUser} setCurrUser={setCurrUser}>
+                        <ContentCourse currUser={currUser} setCurrUser={setCurrUser}/>
                     </ProtectedComponent>
                 } />
 

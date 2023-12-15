@@ -25,7 +25,11 @@ Rails.application.routes.draw do
           delete 'decline_request'
         end
       end
-      resources :contents
+      resources :contents do
+        collection do
+          get 'contents_by_course'
+        end
+      end
       resources :subjects 
       resources :courses do 
         member do 

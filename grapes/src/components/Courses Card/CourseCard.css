@@ -119,3 +119,13 @@
     /* Agrega una animación para resaltar el contenedor del perfil cuando se carga la página */
     animation: popIn 0.6s ease;
   }
+
+  .inputEditar{
+    background-color: #fff;
+    border: 1px solid #000;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px;
+    width: 100%;
+    box-sizing: border-box;
+  }

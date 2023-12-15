@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { jwtDecode } from "jwt-decode";
+import { useNavigate } from 'react-router-dom';
 const NewContentForm = () => {
+    const navigate = useNavigate();
     const [teacherCourse, setTeacherCourse] = useState([]);
     const token = localStorage.getItem('token');
     const decoded = jwtDecode(token);
@@ -24,7 +26,7 @@ const NewContentForm = () => {
     const submitContent = async (e) => {
         e.preventDefault();
 
-        const formData = new FormData(e.target); // Obtén el token del almacenamiento local
+        const formData = new FormData(e.target); // Obtén el token del almacenamiento loca
         try {
             const response = await fetch("http://localhost:3001/api/v1/contents", {
                 method: 'POST',
@@ -33,12 +35,12 @@ const NewContentForm = () => {
                 },
                 body: formData,
             });
-
+            navigate('/subject');
             const data = await response.json();
+            console.log(data);
             if (!response.ok) { throw data.error };
             console.log(data, "si llega")
         } catch (error) {
-
             // Manejar el error y proporcionar retroalimentación al usuario
         };
     };
