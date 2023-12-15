@@ -29,8 +29,6 @@ const ProtectedComponent = ({
                             navigate(-1);
                         }
                     }
-                    // setIsAdmin(data.roles.some(role => role.name === 'admin'));
-                    // setIsModerator(data.roles.some(role => role.name === 'moderator'));
                 })
                 .catch(error => {
                     console.error('Error:', error);

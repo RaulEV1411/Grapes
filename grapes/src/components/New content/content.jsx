@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { jwtDecode } from "jwt-decode";
 import { useNavigate } from 'react-router-dom';
+import { obtainCourseByTeacher } from '../../api/api';
+import { newContent } from '../../api/api';
 const NewContentForm = () => {
     const navigate = useNavigate();
     const [teacherCourse, setTeacherCourse] = useState([]);
@@ -9,41 +11,23 @@ const NewContentForm = () => {
     const Id = decoded.sub;
 
     useEffect(() => {
-        const fetchTeacherCourse = async () => {
-            const response = await fetch(`http://localhost:3001/api/v1/courses/${Id}/courses_by_teacher`, {
-                headers: {
-                    "content-type": "application/json",
-                    "authorization": localStorage.getItem("token"),
-                },
-            });
-            const data = await response.json();
-            setTeacherCourse(data);
-        };
+        getUserInfo();
+    }, [Id]);
 
-        fetchTeacherCourse();
-    }, []);
+    async function getUserInfo (){
+        const obtainData = await obtainCourseByTeacher(Id);
+        setTeacherCourse(obtainData);
+        return obtainData
+    };
 
     const submitContent = async (e) => {
         e.preventDefault();
-
-        const formData = new FormData(e.target); // Obtén el token del almacenamiento loca
-        try {
-            const response = await fetch("http://localhost:3001/api/v1/contents", {
-                method: 'POST',
-                headers: {
-                    "authorization": localStorage.getItem("token"),// Incluye el token en los encabezados de la solicitud
-                },
-                body: formData,
-            });
-            navigate('/subject');
-            const data = await response.json();
-            console.log(data);
-            if (!response.ok) { throw data.error };
-            console.log(data, "si llega")
-        } catch (error) {
-            // Manejar el error y proporcionar retroalimentación al usuario
-        };
+        const formData = new FormData(e.target); 
+        newContent(formData)
+        navigate('/subject');
     };
+
+
 
     return (
         <div>

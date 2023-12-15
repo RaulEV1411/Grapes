@@ -3,10 +3,8 @@ import "./login.css";
 import { Link, useNavigate } from "react-router-dom";
 import { login } from "../../api/api";
 const Login = ({ setCurrUser }) => {
-
     const navigate = useNavigate()
     const formRef = useRef();
-
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -26,9 +24,6 @@ const Login = ({ setCurrUser }) => {
         navigate("/home")
     }
 
-
-
-    
     return (
         <div className="LoginBody">
             <div className="login-container">

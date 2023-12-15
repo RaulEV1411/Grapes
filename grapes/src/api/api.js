@@ -17,8 +17,8 @@ const editCourse = async (newCourse, course_id) => {
         const data = await response.json();
         if (!response.ok) { throw data.error };
     } catch (error) {
-
         // Manejar el error y proporcionar retroalimentación al usuario
+        console.error("Error:", error.message);
     };
 }
 
@@ -38,6 +38,7 @@ const approveAdmin = async (idUser) => {
         if (!response.ok) { throw data.error }
     } catch (error) {
         // Manejar el error y proporcionar retroalimentación al usuario
+        console.error("Error:", error.message);
     }
 }
 
@@ -115,9 +116,59 @@ const login = async (userInfo) => {
     }
 };
 
+const logout = async () => {
+    try {
+        const response = await fetch("http://localhost:3001/logout", {
+            method: "delete",
+            headers: {
+                "content-type": "application/json",
+                "authorization": localStorage.getItem("token")
+            },
+        })
+        const data = await response.json()
+        if (!response.ok) { throw data.error }
+        localStorage.removeItem("token")
+    } catch (error) {
+        console.log("error", error)
+    }
+}
+
+const obtainCourseByTeacher = async (Id) => {
+    const response = await fetch(`http://localhost:3001/api/v1/courses/${Id}/courses_by_teacher`, {
+        method: 'GET',
+        headers: {
+            "content-type": "application/json",
+            "authorization": localStorage.getItem("token"),
+        },
+    });
+    if (!response.ok) {
+        throw Error;
+    }
+    const data = await response.json();
+    return data;
+};
+
+const newContent = async (formData) => {
+    try {
+        const response = await fetch("http://localhost:3001/api/v1/contents", {
+            method: 'POST',
+            headers: {
+                "authorization": localStorage.getItem("token"),// Incluye el token en los encabezados de la solicitud
+            },
+            body: formData,
+        });
+
+        const data = await response.json();
+        if (!response.ok) { throw data.error };
+        console.log(data, "si llega")
+    } catch (error) {
+        // Manejar el error y proporcionar retroalimentación al usuario
+    };
+}
 
 
-export { editCourse, approveAdmin, userInfo, getCourses, rejectRequest, login };
+
+export { editCourse, approveAdmin, userInfo, getCourses, rejectRequest, login, logout, obtainCourseByTeacher, newContent };
 
 
 

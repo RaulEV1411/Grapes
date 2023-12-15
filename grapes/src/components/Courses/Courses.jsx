@@ -15,14 +15,14 @@ const Courses = ({ setCurrUser }) => {
     const decoded = jwtDecode(token);
     const userId = decoded.sub;
     const { id } = useParams();
-    
-    
+
+
     useEffect(() => {
         getCourseBySubject();
         getUserInfo()
     }, [id]);
 
-    async function getUserInfo (){
+    async function getUserInfo() {
         const obtainData = await userInfo(userId);
         setIsAdmin(obtainData.roles.some(role => role.name === 'admin'));
         setIsModerator(obtainData.roles.some(role => role.name === 'moderator'));
@@ -30,7 +30,7 @@ const Courses = ({ setCurrUser }) => {
     };
 
 
-    async function getCourseBySubject (){
+    async function getCourseBySubject() {
         const obtainCourse = await getCourses(id);
         setCourses(obtainCourse);
         return obtainCourse;
@@ -40,14 +40,14 @@ const Courses = ({ setCurrUser }) => {
     return (
         <div>
             <div className="title-container">
-            <h2 className="Course-title">Courses</h2>
-            <BackButton />
+                <h2 className="Course-title">Courses</h2>
+                <BackButton />
             </div>
             <div>
                 <ul className="List-Course">
                     {courses.map((course) => (
                         <li className="link" key={course.id}>
-                            <Link to={`/course/info/${course.id}`}className="link">
+                            <Link to={`/course/info/${course.id}`} className="link">
                                 <CourseCard
                                     name={course.name}
                                     description={course.description}
