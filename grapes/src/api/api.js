@@ -1,6 +1,8 @@
+
 const API_URL = 'http://localhost:3001/api';
 
-const editCourse = async (newCourse,course_id) => {
+
+const editCourse = async (newCourse, course_id) => {
     const url = `${API_URL}/v1/courses/${course_id}`; // Obtén el token del almacenamiento local
     try {
         const response = await fetch(url, {
@@ -20,4 +22,35 @@ const editCourse = async (newCourse,course_id) => {
     };
 }
 
-export {editCourse};
+const approveAdmin = async (idUser) => {
+    const url = `${API_URL}/v1/users/${idUser}/approve_admin`; // Obtén el token del almacenamiento local
+    try {
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Authorization': localStorage.getItem('token'),
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ id: idUser })
+        });
+
+        const data = await response.json();
+        if (!response.ok) { throw data.error }
+    } catch (error) {
+        // Manejar el error y proporcionar retroalimentación al usuario
+    }
+}
+
+
+
+export { editCourse, approveAdmin };
+
+
+
+
+
+
+
+
+
+
