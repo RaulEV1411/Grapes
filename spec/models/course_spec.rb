@@ -1,12 +1,22 @@
-# require 'rails_helper'
+require 'rails_helper'
 
-#     RSpec.describe Course, type: :model do
-#         describe "validations" do
-#             it "is valid with valid attributes" do
-#                 course = Course.new(name: "Programming 101", 
-#                     description: "Introduction to programming", 
-#                     publication_date: "12/06/2023")
-#                 expect(course).to_not be_valid
-#             end
-#     end
-# end
+RSpec.describe Course, type: :model do
+# Prueba de asociación belongs_to :subject
+    it 'belongs to subject' do
+        association = described_class.reflect_on_association(:subject)
+        expect(association.macro).to eq :belongs_to
+    end
+
+# Prueba de asociación has_many :subject_courses
+    it 'has many subject_courses' do
+        association = described_class.reflect_on_association(:subject_courses)
+        expect(association.macro).to eq :has_many
+    end
+
+# Prueba de asociación has_many :subjects, through: :subject_courses
+    it 'has many subjects through subject_courses' do
+        association = described_class.reflect_on_association(:subjects)
+        expect(association.macro).to eq :has_many
+        expect(association.options[:through]).to eq :subject_courses
+    end
+end

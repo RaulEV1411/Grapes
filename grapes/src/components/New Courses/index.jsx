@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import BackButton from '../Back Button/BackButton';
 import './styles.css';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { newCourse } from '../../api/api';
 
 const NewCourseForm = ({ setCurrUser }) => {
@@ -9,11 +9,23 @@ const NewCourseForm = ({ setCurrUser }) => {
     const formRef = useRef();
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
+    const [flashMessage, setFlashMessage] = useState(null);
 
+
+// The 'handleFormSubmit' function is an event handler for the form submit event.
+// It prevents the default action of the event.
+// If the 'name' or 'description' state is empty, it sets the 'flashMessage' state to an error message and returns.
+// It creates a 'newCourseData' object from the 'name' and 'description' states.
+// It calls the 'newCourse' function, passing in the 'newCourseData' object.
+// It navigates to the '/new_content' route.
+// It resets the form.
     const handleFormSubmit = (e) => {
         e.preventDefault();
         if (name.trim() === '' || description.trim() === '') {
-            alert('Por favor, completa todos los campos antes de enviar.');
+            setFlashMessage('Please complete all fields before submitting.');
+            setTimeout(() => {
+                setFlashMessage(false)
+            }, 3000);
             return;
         }
         const newCourseData = {
@@ -28,9 +40,13 @@ const NewCourseForm = ({ setCurrUser }) => {
     return (
 
         <div className="form-container-newC">
+            {flashMessage && <div className="flash-signup">{flashMessage}</div>}
             <div>
                 <BackButton setCurrUser={setCurrUser} />
             </div>
+                    <Link to="/new_content">
+                        <button>¿have course?</button>
+                    </Link>
 
             <div>
                 <label className="input-label">

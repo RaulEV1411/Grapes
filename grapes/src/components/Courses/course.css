@@ -7,6 +7,11 @@
     gap: 5%;
 }
 
+.link-courses{
+    padding: 0;
+    list-style: none;
+}
+
 .title-container{
 
     display: flex;
@@ -17,4 +22,22 @@
 
 .Course-title{
 margin-left: 10%;
+}
+
+@media only screen and (max-width: 768px) {
+    .List-Course {
+        justify-content: center; /* Centra los elementos en pantallas más pequeñas */
+        display: flex;
+        gap: 3%;
+    }
+
+    .title-container {
+        flex-direction: column; /* Cambia la dirección del contenedor de título */
+        align-items: center; /* Centra los elementos en el eje cruzado */
+        text-align: center; /* Centra el texto del título */
+    }
+
+    .Course-title {
+        margin-bottom: 10px; /* Agrega un margen inferior al título */
+    }
 }

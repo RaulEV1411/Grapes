@@ -12,12 +12,17 @@ function Navbar({ setCurrUser }) {
   const decoded = jwtDecode(token);
   const userId = decoded.sub;
   const navigate = useNavigate()
+  const [navbarOpen, setNavbarOpen] = useState(false);
 
   useEffect(() => {
     getUserInfo();
   }, [userId, token]);
 
 
+// The 'getUserInfo' function is an asynchronous function that fetches the user's information.
+// It calls the 'userInfo' function, passing in the 'userId'.
+// It sets the 'isAdmin', 'isModerator', and 'isUser' states based on the user's roles.
+// It returns the user's information.
   async function getUserInfo() {
     const obtainData = await userInfo(userId);
     setIsAdmin(obtainData.roles.some(role => role.name === 'admin'));
@@ -26,16 +31,25 @@ function Navbar({ setCurrUser }) {
     return obtainData
   };
 
-
+// The 'handleClick' function is an event handler for the logout button click event.
+// It prevents the default action of the event.
+// It calls the 'logout' function, passing in the 'setCurrUser' function.
+// It navigates to the "/login" route.
   const handleClick = e => {
     e.preventDefault()
     logout(setCurrUser)
     navigate("/login")
   }
 
+// The 'toggleNavbar' function toggles the 'navbarOpen' state.
+// It sets 'navbarOpen' to its current opposite value.
+  const toggleNavbar = () => {
+    setNavbarOpen(!navbarOpen);
+  };
+
   return (
     <div>
-      <nav id="navbar">
+      <nav id="navbar" onClick={toggleNavbar} className={navbarOpen ? 'open' : ''}>
         <ul className="navbar-items flexbox-col">
           <li className="navbar-logo flexbox-left">
             <Link to="/" className="navbar-item-inner flexbox">
@@ -51,18 +65,6 @@ function Navbar({ setCurrUser }) {
               </div>
               <span className="link-text">Home</span>
             </Link>
-          </li>
-
-
-          <li className="navbar-item flexbox-left">
-            <a className="navbar-item-inner flexbox-left">
-              <div className="navbar-item-inner-icon-wrapper flexbox">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-search" viewBox="0 0 16 16">
-                  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
-                </svg>
-              </div>
-              <span className="link-text">Search</span>
-            </a>
           </li>
           <li className="navbar-item flexbox-left">
             <Link to={`/profile/${userId}`} className="navbar-item-inner flexbox-left">
@@ -97,7 +99,7 @@ function Navbar({ setCurrUser }) {
                     <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1z" />
                   </svg>
                 </div>
-                <span className="link-text">Add Content</span>
+                <span className="link-text">Add Course</span>
               </Link>
             </li>
 

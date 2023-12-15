@@ -36,7 +36,7 @@ const Subjects = ({ setCurrUser }) => {
             <div id="body1" className='flexbox-col'>
                 <ul className='link'>
                     {subjects.map((subject) => (
-                        <li key={subject.id}>
+                        <li className="li_subject" key={subject.id}>
                             <Link to={`/course/${subject.id}`} className='link'>
                                 <CardSubject id={subject.id}></CardSubject>
                             </Link>

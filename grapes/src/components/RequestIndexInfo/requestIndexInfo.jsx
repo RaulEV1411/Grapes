@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import './requestIndexInfo.css';
 import BackButton from '../Back Button/BackButton';
 import RequestCardIndex from '../RequestCardIndex/RequestInfo';
+import { allUsers, approvedRequests, fetchSubjects, pendingRequests } from '../../api/api';
 
 const options = ['Option 1', 'Option 2'];
 
@@ -13,123 +14,70 @@ const QueryReview = () => {
   const [selectedOption, setSelectedOption] = useState(options[0]);
 
 
-    const fetchRequests = async () => {
-      try {
-        const response = await fetch(`http://localhost:3001/api/v1/requests/index_request_pending`, {
-          method: 'GET',
-          headers: {
-            "content-type": "application/json",
-            "authorization": localStorage.getItem("token"),
-          },
-        });
+  async function getPendingRequest() {
+    const obtainData = await pendingRequests();
+    setRequests(obtainData);
+    return obtainData
+  };
 
-        if (!response.ok) {
-          throw new Error('Error fetching requests');
-        }
+// The 'getApprovedRequest' function is an asynchronous function that fetches the approved requests.
+// It calls the 'approvedRequests' function.
+// It sets the 'requests' state to the fetched requests.
+// It returns the fetched requests.
+  async function getAppeovedRequest() {
+    const obtainData = await approvedRequests();
+    setRequests(obtainData);
+    return obtainData
+  };
 
-        const data = await response.json();
-
-        setRequests(data);
-      } catch (error) {
-        console.error(error);
-        // Puedes manejar el error de alguna manera, por ejemplo, mostrando un mensaje al usuario.
-      }
+// The 'getSubjects' function is an asynchronous function that fetches the subjects.
+// It calls the 'fetchSubjects' function.
+// It sets the 'subjects' state to the fetched subjects.
+// It returns the fetched subjects.
+    async function getSubjects (){
+        const obtainData = await fetchSubjects();
+        setSubjects(obtainData);
+        return obtainData
     };
 
-    const fetchApprovedRequests = async () => {
-      try {
-        const response = await fetch(`http://localhost:3001/api/v1/requests/index_request_approved`, {
-          method: 'GET',
-          headers: {
-            "content-type": "application/json",
-            "authorization": localStorage.getItem("token"),
-          },
-        });
+// The 'getAllUsers' function is an asynchronous function that fetches all users.
+// It calls the 'allUsers' function.
+// It sets the 'users' state to the fetched users.
+// It returns the fetched users.
+    async function getAllUsers() {
+      const obtainData = await allUsers();
+      setUsers(obtainData);
+      return obtainData
+  };
 
-        if (!response.ok) {
-          throw new Error('Error fetching requests');
-        }
 
-        const data = await response.json();
+// The 'useEffect' hook is used to call the 'getSubjects' and 'getAllUsers' functions when the component mounts.
+  useEffect(() => {
+    getSubjects()
+    getAllUsers();
+  }, []);
 
-        setRequests(data);
-      } catch (error) {
-        console.error(error);
-        // Puedes manejar el error de alguna manera, por ejemplo, mostrando un mensaje al usuario.
-      }
+// The 'handleSelect' function is an event handler for the select change event.
+// It sets the 'selectedOption' state to the selected option.
+// If the selected option is the first option, it calls the 'getPendingRequest' function.
+  const handleSelect = (option) => {
+    setSelectedOption(option);
+
+    if (option === options[0]) {
+      getPendingRequest();
+    } else if (option === options[1]) {
+      getAppeovedRequest();
+    }
   };
 
   useEffect(() => {
-    const fetchSubjects = async () => {
-      try {
-        const response = await fetch('http://localhost:3001/api/v1/subjects', {
-          method: 'GET',
-          headers: {
-            "content-type": "application/json",
-            "authorization": localStorage.getItem("token"),
-          },
-        });
-
-        if (!response.ok) {
-          throw new Error('Error fetching subjects');
-        }
-
-        const data = await response.json();
-        setSubjects(data);
-      } catch (error) {
-        console.error(error);
-        // Puedes manejar el error de alguna manera, por ejemplo, mostrando un mensaje al usuario.
-      }
-    };
-
-    fetchSubjects();
-  }, []);
-
-
-  useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        const response = await fetch('http://localhost:3001/api/v1/users', {
-          method: 'GET',
-          headers: {
-            "content-type": "application/json",
-            "authorization": localStorage.getItem("token"),
-          },
-        });
-
-        if (!response.ok) {
-          throw new Error('Error fetching subjects');
-        }
-
-        const data = await response.json();
-        setUsers(data);
-      } catch (error) {
-        console.error(error);
-        // Puedes manejar el error de alguna manera, por ejemplo, mostrando un mensaje al usuario.
-      }
-    };
-
-    fetchUsers();
-  }, []);
-
-  const handleSelect = (option) => {
-  setSelectedOption(option);
-
-  if (option === options[0]) {
-    fetchRequests();
-  } else if (option === options[1]) {
-    fetchApprovedRequests();
-  }
-};
-
-useEffect(() => {
-  fetchRequests();
-}, []);
+    getPendingRequest();
+  }, [subjects, users]);
 
   if (!requests.length || !users || !subjects.length) {
     return <div>
-          <div className='backRequestsIndex'>
-        <BackButton/>
+      <div className='backRequestsIndex'>
+        <BackButton />
       </div>
       <div id="main4" className="flexbox-col">
         <h2>Request</h2>
@@ -149,7 +97,7 @@ useEffect(() => {
   return (
     <div>
       <div className='backRequestsIndex'>
-        <BackButton/>
+        <BackButton />
       </div>
       <div id="main4" className="flexbox-col">
         <h2>Request</h2>

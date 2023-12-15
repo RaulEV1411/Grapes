@@ -2,107 +2,60 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import RequestCardShow from '../RequestCardShow/RequestCardShow';
 import './requestShowInfo.css';
+import { fetchRequests, fetchSubjects, requestsInformationByUser, userInfo } from '../../api/api';
 
-function RequestShoeInfo({ setCurrUser }) {
+function RequestShoeInfo() {
 const [requests, setRequests] = useState([]);
 const [showRequests, setShowRequests] = useState({});
 const [subjects, setSubjects] = useState([]);
 const [user, setUser] = useState({});
 const { id } = useParams();
 
-const fetchRequests = async () => {
-    try {
-    const response = await fetch(`http://localhost:3001/api/v1/requests`, {
-        method: 'GET',
-        headers: {
-        "content-type": "application/json",
-        "authorization": localStorage.getItem("token"),
-        },
-    });
-
-    if (!response.ok) {
-        throw new Error('Error fetching requests');
-    }
-
-    const data = await response.json();
-
-    setRequests(data);
-    } catch (error) {
-    console.error(error);
-    }
-};
-
-const fetchRequestsShow = async () => {
-    try {
-    const response = await fetch(`http://localhost:3001//api/v1/requests/${id}/show_by_user`, {
-        method: 'GET',
-        headers: {
-        "content-type": "application/json",
-        "authorization": localStorage.getItem("token"),
-        },
-    });
 
 
-    console.log(response)
-    if (!response.ok) {
-        throw new Error('Error fetching requests');
-    }
+// The 'getRequests' function is an asynchronous function that fetches the requests.
+// It calls the 'fetchRequests' function.
+// It sets the 'requests' state to the fetched requests.
+// It returns the fetched requests.
+    async function getRequests (){
+        const obtainData = await fetchRequests();
+        setRequests(obtainData);
+        return obtainData
+    };
 
-    const data = await response.json();
 
-    setShowRequests(data);
-    } catch (error) {
-    console.error(error);
-    }
-};
+// The 'getInformationUser' function is an asynchronous function that fetches the requests made by a specific user.
+// It calls the 'requestsInformationByUser' function, passing in the 'id'.
+// It sets the 'showRequests' state to the fetched requests.
+// It returns the fetched requests.
+    async function getInformationUser (id){
+        const obtainData = await requestsInformationByUser(id);
+        setShowRequests(obtainData);
+        return obtainData
+    };
+    
 
-const fetchSubjects = async () => {
-    try {
-    const response = await fetch('http://localhost:3001/api/v1/subjects', {
-        method: 'GET',
-        headers: {
-        "content-type": "application/json",
-        "authorization": localStorage.getItem("token"),
-        },
-    });
+// The 'getSubjects' function is an asynchronous function that fetches the subjects.
+// It calls the 'fetchSubjects' function.
+// It sets the 'subjects' state to the fetched subjects.
+// It returns the fetched subjects.
+    async function getSubjects (){
+        const obtainData = await fetchSubjects();
+        setSubjects(obtainData);
+        return obtainData
+    };
 
-    if (!response.ok) {
-        throw new Error('Error fetching subjects');
-    }
-
-    const data = await response.json();
-    setSubjects(data);
-    } catch (error) {
-    console.error(error);
-    }
-};
-
-const fetchUser = async () => {
-    try {
-    const response = await fetch(`http://localhost:3001/api/v1/users/${id}`, {
-        method: 'GET',
-        headers: {
-        "content-type": "application/json",
-        "authorization": localStorage.getItem("token"),
-        },
-    });
-
-    if (!response.ok) {
-        throw new Error('Error fetching user');
-    }
-
-    const data = await response.json();
-    setUser(data);
-    } catch (error) {
-    console.error(error);
-    }
-};
+    async function getUserInfo(id) {
+        const obtainData = await userInfo(id);
+        setUser(obtainData);
+        return obtainData
+    };
 
 useEffect(() => {
-    fetchRequests();
-    fetchSubjects();
-    fetchUser();
-    fetchRequestsShow();
+    getRequests();
+    getSubjects();
+    getUserInfo(id);
+    getInformationUser(id);
 }, [id]);
 
 if (!requests.length || !user.user || !subjects.length || !showRequests.id_person) {

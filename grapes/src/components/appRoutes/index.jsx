@@ -48,19 +48,19 @@ const AppRoutes = () => {
                     </ProtectedComponent>
                 } />
                 <Route path="/new_request" element={
-                    <ProtectedComponent currUser={currUser} setCurrUser={setCurrUser}>
+                    <ProtectedComponent currUser={currUser} setCurrUser={setCurrUser} allowRoles={["user"]}>
                         <RequestForm currUser={currUser} setCurrUser={setCurrUser}/>
                     </ProtectedComponent>
                 } />
 
                 <Route path="/new_course" element={
-                    <ProtectedComponent currUser={currUser} setCurrUser={setCurrUser}>
+                    <ProtectedComponent currUser={currUser} setCurrUser={setCurrUser} allowRoles={["admin"]}>
                         <NewCourseForm currUser={currUser} setCurrUser={setCurrUser}/>
                     </ProtectedComponent>
                 } />
 
                 <Route path="/new_content" element={
-                    <ProtectedComponent currUser={currUser} setCurrUser={setCurrUser}>
+                    <ProtectedComponent currUser={currUser} setCurrUser={setCurrUser} allowRoles={["admin"]} >
                         <NewContentForm currUser={currUser} setCurrUser={setCurrUser}/>
                     </ProtectedComponent>
                 } />
@@ -79,7 +79,7 @@ const AppRoutes = () => {
                 } />
 
                 <Route path="/request_teacher/:id" element={
-                    <ProtectedComponent currUser={currUser} setCurrUser={setCurrUser}>
+                    <ProtectedComponent currUser={currUser} setCurrUser={setCurrUser} allowRoles={["moderator"]} >
                         <RequestShow currUser={currUser} setCurrUser={setCurrUser}/>
                     </ProtectedComponent>
                 } />

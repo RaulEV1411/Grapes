@@ -1,21 +1,16 @@
-# require 'rails_helper'
+    require 'rails_helper'
 
-# RSpec.describe Subject, type: :model do
-#     describe "validations" do
-#         it "is valid with valid attributes" do
-#         subject = Subject.new(name: "Mathematics")
-#         expect(subject).to be_valid
-#         end
+    RSpec.describe Subject, type: :model do
+    # Prueba de asociación has_many :subject_courses
+    it 'has many subject_courses' do
+        association = described_class.reflect_on_association(:subject_courses)
+            expect(association.macro).to eq :has_many
+    end
 
-#         it "is not valid without a name" do
-#         subject = Subject.new
-#         expect(subject).not_to be_valid
-#         end
-
-#         it "is not valid with a duplicate name" do
-#         Subject.create(name: "Mathematics")
-#         subject = Subject.new(name: "Mathematics")
-#         expect(subject).not_to be_valid
-#         end
-#     end
-# end
+    # Prueba de asociación has_many :courses, through: :subject_courses
+    it 'has many courses through subject_courses' do
+        association = described_class.reflect_on_association(:courses)
+            expect(association.macro).to eq :has_many
+            expect(association.options[:through]).to eq :subject_courses
+        end
+    end

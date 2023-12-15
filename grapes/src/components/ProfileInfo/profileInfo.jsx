@@ -23,6 +23,11 @@ function ProfileInfo() {
         return obtainData
     };
 
+// The 'getRequestInfo' function is an asynchronous function that fetches the requests made by a specific user.
+// It checks if the current user is an admin.
+// If so, it calls the 'requestsByUser' function, passing in the 'id'.
+// It sets the 'showRequests' state to the fetched requests.
+// It returns the fetched requests.
     async function getRequestInfo(id) {
     if (user && user.roles && user.roles[0].name === "admin") {
         const obtainData = await requestsByUser(id);
@@ -31,11 +36,13 @@ function ProfileInfo() {
         };
     };
 
-
+// The first 'useEffect' hook is used to call the 'getRequestInfo' function when the 'user' state changes.
+// The 'getRequestInfo' function is called with the 'id'.
     useEffect(() => {
         getRequestInfo(id);
     }, [user]);
 
+// The second 'useEffect' hook is used to call the 'getSubjects' and 'getUserInfo' functions when the 'id' changes.
     useEffect(() => {
         getSubjects();
         getUserInfo(id);

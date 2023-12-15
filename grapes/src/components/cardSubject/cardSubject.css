@@ -1,8 +1,4 @@
-/* @font-face {
-  font-family: 'Blockhead Dark Side';
-  src: url('BlockheadDarkSide.woff2') format('woff2'),
-       url('BlockheadDarkSide.woff') format('woff');
-} */
+
 .card {
     width: 300px;
     height: 150px;
@@ -49,4 +45,43 @@
   .card {
     /* Agrega una animación para resaltar el contenedor del perfil cuando se carga la página */
     animation: popIn 0.6s ease;
+  }
+
+  @media only screen and (max-width: 600px) {
+    .subject-card {
+      width: 50%;
+      height: 120px;
+    }
+  
+    .subject-header {
+      padding: 12px;
+    }
+  }
+  
+  /* Ajustes adicionales para pantallas más pequeñas si es necesario */
+  @media only screen and (max-width: 756px) {
+    .subject-card {
+      width: 50%;
+      height: 100px;
+    }
+  
+    .subject-header {
+      padding: 10px;
+    }
+
+    .card{
+    width: 140px;
+    height: 65px;
+    border-radius: 40% 30% / 40% 10%  ;
+    overflow: hidden;
+    margin: 16px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s;
+    background-color: #fff;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    }
   }

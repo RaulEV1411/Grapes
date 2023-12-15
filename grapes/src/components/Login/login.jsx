@@ -6,6 +6,15 @@ const Login = ({ setCurrUser }) => {
     const navigate = useNavigate()
     const formRef = useRef();
 
+
+
+// The 'handleSubmit' function is an event handler for the form submit event.
+// It prevents the default action of the event.
+// It creates a new FormData object from the form element.
+// It converts the FormData object to a plain object.
+// It creates a 'userInfo' object from the form data.
+// It calls the 'getSessionUser' function, passing in the 'userInfo' object.
+// It resets the form.
     const handleSubmit = (e) => {
         e.preventDefault();
         const formData = new FormData(formRef.current);
@@ -18,6 +27,10 @@ const Login = ({ setCurrUser }) => {
 
     };
     
+// The 'getSessionUser' function is an asynchronous function that logs the user in.
+// It calls the 'login' function, passing in the 'userInfo' object and the 'setCurrUser' function.
+// It sets the current user to the response from the 'login' function.
+// It navigates to the "/home" route.
         async function getSessionUser (userInfo) {
         const response = await login(userInfo, setCurrUser)
         setCurrUser(response);

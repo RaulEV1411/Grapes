@@ -29,6 +29,15 @@ const RequestForm = () => {
     }
   }, [formularioEnviado]);
 
+
+  // The 'handleSubmit' function is an event handler for the form submit event.
+// It prevents the default action of the event.
+// It sets 'isSubmitting' to true.
+// It creates a new FormData object from the form element.
+// It calls the 'newRequest' function, passing in the 'formData'.
+// It sets a success flash message and navigates back to the previous page after 4 seconds.
+// If an error occurs, it sets an error flash message.
+// Finally, it sets 'isSubmitting' to false and returns the response from the 'newRequest' function.
   const submitRequest = async (event) => {
     event.preventDefault();
     setIsSubmitting(true);
@@ -49,6 +58,9 @@ const RequestForm = () => {
     };
   };
 
+// The 'fechRequestAdmin' function is an asynchronous function that adds a pending role to the user.
+// It decodes the 'token' to get the 'userId'.
+// It calls the 'addPendingRole' function, passing in the 'userId'.
   const fechRequestAdmin = async () => {
     const decoded = jwtDecode(token);
     const userId = decoded.sub;

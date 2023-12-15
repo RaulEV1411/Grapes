@@ -395,3 +395,60 @@ select {
 }
 
 
+@media only screen and (max-width: 756px) {
+    #navbar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        overflow: hidden;
+        height: 5em; /* Establece la altura máxima para el navbar cerrado */
+        transition: height 0.35s cubic-bezier(var(--transition-main), 1); 
+    }
+
+    #navbar.open {
+        height: auto; /* Muestra completamente el contenido cuando el navbar está abierto */
+    }
+
+    #navbar:hover {
+        width: 100%;
+        position: relative;
+    }
+
+    .navbar-items {
+        flex-direction: column;
+        align-items: center;
+        height: auto;
+    }
+
+    .navbar-item {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 0.5em; /* Ajusta según sea necesario */
+    }
+
+    .navbar-item-inner {
+        padding: 0.5em;
+        text-align: center;
+        color: hsl(var(--quite-gray));
+        background: none;
+        box-shadow: none;
+    }
+
+    .navbar-item-inner:hover {
+        color: hsl(var(--quite-gray));
+        background: none;
+    }
+
+    .navbar-item-inner-icon-wrapper {
+        width: auto;
+    }
+
+    .link-text {
+        width: auto;
+        opacity: 1;
+    }
+
+    #main, #body {
+        margin: 0;
+    }
+}

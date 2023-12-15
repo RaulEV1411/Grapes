@@ -7,7 +7,7 @@ import "./course.css";
 import { jwtDecode } from "jwt-decode";
 import { getCourses, userInfo } from "../../api/api";
 
-const Courses = ({ setCurrUser }) => {
+const Courses = () => {
     const [courses, setCourses] = useState([]);
     const [isAdmin, setIsAdmin] = useState(false);
     const [isModerator, setIsModerator] = useState(false);
@@ -16,12 +16,15 @@ const Courses = ({ setCurrUser }) => {
     const userId = decoded.sub;
     const { id } = useParams();
 
-
     useEffect(() => {
         getCourseBySubject();
         getUserInfo()
     }, [id]);
 
+// The 'getUserInfo' function is an asynchronous function that fetches the user's information.
+// It calls the 'userInfo' function, passing in the 'userId'.
+// It sets the 'isAdmin' state to true if the user has the 'admin' role, and the 'isModerator' state to true if the user has the 'moderator' role.
+// It returns the user's information.
     async function getUserInfo() {
         const obtainData = await userInfo(userId);
         setIsAdmin(obtainData.roles.some(role => role.name === 'admin'));
@@ -29,14 +32,17 @@ const Courses = ({ setCurrUser }) => {
         return obtainData
     };
 
-
+// The 'getCourseBySubject' function is an asynchronous function that fetches the courses for a specific subject.
+// It calls the 'getCourses' function, passing in the 'id'.
+// It sets the 'courses' state to the fetched courses.
+// It returns the fetched courses.
     async function getCourseBySubject() {
         const obtainCourse = await getCourses(id);
         setCourses(obtainCourse);
         return obtainCourse;
     };
 
-
+console.log();
     return (
         <div>
             <div className="title-container">
@@ -46,8 +52,8 @@ const Courses = ({ setCurrUser }) => {
             <div>
                 <ul className="List-Course">
                     {courses.map((course) => (
-                        <li className="link" key={course.id}>
-                            <Link to={`/course/info/${course.id}`} className="link">
+                        <Link to={`/course/info/${course.id}`} className="link-course">
+                            <li className="link-courses" key={course.id}>
                                 <CourseCard
                                     name={course.name}
                                     description={course.description}
@@ -57,8 +63,8 @@ const Courses = ({ setCurrUser }) => {
                                     isModerator={isModerator}
                                     course_id={course.id}
                                 ></CourseCard>
-                            </Link>
-                        </li>
+                            </li>
+                        </Link>
                     ))}
                 </ul>
             </div>

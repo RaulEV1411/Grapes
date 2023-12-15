@@ -183,3 +183,44 @@
   border-radius: 8px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
+
+@media only screen and (max-width: 600px) {
+.course-page {
+  max-width: 800px;
+  margin-right:7%; /* Centra el contenedor principal horizontalmente */
+  padding: 20px;
+  font-family: 'Arial', sans-serif;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+  .content-section {
+    flex-direction: column; /* Cambia a una disposición de columna en pantallas más pequeñas */
+    align-items: center; /* Centra los elementos en la columna */
+  }
+
+  .section-container,
+  .course-img-container {
+    width: 100%; /* Ajusta el ancho de los contenedores a 100% en pantallas más pequeñas */
+  }
+
+  .course-iframe {
+    height: auto; /* Hace que la altura del iframe sea automática en pantallas más pequeñas */
+  }
+
+  .document-container {
+    height: auto; /* Hace que la altura del contenedor de documentos sea automática en pantallas más pequeñas */
+  }
+
+  .image-container {
+    width: 100%; /* Ajusta el ancho de la sección de imágenes a 100% en pantallas más pequeñas */
+  }
+
+  .course-image {
+    width: 100%; /* Ajusta el ancho de las imágenes a 100% en pantallas más pequeñas */
+  }
+
+  .course-img-container {
+    width: 100%; /* Ajusta el ancho del contenedor de imágenes a 100% en pantallas más pequeñas */
+  }
+}

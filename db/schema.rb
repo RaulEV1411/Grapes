@@ -119,7 +119,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_13_015723) do
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "first_name", default: "", null: false
     t.string "last_name", default: "", null: false
-    t.datetime "birth_date", default: "2023-12-11 00:00:00", null: false
+    t.datetime "birth_date", default: "2023-12-15 00:00:00", null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"

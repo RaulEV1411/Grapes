@@ -85,8 +85,8 @@
   color: #542b5e; /* Cambio de color en hover */
 }
 
-.flash-success {
-  background-color: #4CAF50; /* Green */
+.flash-signup {
+  background-color: #c81515; /* Green */
   color: #fff;
   padding: 15px;
   border-radius: 8px;
@@ -123,13 +123,13 @@
 }
 
 /* Hover effect for more interactivity */
-.flash-success:hover {
-  background-color: #45a049; /* Darker green on hover */
+.flash-signup:hover {
+  background-color: #840a7b; /* Darker green on hover */
   cursor: pointer;
 }
 
 /* Add a subtle border */
-.flash-success::after {
+.flash-signup::after {
   content: '';
   display: block;
   position: absolute;

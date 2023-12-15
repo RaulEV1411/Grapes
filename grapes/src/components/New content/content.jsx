@@ -14,12 +14,23 @@ const NewContentForm = () => {
         getUserInfo();
     }, [Id]);
 
+
+// The 'getUserInfo' function is an asynchronous function that fetches the course information for a specific teacher.
+// It calls the 'obtainCourseByTeacher' function, passing in the 'Id'.
+// It sets the 'teacherCourse' state to the fetched course information.
+// It returns the fetched course information.
     async function getUserInfo (){
         const obtainData = await obtainCourseByTeacher(Id);
         setTeacherCourse(obtainData);
         return obtainData
     };
 
+
+// The 'submitContent' function is an event handler for the form submit event.
+// It prevents the default action of the event.
+// It creates a new FormData object from the form element.
+// It calls the 'newContent' function, passing in the 'formData'.
+// It navigates to the '/subject' route.
     const submitContent = async (e) => {
         e.preventDefault();
         const formData = new FormData(e.target); 

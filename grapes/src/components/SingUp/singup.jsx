@@ -1,3 +1,15 @@
+// The 'setFlashMessage' function is used to display a flash message.
+// The 'setTimeout' function is used to hide the flash message after 2 seconds.
+
+// The 'emailRegex' is a regular expression that matches valid email addresses.
+
+// If the 'email' does not match the 'emailRegex', a flash message is displayed saying 'Please enter a valid email.'.
+
+// The 'userInfo' object is created with the user's information.
+
+// The 'registerUser' function is called with the 'userInfo' object to register the user.
+
+// If the registration is successful, the 'currUser' state is set to the 'userInfo' object and a flash message is displayed saying 'Solicitud exitosa!'.
 import React, { useState, useRef } from "react";
 import { Link, useNavigate } from 'react-router-dom'
 import "./singup.css"
@@ -21,12 +33,18 @@ const Signup = ({ setCurrUser }) => {
     const nonLetterRegex = /[^a-zA-Z]/;
 
     if (nonLetterRegex.test(firstName)) {
-      alert('First name can only contain letters');
+      setFlashMessage('First name can only contain letters');
+      setTimeout(() => {
+      setFlashMessage(false)
+      }, 2000);
       return;
     }
 
     if (nonLetterRegex.test(lastName)) {
-      alert('Last name can only contain letters');
+      setFlashMessage('Last name can only contain letters');
+      setTimeout(() => {
+      setFlashMessage(false)
+      }, 2000);
       return;
     }
 
@@ -41,14 +59,20 @@ const Signup = ({ setCurrUser }) => {
     }
 
     if (age < 10) {
-      alert('Debes tener al menos 10 años para registrarte.');
+      setFlashMessage('You must be at least 10 years old to register.');  
+       setTimeout(() => {
+       setFlashMessage(false)
+      }, 2000);
       return;
     }
 
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
     if (!emailRegex.test(email)) {
-      alert('Por favor, introduce un correo electrónico válido.');
+      setFlashMessage('Please enter a valid email.');
+       setTimeout(() => {
+       setFlashMessage(false)
+      }, 2000);
       return;
     }
 
@@ -69,6 +93,9 @@ const Signup = ({ setCurrUser }) => {
       setTimeout(() => {
         navigate("/login");
       }, 3000);
+      if (!obtainData.ok) {
+        throw new Error('Error fetching requests');
+      }
     } catch (error) {
       console.error("Error:", error);
       // Manejar el error y proporcionar retroalimentación al usuario
@@ -80,7 +107,7 @@ const Signup = ({ setCurrUser }) => {
 
 return (
   <div className="signBody">
-    {flashMessage && <div className="flash-success">{flashMessage}</div>}
+    {flashMessage && <div className="flash-signup">{flashMessage}</div>}
     <div className="form-signup">
       <label className="contenedorLogo">
         <img className="logoApp" src="/Logo_Grapes-removebg-preview.png" alt="Logo de la App" />

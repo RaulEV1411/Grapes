@@ -7,6 +7,9 @@ import { userInfo } from "../../api/api";
 const ProtectedComponent = ({ setCurrUser, allowRoles, children }) => {
     const navigate = useNavigate();
     const token = localStorage.getItem('token');
+
+// The 'useEffect' hook is used to call the 'getUserInfo' function when the component mounts.
+// The 'getUserInfo' function is called with the 'userId' from the decoded token.
     useEffect(() => {
         if (token) {
             const decoded = jwtDecode(token);
@@ -15,6 +18,11 @@ const ProtectedComponent = ({ setCurrUser, allowRoles, children }) => {
         }
     }, []);
 
+// The 'getUserInfo' function is an asynchronous function that fetches the user's information.
+// It calls the 'userInfo' function, passing in the 'userId'.
+// It sets the 'currUser' state to the fetched user information.
+// If 'allowRoles' is defined, it checks if the user's roles include any of the 'allowRoles'.
+// If not, it navigates back to the previous page.
     async function getUserInfo(userId) {
         const obtainData = await userInfo(userId);
         setCurrUser(obtainData);
