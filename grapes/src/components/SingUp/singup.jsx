@@ -1,6 +1,8 @@
 import React, { useState, useRef } from "react";
 import { Link, useNavigate } from 'react-router-dom'
 import "./singup.css"
+import { registerUser } from "../../api/api";
+
 const Signup = ({ setCurrUser }) => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -12,33 +14,7 @@ const Signup = ({ setCurrUser }) => {
   const formRef = useRef();
   const navigate = useNavigate()
 
-  const signup = async (userInfo) => {
-    const url = "http://localhost:3001/signup";
-    try {
-      const response = await fetch(url, {
-        method: 'post',
-        headers: {
-          "Content-Type": 'application/json',
-          "Accept": "application/json"
-        },
-        body: JSON.stringify(userInfo),
-      });
-      const data = await response.json();
-      if (!response.ok) { throw data.error };
-      localStorage.setItem('token', response.headers.get("Authorization"));
-      setCurrUser(data);
-      setFlashMessage('Solicitud exitosa!');
-      setTimeout(() => {
-        navigate("/login");
-      }, 3000);
-      console.log(data, "si llega")
-    } catch (error) {
-      console.error("Error:", error);
-      // Manejar el error y proporcionar retroalimentación al usuario
-    }
-  };
-
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
 
     // Esta expresión regular coincide con cualquier carácter que no sea una letra de la a a la z (mayúsculas o minúsculas).
@@ -75,7 +51,7 @@ const Signup = ({ setCurrUser }) => {
       alert('Por favor, introduce un correo electrónico válido.');
       return;
     }
-    
+
     const userInfo = {
       user: {
         first_name: firstName,
@@ -86,91 +62,102 @@ const Signup = ({ setCurrUser }) => {
         confirm_password: confirmPassword,
       }
     };
-    signup(userInfo);
-    e.target.reset();
+    const obtainData = await registerUser(userInfo);
+    try {
+      setCurrUser(userInfo);
+      setFlashMessage('Solicitud exitosa!');
+      setTimeout(() => {
+        navigate("/login");
+      }, 3000);
+    } catch (error) {
+      console.error("Error:", error);
+      // Manejar el error y proporcionar retroalimentación al usuario
+      // return obtainData
   };
+  e.target.reset();
+};
 
 
-  return (
-    <div className="signBody">
-      {flashMessage && <div className="flash-success">{flashMessage}</div>}
-      <div className="form-signup">
-        <label className="contenedorLogo">
-          <img className="logoApp" src="/Logo_Grapes-removebg-preview.png" alt="Logo de la App" />
-        </label>
-        <div className="namespace">
-          <input
-            className="input-signup"
-            type="text"
-            placeholder="First Name"
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
-          />
-          <input
-            className="input-signup"
-            type="text"
-            placeholder="Last Name"
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
-          />
-        </div>
+return (
+  <div className="signBody">
+    {flashMessage && <div className="flash-success">{flashMessage}</div>}
+    <div className="form-signup">
+      <label className="contenedorLogo">
+        <img className="logoApp" src="/Logo_Grapes-removebg-preview.png" alt="Logo de la App" />
+      </label>
+      <div className="namespace">
+        <input
+          className="input-signup"
+          type="text"
+          placeholder="First Name"
+          value={firstName}
+          onChange={(e) => setFirstName(e.target.value)}
+        />
+        <input
+          className="input-signup"
+          type="text"
+          placeholder="Last Name"
+          value={lastName}
+          onChange={(e) => setLastName(e.target.value)}
+        />
+      </div>
 
-        <label>
-          <p>Birthday</p>
-          <input
-            className="input-signup"
-            type="date"
-            value={birthDate}
-            onChange={(e) => setBirthDate(e.target.value)}
-          />
-        </label>
-        <br />
+      <label>
+        <p>Birthday</p>
+        <input
+          className="input-signup"
+          type="date"
+          value={birthDate}
+          onChange={(e) => setBirthDate(e.target.value)}
+        />
+      </label>
+      <br />
 
-        <label>
-          <input
-            className="input-signup"
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </label>
-        <br />
+      <label>
+        <input
+          className="input-signup"
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+      </label>
+      <br />
 
-        <label>
-          <input
-            className="input-signup"
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </label>
-        <br />
+      <label>
+        <input
+          className="input-signup"
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+      </label>
+      <br />
 
-        <label>
-          <input
-            className="input-signup"
-            type="password"
-            placeholder="Confirm Password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-          />
-        </label>
-        <br />
+      <label>
+        <input
+          className="input-signup"
+          type="password"
+          placeholder="Confirm Password"
+          value={confirmPassword}
+          onChange={(e) => setConfirmPassword(e.target.value)}
+        />
+      </label>
+      <br />
 
-        <form ref={formRef} onSubmit={handleFormSubmit}>
-          <button type="submit" className="submit">
-            <span className="text">submit</span>
-          </button>
-        </form>
+      <form ref={formRef} onSubmit={handleFormSubmit}>
+        <button type="submit" className="submit">
+          <span className="text">submit</span>
+        </button>
+      </form>
 
-        <div className="signup-link">
-          Are you already registered?,<Link to="/login" >Login</Link>
-        </div>
+      <div className="signup-link">
+        Are you already registered?,<Link to="/login" >Login</Link>
       </div>
     </div>
-  );
+  </div>
+);
 };
 
 

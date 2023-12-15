@@ -19,7 +19,11 @@ class Api::V1::UsersController < ApplicationController
         def decline_request
             @user = User.find(params[:id])
             @request = Request.find_by(user_id: @user.id)
-            @user.remove_role :pending_request
+            if @user.has_role? :admin
+                @user.remove_role :admin
+            elsif @user.has_role? :pending_request
+                @user.remove_role :pending_request
+            end
             @user.add_role :user
             if @request
                 @request.destroy

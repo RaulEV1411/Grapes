@@ -227,9 +227,76 @@ const requestsByUser = async (id) => {
     }
 };
 
+const newRequest = async (formData) => {
+    try {
+        const response = await fetch("http://localhost:3001/api/v1/requests", {
+            method: "POST",
+            headers: {
+                authorization: localStorage.getItem("token"),
+            },
+            body: formData,
+        });
+
+        if (!response.ok) {
+            const data = await response.json();
+            throw new Error(data.error || "Error submitting request");
+        }
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+const addPendingRole = async (userId) => {
+    try {
+        const response = await fetch(
+            `http://localhost:3001/api/v1/users/${userId}/request_admin`,
+            {
+                method: "POST",
+                headers: {
+                    "content-type": "application/json",
+                    authorization: localStorage.getItem("token"),
+                },
+                body: JSON.stringify({
+                    id: userId,
+                }),
+            }
+        );
+
+        if (!response.ok) {
+            const data = await response.json();
+            throw new Error(data.error || "Error submitting request");
+        }
+
+        // Aquí puedes manejar la respuesta exitosa
+        console.log("Request sent successfully");
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+const registerUser = async (userInfo) => {
+    const url = "http://localhost:3001/signup";
+    try {
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                "Content-Type": 'application/json',
+                "Accept": "application/json"
+            },
+            body: JSON.stringify(userInfo),
+        });
+        const data = await response.json();
+        if (!response.ok) { throw data.error };
+        localStorage.setItem('token', response.headers.get("Authorization"));
+        console.log(data, "si llega")
+    } catch (error) {
+        console.error("Error:", error);
+        // Manejar el error y proporcionar retroalimentación al usuario
+    }
+};
 
 
-export { editCourse, approveAdmin, userInfo, getCourses, rejectRequest, login, logout, obtainCourseByTeacher, newContent, newCourse, fetchSubjects, requestsByUser };
+export { editCourse, approveAdmin, userInfo, getCourses, rejectRequest, login, logout, obtainCourseByTeacher, newContent, newCourse, fetchSubjects, requestsByUser, newRequest, addPendingRole, registerUser };
 
 
 

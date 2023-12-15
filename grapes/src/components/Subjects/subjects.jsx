@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Navbar from '../NavBar/Navbar';
 import "./subject.css";
 import CardSubject from '../cardSubject/cardSubject';
+import { fetchSubjects } from '../../api/api';
 
 const Subjects = ({ setCurrUser }) => {
     const [subjects, setSubjects] = useState([]);
@@ -11,25 +12,13 @@ const Subjects = ({ setCurrUser }) => {
         getSubjects();
     }, []);
 
-    const getSubjects = async () => {
-        try {
-            const response = await fetch("http://localhost:3001/api/v1/subjects", {
-                method: "get",
-                headers: {
-                    "content-type": "application/json",
-                    "authorization": localStorage.getItem("token"),
-                },
-            });
-            if (!response.ok) {
-                throw Error;
-            }
-            const data = await response.json();
-            setSubjects(data);
-        } catch (error) {
-            console.log("error", error);
-            setSubjects([]);
-        }
+    async function getSubjects (){
+        const obtainData = await fetchSubjects();
+        setSubjects(obtainData);
+        return obtainData
     };
+
+    
     if (!subjects.length) {
         return <div>
             <Navbar setCurrUser={setCurrUser} />
