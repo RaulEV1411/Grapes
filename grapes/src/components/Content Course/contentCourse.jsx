@@ -30,63 +30,14 @@ const ContentCourse = () => {
             }
         };
 
-        const updateContentCourse = async (contentId, updatedData) => {
-            try {
-                const response = await fetch(`http://localhost:3001/api/v1/contents/${id}`, {
-                    method: 'PUT',
-                    headers: {
-                        "content-type": "application/json",
-                        "authorization": localStorage.getItem("token"),
-                    },
-                    body: JSON.stringify(updatedData),
-                });
-        
-                if (!response.ok) {
-                    throw new Error('Error updating content');
-                }
-        
-                const updatedContent = await response.json();
-                // Puedes hacer algo con la respuesta actualizada si es necesario.
-                console.log('Contenido actualizado:', updatedContent);
-            } catch (error) {
-                console.error(error);
-            }
-        };
-        
-        const handleEdit = (contentId, updatedData) => {
-        updateContentCourse(contentId, updatedData);
-        // Realizar otras operaciones después de la edición si es necesario.
-    };
 
 
-        const deleteContentCourse = async (contentId) => {
-    try {
-        const response = await fetch(`http://localhost:3001/api/v1/contents/${id}`, {
-            method: 'DELETE',
-            headers: {
-                "content-type": "application/json",
-                "authorization": localStorage.getItem("token"),
-            },
-        });
 
-        if (!response.ok) {
-            throw new Error('Error deleting content');
-        }
 
-        // Puedes hacer algo con la respuesta si es necesario.
-        console.log('Contenido eliminado correctamente');
-    } catch (error) {
-        console.error(error);
-    }
-};   
 
-    const handleDelete = (contentId) => {
-    deleteContentCourse(contentId);
-    // Realizar otras operaciones después de la eliminación si es necesario.
-};
 
         useEffect(() => {
-          fetchContentCourse();
+        fetchContentCourse();
         }, []);
     
         return (
@@ -103,16 +54,6 @@ const ContentCourse = () => {
                                     imageUrls={contentC.img}
                                     videoURL={contentC.video}
                                 />
-                                <div>
-                                    {/* Botón de Editar */}
-                                    <button onClick={() => handleEdit(contentC.id, /* datos actualizados */)}>
-                                        Editar
-                                    </button>
-                                    {/* Botón de Eliminar */}
-                                    <button onClick={() => handleDelete(contentC.id)}>
-                                        Eliminar
-                                    </button>
-                                </div>
                             </li>
                         ))}
                     </ul>

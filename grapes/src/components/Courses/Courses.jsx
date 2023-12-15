@@ -5,6 +5,8 @@ import { useParams } from "react-router-dom";
 import BackButton from "../Back Button/BackButton";
 import "./course.css";
 import { jwtDecode } from "jwt-decode";
+import { getCourses, userInfo } from "../../api/api";
+
 const Courses = ({ setCurrUser }) => {
     const [courses, setCourses] = useState([]);
     const [isAdmin, setIsAdmin] = useState(false);
@@ -13,55 +15,27 @@ const Courses = ({ setCurrUser }) => {
     const decoded = jwtDecode(token);
     const userId = decoded.sub;
     const { id } = useParams();
+    
+    
     useEffect(() => {
-        getCourses();
-        getUserDetails();
+        getCourseBySubject();
+        getUserInfo()
     }, [id]);
 
-    const getUserDetails = async () => {
-        try {
-            const response = await fetch(`http://localhost:3001/api/v1/users/${userId}`, {
-                headers: {
-                    "content-type": "application/json",
-                    "authorization": localStorage.getItem("token"),
-                },
-            });
-    
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-    
-            const data = await response.json();
-            setIsAdmin(data.roles.some(role => role.name === 'admin'));
-            setIsModerator(data.roles.some(role => role.name === 'moderator'));
-        } catch (error) {
-            console.error('An error occurred while fetching user details:', error);
-        }
-    };
+    async function getUserInfo (){
+        const obtainData = await userInfo(userId);
+        setIsAdmin(obtainData.roles.some(role => role.name === 'admin'));
+        setIsModerator(obtainData.roles.some(role => role.name === 'moderator'));
+        return obtainData
+    }
 
-    const getCourses = async () => {
-        try {
-            const response = await fetch(
-                `http://localhost:3001//api/v1/courses/${id}/courses_by_subject`,
-                {
-                    method: "get",
-                    headers: {
-                        "content-type": "application/json",
-                        authorization: localStorage.getItem("token"),
-                    },
-                }
-            );
-            if (!response.ok) {
-                throw Error;
-            }
-            const data = await response.json();
-            console.log(data);
-            setCourses(data);
-        } catch (error) {
-            console.log("error", error);
-            setCourses([]);
-        }
-    };
+
+    async function getCourseBySubject (){
+        const obtainCourse = await getCourses(id);
+        setCourses(obtainCourse);
+        return obtainCourse;
+    }
+
 
     return (
         <div>

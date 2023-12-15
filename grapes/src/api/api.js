@@ -41,9 +41,43 @@ const approveAdmin = async (idUser) => {
     }
 }
 
+const userInfo = async (userId) => {
+    const url = `${API_URL}/v1/users/${userId}`;
+    const response = await fetch(url, {
+        method: "GET",
+        headers: {
+            "content-type": "application/json",
+            "authorization": localStorage.getItem("token"),
+        },
+    });
+    if (!response.ok) {
+        throw Error;
+    }
+    const data = await response.json();
+    return data;
+};
+
+const getCourses = async (id) => {
+        const response = await fetch(
+            `http://localhost:3001//api/v1/courses/${id}/courses_by_subject`,
+            {
+                method: "GET",
+                headers: {
+                    "content-type": "application/json",
+                    "authorization": localStorage.getItem("token"),
+                },
+            }
+        );
+        if (!response.ok) {
+            throw Error;
+        }
+        const data = await response.json();
+        return data;
+};
 
 
-export { editCourse, approveAdmin };
+
+export { editCourse, approveAdmin, userInfo, getCourses };
 
 
 
