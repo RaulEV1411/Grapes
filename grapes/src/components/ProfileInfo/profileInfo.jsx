@@ -1,89 +1,47 @@
 import React, { useEffect, useState } from 'react';
 import ProfileCard from '../ProfileCard/profileCard'
 import { useParams } from 'react-router-dom';
-
-function ProfileInfo({ setCurrUser }) {
+import { userInfo } from '../../api/api';
+import { fetchSubjects,  } from '../../api/api';
+import { requestsByUser } from '../../api/api';
+function ProfileInfo() {
 
     const [user, setUser] = useState({});
     const [showRequests, setShowRequests] = useState({});
     const [subjects, setSubjects] = useState([]);
     const { id } = useParams()
 
-    const fetchUser = async () => {
-        try {
-            const response = await fetch(`http://localhost:3001/api/v1/users/${id}`, {
-                method: 'GET',
-                headers: {
-                    "content-type": "application/json",
-                    "authorization": localStorage.getItem("token"),
-                },
-            });
-
-            if (!response.ok) {
-                throw new Error('Error fetching user');
-            }
-
-            const data = await response.json();
-            setUser(data);
-        } catch (error) {
-            console.error(error);
-        }
+    async function getUserInfo(id) {
+        const obtainData = await userInfo(id);
+        setUser(obtainData);
+        return obtainData
     };
 
-    const fetchSubjects = async () => {
-    try {
-    const response = await fetch('http://localhost:3001/api/v1/subjects', {
-        method: 'GET',
-        headers: {
-        "content-type": "application/json",
-        "authorization": localStorage.getItem("token"),
-        },
-    });
+    async function getSubjects() {
+        const obtainData = await fetchSubjects();
+        setSubjects(obtainData);
+        return obtainData
+    };
 
-    if (!response.ok) {
-        throw new Error('Error fetching subjects');
-    }
+    async function getRequestInfo(id) {
+    if (user && user.roles && user.roles[0].name === "admin") {
+        const obtainData = await requestsByUser(id);
+        setShowRequests(obtainData);
+        return obtainData
+        };
+    };
 
-    const data = await response.json();
-    setSubjects(data);
-    } catch (error) {
-    console.error(error);
-    }
-};
 
     useEffect(() => {
-    const fetchRequestsShow = async () => {
-    try {
-        if (user && user.roles && user.roles[0].name === "admin") {
-            const response = await fetch(`http://localhost:3001//api/v1/requests/${id}/show_by_user`, {
-                method: 'GET',
-                headers: {
-                "content-type": "application/json",
-                "authorization": localStorage.getItem("token"),
-                },
-            });
-            console.log(response)
-            if (!response.ok) {
-                throw new Error('Error fetching requests');
-            }
-        
-            const data = await response.json();
-            setShowRequests(data);
-            console.log(data)
-            };
-    } catch (error) {
-    console.error(error);
-    }
-};
-fetchRequestsShow();
-}, [user]);
+        getRequestInfo(id);
+    }, [user]);
 
     useEffect(() => {
-        fetchSubjects();
-        fetchUser();
+        getSubjects();
+        getUserInfo(id);
     }, [id]);
 
-    if (!user.user ) {
+    if (!user.user) {
         return <div>
             <div id="bodyCarga"> <div className='divCarga'></div> </div>
         </div>;

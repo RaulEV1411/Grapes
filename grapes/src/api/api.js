@@ -166,9 +166,70 @@ const newContent = async (formData) => {
     };
 }
 
+const newCourse = async (newCourse) => {
+    const url = "http://localhost:3001/api/v1/courses"; // Obtén el token del almacenamiento local
+    try {
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                "Content-Type": 'application/json',
+                "Accept": "application/json",
+                "authorization": localStorage.getItem("token"),// Incluye el token en los encabezados de la solicitud
+            },
+            body: JSON.stringify(newCourse),
+        });
+
+        const data = await response.json();
+        if (!response.ok) { throw data.error };
+    } catch (error) {
+        // Manejar el error y proporcionar retroalimentación al usuario
+    };
+}
+
+const fetchSubjects = async () => {
+    try {
+        const response = await fetch('http://localhost:3001/api/v1/subjects', {
+            method: 'GET',
+            headers: {
+                "content-type": "application/json",
+                "authorization": localStorage.getItem("token"),
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error('Error fetching subjects');
+        }
+
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error(error);
+    }
+};
+
+const requestsByUser = async (id) => {
+    try {
+        const response = await fetch(`http://localhost:3001//api/v1/requests/${id}/show_by_user`, {
+            method: 'GET',
+            headers: {
+                "content-type": "application/json",
+                "authorization": localStorage.getItem("token"),
+            },
+        });
+        console.log(response)
+        if (!response.ok) {
+            throw new Error('Error fetching requests');
+        }
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error(error);
+    }
+};
 
 
-export { editCourse, approveAdmin, userInfo, getCourses, rejectRequest, login, logout, obtainCourseByTeacher, newContent };
+
+export { editCourse, approveAdmin, userInfo, getCourses, rejectRequest, login, logout, obtainCourseByTeacher, newContent, newCourse, fetchSubjects, requestsByUser };
 
 
 
