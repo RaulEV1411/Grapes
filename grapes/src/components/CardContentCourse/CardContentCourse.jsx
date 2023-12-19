@@ -24,17 +24,17 @@ const CardContentCourse = ({ videoURL, imageUrls, documentURL, name, description
         </div>
 
         <div className="section-container document-container">
-          <h2 className="section-title">Documento</h2>
+          <h2 className="section-title">Document</h2>
           <a href={documentURL} target="_blank" rel="noopener noreferrer">
             <iframe src={documentURL} className="course-iframe" title="Documento" />
-            <p className="pdf-link">Ver PDF</p>
+            <p className="pdf-link">View PDF</p>
           </a>
         </div>
       </div>
 
       <div className="content-section">
         <div className="course-img-container">
-          <h2 className="section-title">Imágenes</h2>
+          <h2 className="section-title">Images</h2>
           <div className="image-container">
             {imageUrls.map((imageUrl, index) => (
               <img

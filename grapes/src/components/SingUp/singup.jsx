@@ -35,7 +35,7 @@ const Signup = ({ setCurrUser }) => {
     if (nonLetterRegex.test(firstName)) {
       setFlashMessage('First name can only contain letters');
       setTimeout(() => {
-      setFlashMessage(false)
+        setFlashMessage(false)
       }, 2000);
       return;
     }
@@ -43,7 +43,7 @@ const Signup = ({ setCurrUser }) => {
     if (nonLetterRegex.test(lastName)) {
       setFlashMessage('Last name can only contain letters');
       setTimeout(() => {
-      setFlashMessage(false)
+        setFlashMessage(false)
       }, 2000);
       return;
     }
@@ -59,9 +59,9 @@ const Signup = ({ setCurrUser }) => {
     }
 
     if (age < 10) {
-      setFlashMessage('You must be at least 10 years old to register.');  
-       setTimeout(() => {
-       setFlashMessage(false)
+      setFlashMessage('You must be at least 10 years old to register.');
+      setTimeout(() => {
+        setFlashMessage(false)
       }, 2000);
       return;
     }
@@ -70,8 +70,8 @@ const Signup = ({ setCurrUser }) => {
 
     if (!emailRegex.test(email)) {
       setFlashMessage('Please enter a valid email.');
-       setTimeout(() => {
-       setFlashMessage(false)
+      setTimeout(() => {
+        setFlashMessage(false)
       }, 2000);
       return;
     }
@@ -100,92 +100,93 @@ const Signup = ({ setCurrUser }) => {
       console.error("Error:", error);
       // Manejar el error y proporcionar retroalimentación al usuario
       // return obtainData
+    };
+    e.target.reset();
   };
-  e.target.reset();
-};
 
+  return (
+    <div className="signBody">
+      <div className="form-container">
+        <div className="form-signup">
+          {flashMessage && <div className="flash-signup">{flashMessage}</div>}
+          <div className="namespace">
+            <input
+              className="input-signup"
+              type="text"
+              placeholder="First Name"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+            />
+            <input
+              className="input-signup"
+              type="text"
+              placeholder="Last Name"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+            />
+          </div>
 
-return (
-  <div className="signBody">
-    {flashMessage && <div className="flash-signup">{flashMessage}</div>}
-    <div className="form-signup">
-      <label className="contenedorLogo">
-        <img className="logoApp" src="/Logo_Grapes-removebg-preview.png" alt="Logo de la App" />
-      </label>
-      <div className="namespace">
-        <input
-          className="input-signup"
-          type="text"
-          placeholder="First Name"
-          value={firstName}
-          onChange={(e) => setFirstName(e.target.value)}
-        />
-        <input
-          className="input-signup"
-          type="text"
-          placeholder="Last Name"
-          value={lastName}
-          onChange={(e) => setLastName(e.target.value)}
-        />
-      </div>
+          <label>
+            <p>Birthday</p>
+            <input
+              className="input-signup"
+              type="date"
+              value={birthDate}
+              onChange={(e) => setBirthDate(e.target.value)}
+            />
+          </label>
+          <br />
 
-      <label>
-        <p>Birthday</p>
-        <input
-          className="input-signup"
-          type="date"
-          value={birthDate}
-          onChange={(e) => setBirthDate(e.target.value)}
-        />
-      </label>
-      <br />
+          <label>
+            <input
+              className="input-signup"
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </label>
+          <br />
 
-      <label>
-        <input
-          className="input-signup"
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-      </label>
-      <br />
+          <label>
+            <input
+              className="input-signup"
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </label>
+          <br />
 
-      <label>
-        <input
-          className="input-signup"
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </label>
-      <br />
+          <label>
+            <input
+              className="input-signup"
+              type="password"
+              placeholder="Confirm Password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+            />
+          </label>
+          <br />
 
-      <label>
-        <input
-          className="input-signup"
-          type="password"
-          placeholder="Confirm Password"
-          value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}
-        />
-      </label>
-      <br />
+          <form ref={formRef} onSubmit={handleFormSubmit}>
+            <button type="submit" className="submit">
+              <span className="text">Sign Up</span>
+            </button>
+          </form>
 
-      <form ref={formRef} onSubmit={handleFormSubmit}>
-        <button type="submit" className="submit">
-          <span className="text">submit</span>
-        </button>
-      </form>
+          <div className="signup-link">
+            Already have an account? <Link to="/login">Log In</Link>
+          </div>
+        </div>
 
-      <div className="signup-link">
-        Are you already registered?,<Link to="/login" >Login</Link>
+        <div className="image-container">
+            <img src="/Logo_Grapes-removebg-preview.png" alt="Logo de la App" />
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
 };
-
 
 export default Signup;

@@ -26,9 +26,14 @@ margin-left: 10%;
 
 @media only screen and (max-width: 768px) {
     .List-Course {
-        justify-content: center; /* Centra los elementos en pantallas más pequeñas */
-        display: flex;
         gap: 3%;
+        padding: 0;
+    }
+
+    .link-courses {
+        display: flex; /* Alinea los elementos a la izquierda en dispositivos más pequeños */
+        gap: 1px; /* Agregar un espacio de 1px entre las columnas */
+        justify-content: flex-start;
     }
 
     .title-container {

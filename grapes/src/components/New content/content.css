@@ -1,0 +1,130 @@
+/* content.css */
+
+.PrincipalContent {
+    display: flex;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background: linear-gradient(135deg, #40276C,#7868e6);
+    padding: 4%;
+}
+
+.addContentContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    background-color: #ffffff61;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    transition: transform 0.3s ease-in-out;
+}
+
+.contentForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.formSection {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    align-items: center;
+}
+
+.formField {
+    margin: 2%;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.inputField {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.regular{
+    width: 265px !important;
+}
+
+.special {
+    width: 100%;
+}
+
+
+.inputField[type='file'] {
+    width: 90%;
+}
+
+.fileImage {
+    width: 50px; /* Ajusta el tamaño de la imagen según sea necesario */
+    margin-bottom: 2%; /* Espaciado entre la imagen y el título */
+}
+
+.selectField {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.submitButton {
+    cursor: pointer;
+    width: 180px;
+    padding: 18px;
+    background-color: #7868e6; /* Morado más claro */
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    transition: background-color 0.3s ease-in-out;
+    position: relative;
+}
+
+.buttonText {
+    font-weight: bold;
+}
+
+
+/* Agrega estilos para la clase home-link */
+.home-link {
+    position: relative;
+    display: inline-block;
+}
+
+
+
+.backContent{
+    position: fixed;
+    z-index: 4;
+    top: 4%;
+    right: 4%;
+    display: inline-block;
+    text-align: center;
+    
+}
+
+
+
+/* Estilos para ocultar el texto "Back Home" por defecto */
+.backHomeText {
+    transform: translate(5px, -50%);
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease-in-out;
+    color: white;
+}
+
+/* Mostrar el texto cuando se hace hover sobre el contenedor */
+.backContent:hover .backHomeText {
+    opacity: 1;
+}
+
+
+
+

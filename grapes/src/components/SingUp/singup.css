@@ -1,60 +1,61 @@
-/* Añade estos estilos en tu hoja de estilos CSS */
-
-.signBody{
+.signBody {
   display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh; /* Esto asegura que el contenedor esté centrado verticalmente en la ventana. */
-    margin: 0;
-    background-color: #4f4f4f;
-    
+  align-items: center;
+  justify-content: space-around;
+  height: 100vh;
+  margin: 0;
+  background: linear-gradient(135deg, #40276C,#7868e6);
 }
 
+.form-container {
+  display: flex;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
 
 .form-signup {
   max-width: 400px;
-  margin: 0 auto;
+  margin: 0;
   padding: 20px;
-  padding-left: 38px;
-  background-color: #8f509d; /* Color inspirado en el de las uvas */
+  background-color: #fff; /* Fondo blanco */
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease-in-out;
 }
 
 .form-signup:hover {
-  transform: scale(1.02);
+  transform: scale(1.05);
 }
 
-
-
 .input-signup {
-  padding: 8px;
-  margin-bottom: 15px;
-  width: 90%;
-  border: 1px solid #4f4f4f;
-  border-radius: 5px;
+  padding: 12px; /* Aumentado el padding para un aspecto más cómodo */
+  margin-bottom: 20px; /* Aumentado el margen inferior */
+  width: 100%;
+  border: 1px solid #b7b7b7; /* Color del borde más suave */
+  border-radius: 8px; /* Bordes más redondeados */
   transition: border-color 0.3s ease-in-out;
 }
 
 .input-signup:focus {
-  border-color: #693c72; /* Color inspirado en el de las uvas */
+  border-color: #7868e6; /* Color del borde al enfocar */
 }
 
 .submit {
   cursor: pointer;
-  width: 95%;
-  padding: 10px;
-  background-color: #693c72; /* Color inspirado en el de las uvas */
+  width: 100%;
+  padding: 12px;
+  background-color: #7868e6; /* Morado más claro */
   color: #fff;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
   transition: background-color 0.3s ease-in-out;
   position: relative;
 }
 
 .submit:hover {
-  background-color: #542b5e; /* Cambio de color en hover */
+  background-color: #5c4bc0; /* Cambio de color en hover */
 }
 
 .text {
@@ -62,34 +63,39 @@
   z-index: 1;
 }
 
-.namespace{
-  width: 95%;
-  gap: 1%;
+.namespace {
+  width: 100%;
+  gap: 2%;
   display: flex;
   justify-content: space-between;
-  
 }
 
-.logoApp{
+.logoApp {
   max-width: 15%;
   width: 20%;
 }
 
+.signup-link {
+  color: #7868e6; /* Morado para los enlaces */
+  text-align: center;
+  margin-top: 20px;
+}
+
 .signup-link a {
-  color: rgb(201, 39, 39); /* Color inspirado en el de las uvas */
+  color: #25ca09;; /* Morado para los enlaces */
   text-decoration: none;
   transition: color 0.3s ease-in-out;
 }
 
 .signup-link a:hover {
-  color: #542b5e; /* Cambio de color en hover */
+  color: #5c4bc0; /* Cambio de color en hover */
 }
 
 .flash-signup {
-  background-color: #c81515; /* Green */
+  background-color: #ff7675; /* Rojo claro */
   color: #fff;
   padding: 15px;
-  border-radius: 8px;
+  border-radius: 10px;
   position: fixed;
   top: 20px;
   left: 50%;
@@ -103,7 +109,6 @@
   transition: background-color 0.3s ease;
 }
 
-/* Keyframe animations */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -122,13 +127,11 @@
   }
 }
 
-/* Hover effect for more interactivity */
 .flash-signup:hover {
-  background-color: #840a7b; /* Darker green on hover */
+  background-color: #cc6b6b; /* Cambio de color en hover */
   cursor: pointer;
 }
 
-/* Add a subtle border */
 .flash-signup::after {
   content: '';
   display: block;
@@ -138,6 +141,7 @@
   right: -5px;
   bottom: -5px;
   border: 2px solid rgba(255, 255, 255, 0.2);
-  border-radius: 10px;
+  border-radius: 12px; /* Bordes más redondeados */
   pointer-events: none;
 }
+

@@ -137,11 +137,11 @@ const login = async (userInfo) => {
             body: JSON.stringify(userInfo),
         });
         const data = await response.json();
-        localStorage.setItem("token", response.headers.get("Authorization"));
         // If the response is not successful, throw an error with the error message provided by the server
         if (!response.ok) {
             throw new Error(data.error || "Authentication failed");
         }
+        localStorage.setItem("token", response.headers.get("Authorization"));
     } catch (error) {
         // Log the error to the console
         console.error("Error:", error.message);

@@ -5,7 +5,7 @@ const BackButton = () => {
   let navigate = useNavigate();
 
   return (
-    <button className="button" onClick={() => navigate(-1)}>
+    <button className="button-back" onClick={() => navigate(-1)}>
       <div className="button-box">
         <span className="button-elem">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 46 40">

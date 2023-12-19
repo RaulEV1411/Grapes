@@ -17,7 +17,7 @@ const DeclineButton = ({idUserDelete}) => {
     }
     return (
         <div>
-            <button className="button-declinar" onClick={submitRequest} >Declinar</button>
+            <button className="button-declinar" onClick={submitRequest} >Decline</button>
         </div>
     );
     };

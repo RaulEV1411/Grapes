@@ -1,58 +1,76 @@
+/* RequestForm.css */
+.pricipalNewRequest{
+  height: 100vh;
+  background: linear-gradient(135deg, #40276C,#7868e6);
+  padding: 4%;  
+}
 .formularioUvas {
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 2px solid #613659;
-    border-radius: 10px;
-    background-color: #8f509d; /* Color inspirado en el de las uvas */
-    transition: border-color 0.3s ease-in-out;
-  }
-  
-  .formularioUvas:hover {
-    border-color: #4d2e61;
-  }
-  
-  /* Estilos para el título del formulario */
-  .tituloFormulario {
-    text-align: center;
-    color: #613659;
-  }
-  
-  /* Estilos para los campos de entrada y etiquetas */
-  .campo {
-    margin-bottom: 15px;
-  }
-  
-  .campoTexto, .campoArchivo {
-    width: 100%;
-    padding: 10px;
-    box-sizing: border-box;
-    margin-top: 5px;
-    transition: border-color 0.3s ease-in-out;
-  }
-  
-  .campoTexto:hover, .campoArchivo:hover {
-    border-color: #4d2e61;
-  }
-  
-  /* Estilos para el botón de enviar */
-  .botonSubmit {
-    background-color: #693e8f;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease-in-out;
-  }
-  
-  .botonSubmit:hover {
-    background-color: #4d2e61;
-  }
+  max-width: 70%;
+  margin: auto; /* Centrar en la mitad de la pantalla */
+  padding: 20px;
+  border: 2px solid #613659;
+  border-radius: 10px;
+  background-color: #fff;
+  transition: border-color 0.3s ease-in-out;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
 
+.formularioUvas:hover {
+  border-color: #4d2e61;
+}
+
+.tituloFormulario {
+  text-align: center;
+  color: #613659;
+  margin-bottom: 20px;
+}
+
+.campo-group {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    align-items: center;
+    justify-content: center;
+}
+
+.campoTexto,
+.campo select {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  margin-top: 5px;
+  transition: border-color 0.3s ease-in-out;
+  border: 1px solid #613659;
+  border-radius: 5px;
+}
+
+.campoTexto:hover,
+.campo select:hover {
+  border-color: #4d2e61;
+}
+
+.botonSubmit {
+  background-color: #693e8f;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.botonSubmit:hover {
+  background-color: #4d2e61;
+}
 
 .flash-success {
-  background-color: #4CAF50; /* Green */
+  background-color: #4CAF50;
   color: #fff;
   padding: 15px;
   border-radius: 8px;
@@ -69,41 +87,29 @@
   transition: background-color 0.3s ease;
 }
 
-/* Keyframe animations */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
+/* ... Otros estilos ... */
+
+/* Imagen decorativa arriba de los inputs de tipo file */
+.campoImagen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.campoImagen img {
+  width: 50px; /* Ajusta el tamaño según tus necesidades */
+  margin-bottom: 10px;
+}
+
+@media (min-width: 768px) {
+  .campo-group {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
   }
-  to {
-    opacity: 1;
+
+  .campo {
+    width: 48%;
   }
 }
 
-@keyframes fadeOut {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
-
-/* Hover effect for more interactivity */
-.flash-success:hover {
-  background-color: #45a049; /* Darker green on hover */
-  cursor: pointer;
-}
-
-/* Add a subtle border */
-.flash-success::after {
-  content: '';
-  display: block;
-  position: absolute;
-  top: -5px;
-  left: -5px;
-  right: -5px;
-  bottom: -5px;
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  border-radius: 10px;
-  pointer-events: none;
-}

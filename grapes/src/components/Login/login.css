@@ -1,24 +1,20 @@
 /* Login.FormLogin.css */
 
-.LoginBody{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh; /* Esto asegura que el contenedor esté centrado verticalmente en la ventana. */
+.LoginBody {
+    height: 100vh;
     margin: 0;
-    background-color: #4f4f4f;
-    
+    background: linear-gradient(135deg, #40276C,#7868e6);
+    padding-top: 5%;
 }
 
 .login-container {
-    
-    max-width: 300px;
-    margin: 0 auto;
+    max-width: 50%;
     padding: 20px;
-    background-color: #8f509d;/* Color inspirado en el de las uvas */
     border-radius: 10px;
+    background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease-in-out;
+    margin-left: 25%;
 }
 
 .login-container:hover {
@@ -31,8 +27,10 @@
 }
 
 .label-login {
-    margin-bottom: 10px;
+    margin-bottom: 2%;
     font-weight: bold;
+    display: flex;
+    justify-content: center;
 }
 
 .inputLogin {
@@ -44,20 +42,20 @@
 }
 
 .inputLogin:focus {
-    border-color: #693c72; /* Color inspirado en el de las uvas */
+    border-color: #693c72;
+    /* Color inspirado en el de las uvas */
 }
-
 
 .inputLogin[type='submit'] {
     cursor: pointer;
-    background-color: #56b656; /* Color inspirado en el de las uvas */
+    background-color: #7868e6; /* Morado más claro */
     color: #fff;
     border: none;
     transition: background-color 0.3s ease-in-out;
 }
 
 .inputLogin[type='submit']:hover {
-    background-color: #542b5e; /* Cambio de color en hover */
+    background-color: #542b5e;
 }
 
 .signup-link {
@@ -67,16 +65,58 @@
     transition: color 0.3s ease-in-out;
 }
 
+.login-link {
+    color: rgb(201, 39, 39);
+    /* Color inspirado en el de las uvas */
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+}
 
+.login-link a:hover {
+    color: #542b5e;
+    /* Cambio de color en hover */
+}
 
-
-.login-link{
-    color: rgb(201, 39, 39); /* Color inspirado en el de las uvas */
-      text-decoration: none;
-      transition: color 0.3s ease-in-out;
+.form-control {
+    position: relative;
+    margin: 20px 0 40px;
+    width: 190px;
   }
   
-  .login-link a:hover {
-    color: #542b5e; /* Cambio de color en hover */
+  .form-control input {
+    background-color: transparent;
+    border: 0;
+    border-bottom: 2px #fff solid;
+    display: block;
+    width: 100%;
+    padding: 15px 0;
+    font-size: 18px;
+    color: #fff;
   }
-
+  
+  .form-control input:focus,
+  .form-control input:valid {
+    outline: 0;
+    border-bottom-color: lightblue;
+  }
+  
+  .form-control label {
+    position: absolute;
+    top: 15px;
+    left: 0;
+    pointer-events: none;
+  }
+  
+  .form-control label span {
+    display: inline-block;
+    font-size: 18px;
+    min-width: 5px;
+    color: #fff;
+    transition: 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+  
+  .form-control input:focus+label span,
+  .form-control input:valid+label span {
+    color: lightblue;
+    transform: translateY(-30px);
+  }

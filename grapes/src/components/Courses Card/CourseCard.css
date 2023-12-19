@@ -26,7 +26,7 @@
     border: 2px solid #fff;
   }
   
-  .course-title {
+  #course-title {
     margin: 20px;
     color: #fff;
     font-size: 1.5rem;
@@ -82,10 +82,6 @@
   }
 
   @media only screen and (max-width: 768px) {
-  .course-card {
-    width: 100%; /* Hace que el ancho sea del 100% en pantallas más pequeñas */
-  }
-
   .course-card-header {
     height: 30%; /* Ajusta la altura del encabezado para dispositivos más pequeños */
   }
@@ -97,7 +93,7 @@
     right: 10px;
   }
 
-  .course-title {
+  #course-title {
     margin: 10px;
     font-size: 1.2rem;
   }

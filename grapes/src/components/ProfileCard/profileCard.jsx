@@ -15,39 +15,39 @@ const ProfileCard = ({ first_name,last_name,email,birth_date,age,role,subject,pr
         <h2 className="profileName">{`${first_name} ${last_name}`}</h2>
       </div>
       <div className="profileInfo">
-        <h3>Información de contacto:</h3>
+        <h3>Contact Information:</h3>
         <p>
           <strong>Email:</strong> {email}
         </p>
         <p>
-          <strong>Número de Teléfono:</strong> {phone_number}
+          <strong>Phone number:</strong> {phone_number}
         </p>
         <p>
           <strong>LinkedIn:</strong> {linkedin}
         </p>
       </div>
       <div className="profileInfo">
-        <h3>Información Personal:</h3>
+        <h3>Personal Information:</h3>
         <p>
-          <strong>Edad:</strong> {age}
+          <strong>Age:</strong> {age}
         </p>
         <p>
-          <strong>Fecha de Nacimiento:</strong>{" "}
+          <strong>Birth Day:</strong>{" "}
           {new Date(birth_date).toLocaleDateString()}
         </p>
         <p>
-          <strong>Lugar de Residencia:</strong> {residence}
+          <strong>Place of residence:</strong> {residence}
         </p>
         <p>
-          <strong>Tipo de Usuario:</strong>{" "}
+          <strong>User type:</strong>{" "}
           {roles === "admin" ? "Teacher" : roles}
         </p>
       </div>
       {role === "admin" && (
         <div className="profileInfo">
-          <h3>Formación Profesional:</h3>
+          <h3>Vocational training:</h3>
           <p>
-            <strong>Materia:</strong> {subject || "desconocido"}
+            <strong>Subject taught:</strong> {subject || "desconocido"}
           </p>
           <div className="photosP">
             <div className="photoContainer">

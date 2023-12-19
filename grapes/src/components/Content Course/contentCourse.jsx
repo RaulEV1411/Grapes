@@ -1,8 +1,8 @@
 import {React,useState, useEffect} from 'react'
 import CardContentCourse from '../CardContentCourse/CardContentCourse';
-import { Link, useParams } from 'react-router-dom';
+import {  useParams } from 'react-router-dom';
 import BackButton from '../Back Button/BackButton';
-
+import './styles.css';
 const ContentCourse = () => {
     const [contentCourse, setContentCourse] = useState([]);
     const { id } = useParams();
@@ -44,7 +44,7 @@ const ContentCourse = () => {
                     <BackButton />
                     <ul className="List-Course">
                         {contentCourse.map((contentC) => (
-                            <li className="link" key={contentC.id}>
+                            <li className="link_content" key={contentC.id}>
                                 <CardContentCourse
                                     name={contentC.name}
                                     description={contentC.description}

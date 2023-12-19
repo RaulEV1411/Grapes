@@ -8,7 +8,7 @@ const Home = ({ setCurrUser }) => {
       <Navbar setCurrUser={setCurrUser} />
       <div className="App">
         <header className="App-header">
-          <h1>Bienvenido a Tu Sitio Web </h1>
+          <h1>Welcome to Website </h1>
           <p></p>
         </header>
         <main className="App-main">

@@ -103,7 +103,7 @@ const QueryReview = () => {
         <h2>Request</h2>
         <div className="headerRequests">
           <button className={`button_state ${selectedOption === options[0] ? 'active' : ''}`} onClick={() => handleSelect(options[0])}>
-            Pendientes
+            Pending
           </button>
           <div className="divider"></div>
           <button className={`button_state ${selectedOption === options[1] ? 'active' : ''}`} onClick={() => handleSelect(options[1])}>

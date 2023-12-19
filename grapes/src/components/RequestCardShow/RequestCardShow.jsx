@@ -47,35 +47,35 @@ const RequestCardShow = ({
   return (
     <div className="showContainer">
       <BackButton />
-      <h2 className="showTitle">Detalles del Show</h2>
+      <h2 className="showTitle">Request show</h2>
       <div className="showInfo">
         <div className="personalInfo">
           <p>
-            <strong>Nombre Completo:</strong> {[first_name, " ", last_name]}
+            <strong>Full Name:</strong> {[first_name, " ", last_name]}
           </p>
           <p>
             <strong>Email:</strong> {email}
           </p>
           <p>
-            <strong>Fecha de Nacimiento:</strong>{" "}
+            <strong>Birth day:</strong>{" "}
             {new Date(birth_date).toLocaleDateString()}
           </p>
           <p>
-            <strong>Día de Creación:</strong>{" "}
+            <strong>Create day:</strong>{" "}
             {new Date(creation_date).toLocaleDateString()}
           </p>
         </div>
         <div className="cvSection">
-          <h3>Información del CV</h3>
+          <h3>CV Information</h3>
           <ul>
             <li>
-              <strong>Número de Identificación:</strong> {identification_number}
+              <strong>Identification Number:</strong> {identification_number}
             </li>
             <li>
-              <strong>Participante:</strong> {user_name}
+              <strong>Postulant:</strong> {user_name}
             </li>
             <li>
-              <strong>Materia:</strong> {subject_name}
+              <strong>Subject:</strong> {subject_name}
             </li>
           </ul>
         </div>

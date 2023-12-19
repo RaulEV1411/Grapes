@@ -6,10 +6,10 @@ const RequestCardIndex = ({ subject_name, identification_number, user_name, id_p
     return (
         
         <div className="requestContainer">
-            <h2 className="infoTitle">Información de las Solicitudes</h2>
+            <h2 className="infoTitle">Request Information</h2>
             <div className="requestInfo">
-                <p><strong>Número de Identificación:</strong> {identification_number}</p>
-                <p><strong>Postulante:</strong> {user_name}</p>
+                <p><strong>Identification number:</strong> {identification_number}</p>
+                <p><strong>Postulant:</strong> {user_name}</p>
                 <p><strong>Materia:</strong> {subject_name}</p>
             </div>
         </div>
